@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardViewCardPge"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardv"
+        android:layout_width="390dp"
+        android:layout_height="111dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="30dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary95"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/cardv"-->
+<!--        android:layout_width="390dp"-->
+<!--        android:layout_height="111dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="375dp"
+            android:layout_height="112dp">
+
+            <TextView
+                android:id="@+id/meetingName"
+                android:layout_width="332dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="30dp"
+                android:shadowColor="#EFE2E2"
+                android:text="טיפול - קלינאית תקשורת"
+                android:textColor="#5E35B1"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="4dp"
+                android:background="#5E35B1"
+                android:text="הוחזר"
+                android:textColor="#FFFFFF"
+                android:textSize="13.1sp"
+                android:textStyle="bold"
+
+                app:layout_constraintEnd_toStartOf="@+id/button2"
+                app:layout_constraintTop_toBottomOf="@+id/dateMeeting"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="80dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="4dp"
+                android:background="#5E35B1"
+                android:text="הוגש"
+                android:textColor="#FFFFFF"
+                android:textSize="13.1sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/button4"
+                app:layout_constraintTop_toBottomOf="@+id/dateMeeting" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="80dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="4dp"
+                android:background="#5E35B1"
+                android:text="קבלה"
+                android:textColor="#FFFFFF"
+                android:textSize="13.1sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/button5"
+                app:layout_constraintTop_toBottomOf="@+id/dateMeeting" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:background="#5E35B1"
+                android:text="התקיים"
+                android:textColor="#FFFFFF"
+                android:textSize="13.1sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/meetingName"
+                app:layout_constraintTop_toBottomOf="@+id/dateMeeting" />
+
+            <TextView
+                android:id="@+id/dateMeeting"
+                android:layout_width="104dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="36dp"
+                android:autoText="false"
+                android:text="01/02/2023"
+                android:textColor="#5E35B1"
+                android:textSize="19dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/button5"
+                app:layout_constraintTop_toTopOf="@+id/meetingName" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:text="00:00"
+                android:textColor="#5E35B1"
+                android:textSize="19dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dateMeeting" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

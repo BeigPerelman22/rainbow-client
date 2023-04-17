@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E0DAED"
+    android:scrollbarDefaultDelayBeforeFade="0"
+    android:scrollbarFadeDuration="0"
+    android:textAlignment="textEnd"
+    android:textDirection="firstStrongRtl"
+    tools:context=".AddMeetingActivity">
+
+    <EditText
+        android:id="@+id/textDate"
+        android:layout_width="213dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
+        android:text="תאריך "
+        android:textAlignment="center"
+        android:textColor="#090808"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_MeetingName" />
+
+    <EditText
+        android:id="@+id/textCaregiverDetails"
+        android:layout_width="261dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
+        android:text="פרטי המטפל"
+        android:textAlignment="center"
+        android:textColor="#090808"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textLoc"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textLoc"
+        app:layout_constraintTop_toBottomOf="@+id/textLoc" />
+
+    <EditText
+        android:id="@+id/textLoc"
+        android:layout_width="261dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
+        android:text="מיקום"
+        android:textAlignment="center"
+        android:textColor="#090808"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/text_MeetingName"
+        app:layout_constraintStart_toStartOf="@+id/text_MeetingName"
+        app:layout_constraintTop_toBottomOf="@+id/textTime" />
+
+    <EditText
+        android:id="@+id/textTime"
+        android:layout_width="213dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
+        android:text="שעה"
+        android:textAlignment="center"
+        android:textColor="#090808"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textDate"
+        app:layout_constraintStart_toStartOf="@+id/textDate"
+        app:layout_constraintTop_toBottomOf="@+id/textDate" />
+
+    <EditText
+        android:id="@+id/text_MeetingName"
+        android:layout_width="334dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="40dp"
+        android:background="#FFFFFF"
+        android:text="meeting_name_str"
+        android:textAlignment="center"
+        android:textColor="#090808"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/date_2"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/ic_baseline_calendar_month_24"
+        android:contentDescription="@string/bottom_sheet_behavior"
+        app:layout_constraintBottom_toBottomOf="@+id/textDate"
+        app:layout_constraintEnd_toStartOf="@+id/textDate"
+        app:layout_constraintTop_toTopOf="@+id/textDate" />
+
+
+    <Button
+        android:id="@+id/time_2"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/ic_time"
+        android:contentDescription="@string/bottom_sheet_behavior"
+        app:layout_constraintBottom_toBottomOf="@+id/textTime"
+        app:layout_constraintEnd_toEndOf="@+id/date_2"
+        app:layout_constraintStart_toStartOf="@+id/date_2"
+        app:layout_constraintTop_toTopOf="@+id/textTime"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_add_files_kabala"
+        android:layout_width="165dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/round_button"
+        android:drawableLeft="@drawable/ic_note_add"
+        android:paddingHorizontal="10dp"
+        android:text="קבלה"
+        android:textIsSelectable="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:circularflow_defaultRadius="20dp"
+        app:circularflow_radiusInDP="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/textCaregiverDetails"
+        app:layout_constraintStart_toStartOf="@+id/textCaregiverDetails"
+        app:layout_constraintTop_toBottomOf="@+id/textCaregiverDetails"
+        tools:ignore="ExtraText,MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_Submitted_to_KOFH"
+        android:layout_width="165dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/round_button"
+        android:drawableLeft="@drawable/ic_note_add"
+        android:paddingHorizontal="10dp"
+        android:text="הוגש לקופ&quot;ח"
+        android:textIsSelectable="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:circularflow_defaultRadius="20dp"
+        app:circularflow_radiusInDP="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_add_files_kabala"
+        app:layout_constraintStart_toStartOf="@+id/btn_add_files_kabala"
+        app:layout_constraintTop_toBottomOf="@+id/btn_add_files_kabala"
+        tools:ignore="ExtraText,MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_Refund_received"
+        android:layout_width="165dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/round_button"
+        android:drawableLeft="@drawable/ic_note_add"
+        android:paddingHorizontal="10dp"
+        android:text="התקבל החזר"
+        android:textIsSelectable="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:circularflow_defaultRadius="20dp"
+        app:circularflow_radiusInDP="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_Submitted_to_KOFH"
+        app:layout_constraintStart_toStartOf="@+id/btn_Submitted_to_KOFH"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Submitted_to_KOFH"
+        tools:ignore="ExtraText,MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_change_mee"
+        android:layout_width="201dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="30dp"
+
+        android:background="@drawable/round_button1"
+        android:paddingHorizontal="10dp"
+        android:text="שנה פגישה"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:circularflow_defaultRadius="20dp"
+        app:circularflow_radiusInDP="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Refund_received"
+        tools:ignore="ExtraText,MissingConstraints" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
