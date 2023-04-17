@@ -10,7 +10,7 @@
     android:scrollbarFadeDuration="0"
     android:textAlignment="textEnd"
     android:textDirection="firstStrongRtl"
-    tools:context=".AddMeetingActivity">
+    tools:context=".activities.AddMeetingActivity">
 
     <EditText
         android:id="@+id/textDate"

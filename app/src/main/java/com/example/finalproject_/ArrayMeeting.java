@@ -1,16 +1,16 @@
 package com.example.finalproject_;
 
 
+import com.example.finalproject_.models.MeetingModel;
+
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
 public class ArrayMeeting {
-    ArrayList<Meeting> meetingArrayList = new ArrayList<Meeting>();
+    public ArrayList<MeetingModel> meetingModelArrayList = new ArrayList<MeetingModel>();
 
-    public ArrayMeeting(ArrayList<Meeting> meetingArrayList)//constructor
+    public ArrayMeeting(ArrayList<MeetingModel> meetingModelArrayList)//constructor
     {
-        this.meetingArrayList = meetingArrayList;
+        this.meetingModelArrayList = meetingModelArrayList;
     }
 
     public ArrayMeeting()//default constructor
@@ -18,50 +18,50 @@ public class ArrayMeeting {
 
     }
 
-    public ArrayList<Meeting> getMeetingArrayList()//get arraylist
+    public ArrayList<MeetingModel> getMeetingArrayList()//get arraylist
     {
-        return meetingArrayList;
+        return meetingModelArrayList;
     }
 
-    public void addMeeting(Meeting meeting) {
+    public void addMeeting(MeetingModel meetingModel) {
 
-        meetingArrayList.add(0, meeting);
-
-    }
-
-    public void changeMeeting(Meeting meeting) {
+        meetingModelArrayList.add(0, meetingModel);
 
     }
 
-    public void deleteMeeting(Meeting meeting) {
+    public void changeMeeting(MeetingModel meetingModel) {
+
+    }
+
+    public void deleteMeeting(MeetingModel meetingModel) {
 
 
     }
 
-    public ArrayList<Meeting> am_to_al() {
+    public ArrayList<MeetingModel> am_to_al() {
 
-        return meetingArrayList;
+        return meetingModelArrayList;
     }
 
-    public ArrayList<Meeting> CreateDataBase() {
+    public ArrayList<MeetingModel> CreateDataBase() {
 
-        Meeting m1 = new Meeting("אבחון קלינאית תקשורת", "01/11/2023", "10:30", "רבי עקיבא 122 בני ברק", "חיה אפשטיין 050:3126578", false, "", "", "");
-        Meeting m2 = new Meeting("הדרכת הורים בגן", "03/11/2023", "11:00", "בן גוריון 18 רמת גן", "רות כהן 052:6161743", false, "", "", "");
-        Meeting m3 = new Meeting("אבחון נירולוג", "01/12/2023", "09:30", "ביאליק 15 רמת גן", "מוחמד אבו פאני 054:5381649", false, "", "", "");
-        Meeting m4 = new Meeting("טיפול ריפוי בעיסוק", "05/12/2023", "09:30", "ז'בוטיסקי 128 בני ברק", "יוסף קירשברג 052:8790168 ", false, "", "", "");
-        Meeting m5 = new Meeting("טיפול קלינאית תקשורת", "09/12/2023", "13:30", "רבי עקיבא 122 בני ברק", "חיה אפשטיין 050:3126578", false, "", "", "");
-        Meeting m6 = new Meeting("הדרכת הורים בגן", "22/12/2023", "10:30", "בן גוריון 18 רמת גן", "רות כהן 052:6161743", false, "", "", "");
+        MeetingModel m1 = new MeetingModel("אבחון קלינאית תקשורת", "01/11/2023", "10:30", "רבי עקיבא 122 בני ברק", "חיה אפשטיין 050:3126578", false, "", "", "");
+        MeetingModel m2 = new MeetingModel("הדרכת הורים בגן", "03/11/2023", "11:00", "בן גוריון 18 רמת גן", "רות כהן 052:6161743", false, "", "", "");
+        MeetingModel m3 = new MeetingModel("אבחון נירולוג", "01/12/2023", "09:30", "ביאליק 15 רמת גן", "מוחמד אבו פאני 054:5381649", false, "", "", "");
+        MeetingModel m4 = new MeetingModel("טיפול ריפוי בעיסוק", "05/12/2023", "09:30", "ז'בוטיסקי 128 בני ברק", "יוסף קירשברג 052:8790168 ", false, "", "", "");
+        MeetingModel m5 = new MeetingModel("טיפול קלינאית תקשורת", "09/12/2023", "13:30", "רבי עקיבא 122 בני ברק", "חיה אפשטיין 050:3126578", false, "", "", "");
+        MeetingModel m6 = new MeetingModel("הדרכת הורים בגן", "22/12/2023", "10:30", "בן גוריון 18 רמת גן", "רות כהן 052:6161743", false, "", "", "");
 
         //ArrayList<Meeting> meetingArrayList=new ArrayList<Meeting>();
 
-        meetingArrayList.add(m1);
-        meetingArrayList.add(m2);
-        meetingArrayList.add(m3);
-        meetingArrayList.add(m4);
-        meetingArrayList.add(m5);
-        meetingArrayList.add(m6);
+        meetingModelArrayList.add(m1);
+        meetingModelArrayList.add(m2);
+        meetingModelArrayList.add(m3);
+        meetingModelArrayList.add(m4);
+        meetingModelArrayList.add(m5);
+        meetingModelArrayList.add(m6);
 
 
-        return meetingArrayList;
+        return meetingModelArrayList;
     }
 }
