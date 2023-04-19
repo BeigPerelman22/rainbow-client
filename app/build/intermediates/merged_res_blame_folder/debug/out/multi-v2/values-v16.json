@@ -1,20 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.finalproject_.app-mergeDebugResources-43:/values-v16/values-v16.xml",
+            "outputFile": "com.example.finalproject_.app-mergeDebugResources-42:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\beral\\.gradle\\caches\\transforms-3\\f8ca33f57cc610a0b1ed31d0cc4084bb\\transformed\\core-1.8.0\\res\\values-v16\\values-v16.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "65",
-                        "endOffsets": "116"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\beral\\.gradle\\caches\\transforms-3\\2c6b57251dffc0c864c49803d7fb8849\\transformed\\appcompat-1.5.1\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\beral\\.gradle\\caches\\transforms-3\\8bfc173302b2d0e6e48dec7a410e6302\\transformed\\appcompat-1.5.1\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -30,6 +20,16 @@
                         "endLines": "6",
                         "endColumns": "12",
                         "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\beral\\.gradle\\caches\\transforms-3\\c1bc9974ce087a4885457a421dafaa18\\transformed\\core-1.8.0\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
                     }
                 }
             ]

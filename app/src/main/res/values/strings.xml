@@ -2,5 +2,7 @@
     <string name="app_name">FinalProject -ריינבואו</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="server_client_id">85903642158-afk6nadtdach9qstunu10ktnjo5h4oim.apps.googleusercontent.com</string>
+    <string name="client_id">85903642158-afk6nadtdach9qstunu10ktnjo5h4oim.apps.googleusercontent.com</string>
+    <string name="client_secret">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</string>
+    <string name="grant_type">authorization_code</string>
 </resources>

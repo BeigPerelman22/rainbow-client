@@ -65,10 +65,12 @@ layout card_view
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
+string client_id
+string client_secret
 string hello_blank_fragment
-string server_client_id
 style AppShapeAppearance.SmallComponet
 style AppTheme
 style Theme.FinalProjectריינבואו
 xml backup_rules
 xml data_extraction_rules
+xml network_security_config

@@ -7,37 +7,50 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.finalproject_.R;
+import com.example.finalproject_.interfaces.TokenAPIInterface;
+import com.example.finalproject_.models.AuthTokenModel;
+import com.example.finalproject_.utils.SharedPreferencesUtils;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.tasks.Task;
+import com.google.api.services.calendar.CalendarScopes;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
+    private TokenAPIInterface tokenAPIInterface;
     private static final int RC_SIGN_IN = 1234;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.server_client_id))
-                .requestServerAuthCode(getString(R.string.server_client_id))
-                .requestScopes(new Scope(Scopes.EMAIL))
+                .requestServerAuthCode(getString(R.string.client_id))
+                .requestIdToken(getString(R.string.client_id))
+                .requestScopes(new Scope(CalendarScopes.CALENDAR))
+                .requestEmail()
                 .build();
 
-        // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        mGoogleSignInClient.signOut();
 
         SignInButton signInButton = findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(new View.OnClickListener() {
@@ -51,11 +64,16 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        // Check for existing Google Sign In account, if the user is already signed in
+
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-//        if (Objects.nonNull(account) && !account.isExpired())  {
-//            launchMainActivity();
-//        }
+        if (Objects.nonNull(account) && !account.isExpired()) {
+            try {
+                handelAccountResponse(account);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+            launchMainActivity();
+        }
     }
 
     private void signIn() {
@@ -76,17 +94,56 @@ public class LoginActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult();
-            System.out.println(account);
-            Toast.makeText(this, "Login Succeed", Toast.LENGTH_SHORT).show();
-            launchMainActivity();
+            handelAccountResponse(account);
         } catch (Exception e) {
             System.out.println(e);
             Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
         }
     }
 
+    private void handelAccountResponse(GoogleSignInAccount account) throws JSONException {
+        RequestQueue volleyQueue = Volley.newRequestQueue(LoginActivity.this);
+        String url = "https://oauth2.googleapis.com/token";
+        AuthTokenModel authTokenModel = createAuthTokenModel(account.getServerAuthCode());
+        String jsonAsString = new Gson().toJson(authTokenModel);
+        JSONObject jsonObject = new JSONObject(jsonAsString);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                jsonObject,
+                (Response.Listener<JSONObject>) response -> {
+                    try {
+                        String token = response.getString("access_token");
+                        SharedPreferencesUtils.putString(this, "calendar_id", account.getEmail());
+                        SharedPreferencesUtils.putString(this, "token", token);
+                        Toast.makeText(this, "Login Succeed", Toast.LENGTH_SHORT).show();
+                        launchMainActivity();
+
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                },
+                (Response.ErrorListener) error -> {
+                    Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG).show();
+                }
+        );
+
+        volleyQueue.add(jsonObjectRequest);
+    }
+
     private void launchMainActivity() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
+    }
+
+    private AuthTokenModel createAuthTokenModel(String authCode) {
+        AuthTokenModel authTokenModel = new AuthTokenModel();
+        authTokenModel.setAuthCode(authCode);
+        authTokenModel.setClientId(getString(R.string.client_id));
+        authTokenModel.setClientSecret(getString(R.string.client_secret));
+        authTokenModel.setGrantType(getString(R.string.grant_type));
+
+        return authTokenModel;
     }
 }

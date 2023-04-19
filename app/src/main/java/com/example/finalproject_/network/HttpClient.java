@@ -8,7 +8,6 @@ public class HttpClient {
     public static synchronized OkHttpClient getInstance() {
         if (client == null) {
             client = new OkHttpClient.Builder()
-                    .addInterceptor(new AuthInterceptor())
                     .build();
         }
         return client;
