@@ -44,7 +44,9 @@ id float_kabala_camera
 id float_kabala_img
 id float_submitted_camera
 id float_submitted_img
+id loader
 id meetingName
+id overlay
 id recyclerViewCon
 id sign_in_button
 id textCaregiverDetails
@@ -62,11 +64,13 @@ layout activity_change_meeting
 layout activity_login
 layout activity_main
 layout card_view
+layout loader
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
 string client_id
 string client_secret
+string grant_type
 string hello_blank_fragment
 style AppShapeAppearance.SmallComponet
 style AppTheme

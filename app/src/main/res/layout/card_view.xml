@@ -24,7 +24,6 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
                 android:shadowColor="#EFE2E2"
-                android:text="טיפול - קלינאית תקשורת"
                 android:textColor="#5E35B1"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"

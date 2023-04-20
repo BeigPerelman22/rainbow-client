@@ -13,13 +13,11 @@ public class ArrayMeeting {
         this.meetingModelArrayList = meetingModelArrayList;
     }
 
-    public ArrayMeeting()//default constructor
-    {
+    public ArrayMeeting() {
 
     }
 
-    public ArrayList<MeetingModel> getMeetingArrayList()//get arraylist
-    {
+    public ArrayList<MeetingModel> getMeetingArrayList() {
         return meetingModelArrayList;
     }
 

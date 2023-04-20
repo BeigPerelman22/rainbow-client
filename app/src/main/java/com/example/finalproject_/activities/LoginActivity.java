@@ -2,7 +2,9 @@ package com.example.finalproject_.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.finalproject_.R;
 import com.example.finalproject_.interfaces.TokenAPIInterface;
 import com.example.finalproject_.models.AuthTokenModel;
+import com.example.finalproject_.utils.LoaderUtils;
 import com.example.finalproject_.utils.SharedPreferencesUtils;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -50,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        mGoogleSignInClient.signOut();
 
         SignInButton signInButton = findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(new View.OnClickListener() {
@@ -66,14 +68,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if (Objects.nonNull(account) && !account.isExpired()) {
-            try {
-                handelAccountResponse(account);
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
-            launchMainActivity();
-        }
     }
 
     private void signIn() {
@@ -96,12 +90,12 @@ public class LoginActivity extends AppCompatActivity {
             GoogleSignInAccount account = completedTask.getResult();
             handelAccountResponse(account);
         } catch (Exception e) {
-            System.out.println(e);
             Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void handelAccountResponse(GoogleSignInAccount account) throws JSONException {
+        LoaderUtils.showLoader(this);
         RequestQueue volleyQueue = Volley.newRequestQueue(LoginActivity.this);
         String url = "https://oauth2.googleapis.com/token";
         AuthTokenModel authTokenModel = createAuthTokenModel(account.getServerAuthCode());
@@ -117,15 +111,13 @@ public class LoginActivity extends AppCompatActivity {
                         String token = response.getString("access_token");
                         SharedPreferencesUtils.putString(this, "calendar_id", account.getEmail());
                         SharedPreferencesUtils.putString(this, "token", token);
-                        Toast.makeText(this, "Login Succeed", Toast.LENGTH_SHORT).show();
                         launchMainActivity();
-
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
                 },
                 (Response.ErrorListener) error -> {
-                    Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG).show();
+                    throw new RuntimeException(error.getMessage());
                 }
         );
 

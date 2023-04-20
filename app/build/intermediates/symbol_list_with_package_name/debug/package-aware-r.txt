@@ -3033,6 +3033,7 @@ id line3
 id linear
 id listMode
 id list_item
+id loader
 id locale
 id ltr
 id marquee
@@ -3118,6 +3119,7 @@ id on
 id onInterceptTouchReturnSwipe
 id outline
 id outward
+id overlay
 id overshoot
 id packed
 id parallax
@@ -3436,6 +3438,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout loader
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -3562,6 +3565,7 @@ string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string grant_type
 string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
