@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
     private void handelAccountResponse(GoogleSignInAccount account) throws JSONException {
         LoaderUtils.showLoader(this);
         RequestQueue volleyQueue = Volley.newRequestQueue(LoginActivity.this);
-        String url = "https://oauth2.googleapis.com/token";
+        String url = getString(R.string.token_api_url);
         AuthTokenModel authTokenModel = createAuthTokenModel(account.getServerAuthCode());
         String jsonAsString = new Gson().toJson(authTokenModel);
         JSONObject jsonObject = new JSONObject(jsonAsString);

@@ -5,8 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.finalproject_.adapters.CustomAdapter;
@@ -40,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.parseColor("#94C8F0"));
 
         eventAPIInterface = EventAPIClient.getClient().create(EventAPIInterface.class);
 
@@ -78,32 +85,16 @@ public class MainActivity extends AppCompatActivity {
 
         if (MyProperties.getInstance().addNewMeeting) {
             MyProperties.getInstance().addNewMeeting = false;
-            String meeting_name = getIntent().getStringExtra("meeting_name_str");
-            String date = getIntent().getStringExtra("date_str");
-            String time = getIntent().getStringExtra("time_str");
-            String location = getIntent().getStringExtra("location_str");
-            String caregiver_details = getIntent().getStringExtra("caregiver_details_str");
-
-            String kabala = getIntent().getStringExtra("kabala_str");
-            String submitted = getIntent().getStringExtra("submitted_str");
-            String refund = getIntent().getStringExtra("refund_str");
-
-            MeetingModel new_meetingModel = new MeetingModel(meeting_name, date, time, location, caregiver_details, false, kabala, submitted, refund);
-            MyProperties.getInstance().arrayMeeting.addMeeting(new_meetingModel);
-
-        } else if (MyProperties.getInstance().firstTimeOpen) {
+            addNewMeeting();
+        }
+        if (MyProperties.getInstance().firstTimeOpen) {
             MyProperties.getInstance().firstTimeOpen = false;
             MyProperties.getInstance().arrayMeeting.CreateDataBase();
-        } else if (MyProperties.getInstance().changeMeeting) {
-            MyProperties.getInstance().changeMeeting = false;
-            String meeting_name = getIntent().getStringExtra("meeting_name_str");
-            String date = getIntent().getStringExtra("date_str");
-            String time = getIntent().getStringExtra("time_str");
-            String location = getIntent().getStringExtra("location_str");
-            String caregiver_details = getIntent().getStringExtra("caregiver_details_str");
-
         }
-
+        if (MyProperties.getInstance().changeMeeting) {
+            MyProperties.getInstance().changeMeeting = false;
+            updateMeeting();
+        }
 
         going_add_meeting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,5 +106,47 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void updateMeeting() {
+        int ID = getIntent().getIntExtra("CH->MA", 99);
+        String meeting_name = getIntent().getStringExtra("meeting_name_str");
+        String date = getIntent().getStringExtra("date_str");
+        String time = getIntent().getStringExtra("time_str");
+        String location = getIntent().getStringExtra("location_str");
+        String caregiver_details = getIntent().getStringExtra("caregiver_details_str");
 
+
+        String kabala = getIntent().getStringExtra("kabala_f");
+        String submitted = getIntent().getStringExtra("submitted_f");
+        String refund = getIntent().getStringExtra("refund_f");
+
+
+        boolean took_place = getIntent().getBooleanExtra("took_placeBOOL", false);
+        boolean kabala_bool = getIntent().getBooleanExtra("kabalaBOOL", false);
+        boolean submitted_bool = getIntent().getBooleanExtra("submittedBOOL", false);
+        boolean refund_bool = getIntent().getBooleanExtra("refund_receivedBOOL", false);
+
+
+        MyProperties.getInstance().arrayMeeting.changeMeeting(ID, meeting_name, date, time, location, caregiver_details, kabala, submitted, refund, took_place, kabala_bool, submitted_bool, refund_bool);
+    }
+
+    private void addNewMeeting() {
+        String meeting_name = getIntent().getStringExtra("meeting_name_str");
+        String date = getIntent().getStringExtra("date_str");
+        String time = getIntent().getStringExtra("time_str");
+        String location = getIntent().getStringExtra("location_str");
+        String caregiver_details = getIntent().getStringExtra("caregiver_details_str");
+
+        String kabala = getIntent().getStringExtra("kabala_f");
+        String submitted = getIntent().getStringExtra("submitted_f");
+        String refund = getIntent().getStringExtra("refund_f");
+
+
+        boolean took_place = getIntent().getBooleanExtra("took_placeBOOL", false);
+        boolean kabala_bool = getIntent().getBooleanExtra("kabalaBOOL", false);
+        boolean submitted_bool = getIntent().getBooleanExtra("submittedBOOL", false);
+        boolean refund_bool = getIntent().getBooleanExtra("refund_receivedBOOL", false);
+
+        MeetingModel new_meeting = new MeetingModel(0, meeting_name, date, time, location, caregiver_details, kabala, submitted, refund, took_place, kabala_bool, submitted_bool, refund_bool);
+        MyProperties.getInstance().arrayMeeting.addMeeting(new_meeting);
+    }
 }

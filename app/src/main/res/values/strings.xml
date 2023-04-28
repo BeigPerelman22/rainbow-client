@@ -5,4 +5,5 @@
     <string name="client_id">85903642158-afk6nadtdach9qstunu10ktnjo5h4oim.apps.googleusercontent.com</string>
     <string name="client_secret">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</string>
     <string name="grant_type">authorization_code</string>
+    <string name="token_api_url">https://oauth2.googleapis.com/token</string>
 </resources>
