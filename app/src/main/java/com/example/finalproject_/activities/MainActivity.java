@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
                 CustomAdapter customAdapter = new CustomAdapter(events);
                 recyclerView.setAdapter(customAdapter);
+                customAdapter.sortItemsByDate(false);
                 LoaderUtils.hideLoader();
             }
 

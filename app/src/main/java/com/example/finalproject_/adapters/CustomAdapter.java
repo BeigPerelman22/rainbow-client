@@ -16,6 +16,8 @@ import com.example.finalproject_.models.MeetingModel;
 import com.example.finalproject_.view_holders.MeetingViewHolder;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class CustomAdapter extends RecyclerView.Adapter<MeetingViewHolder> {
 
@@ -58,5 +60,25 @@ public class CustomAdapter extends RecyclerView.Adapter<MeetingViewHolder> {
     @Override
     public int getItemCount() {
         return events.size();
+    }
+
+    public void sortItemsByDate(boolean ascending) {
+        // Create a comparator to compare the dates in the list
+        Comparator<EventModel> dateComparator = new Comparator<EventModel>() {
+            @Override
+            public int compare(EventModel item1, EventModel item2) {
+                if (ascending) {
+                    return item1.getStartDate().getDateTime().compareTo(item2.getStartDate().getDateTime());
+                } else {
+                    return item2.getStartDate().getDateTime().compareTo(item1.getStartDate().getDateTime());
+                }
+            }
+        };
+
+        // Sort the list using the comparator
+        Collections.sort(events, dateComparator);
+
+        // Notify the adapter that the data has changed after sorting
+        notifyDataSetChanged();
     }
 }
