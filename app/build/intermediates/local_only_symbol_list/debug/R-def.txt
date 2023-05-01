@@ -122,6 +122,7 @@ string client_id
 string client_secret
 string grant_type
 string hello_blank_fragment
+string server_url
 string token_api_url
 style AppShapeAppearance.SmallComponet
 style AppTheme

@@ -3715,6 +3715,7 @@ string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
 string search_menu_title
+string server_url
 string status_bar_notification_info_overflow
 string token_api_url
 style AlertDialog_AppCompat

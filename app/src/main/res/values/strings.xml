@@ -6,4 +6,5 @@
     <string name="client_secret">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</string>
     <string name="grant_type">authorization_code</string>
     <string name="token_api_url">https://oauth2.googleapis.com/token</string>
+    <string name="server_url">http://192.168.33.26:3000/</string>
 </resources>

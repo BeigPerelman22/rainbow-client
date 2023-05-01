@@ -68,9 +68,9 @@ public class CustomAdapter extends RecyclerView.Adapter<MeetingViewHolder> {
             @Override
             public int compare(EventModel item1, EventModel item2) {
                 if (ascending) {
-                    return item1.getStartDate().getDateTime().compareTo(item2.getStartDate().getDateTime());
+                    return item1.getStartTime().compareTo(item2.getStartTime());
                 } else {
-                    return item2.getStartDate().getDateTime().compareTo(item1.getStartDate().getDateTime());
+                    return item2.getStartTime().compareTo(item1.getStartTime());
                 }
             }
         };

@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.example.finalproject_.adapters.CustomAdapter;
 import com.example.finalproject_.interfaces.EventAPIInterface;
 import com.example.finalproject_.models.EventModel;
-import com.example.finalproject_.models.EventsResponseModel;
 import com.example.finalproject_.models.MeetingModel;
 import com.example.finalproject_.MyProperties;
 import com.example.finalproject_.R;
@@ -27,6 +26,8 @@ import com.example.finalproject_.utils.SharedPreferencesUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -58,26 +59,27 @@ public class MainActivity extends AppCompatActivity {
         tokenRequestModel.setToken(token);
         tokenRequestModel.setCalendarId(calendarId);
 
-        Call<EventsResponseModel> call = eventAPIInterface.getEvents(tokenRequestModel);
-        call.enqueue(new Callback<EventsResponseModel>() {
+        Call<List<EventModel>> call = eventAPIInterface.getEvents(tokenRequestModel);
+        call.enqueue(new Callback<List<EventModel>>() {
             @Override
-            public void onResponse(Call<EventsResponseModel> call, Response<EventsResponseModel> response) {
-                System.out.println(response.body());
-                events = new ArrayList<>(response.body().events);
+            public void onResponse(Call<List<EventModel>> call, Response<List<EventModel>> response) {
+                if (!Objects.isNull(response.body())) {
+                    events = new ArrayList<>(response.body());
+                    recyclerView = findViewById(R.id.recyclerViewCon);
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+                    recyclerView.setLayoutManager(layoutManager);
 
-
-                recyclerView = findViewById(R.id.recyclerViewCon);
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-                recyclerView.setLayoutManager(layoutManager);
-
-                CustomAdapter customAdapter = new CustomAdapter(events);
-                recyclerView.setAdapter(customAdapter);
-                customAdapter.sortItemsByDate(false);
-                LoaderUtils.hideLoader();
+                    CustomAdapter customAdapter = new CustomAdapter(events);
+                    recyclerView.setAdapter(customAdapter);
+                    customAdapter.sortItemsByDate(false);
+                    LoaderUtils.hideLoader();
+                } else {
+                    Toast.makeText(MyApplication.getInstance(), "Fetch event failed", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
-            public void onFailure(Call<EventsResponseModel> call, Throwable t) {
+            public void onFailure(Call<List<EventModel>> call, Throwable t) {
                 Toast.makeText(MyApplication.getInstance(), "Fetch event failed", Toast.LENGTH_SHORT).show();
             }
         });

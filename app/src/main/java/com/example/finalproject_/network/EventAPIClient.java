@@ -11,7 +11,7 @@ public class EventAPIClient {
         if (retrofit == null) {
             OkHttpClient client = HttpClient.getInstance();
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://192.168.33.26:3000/")
+                    .baseUrl("http://192.168.33.19:3000/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();

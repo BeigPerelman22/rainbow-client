@@ -2,43 +2,104 @@ package com.example.finalproject_.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.time.Instant;
-
 public class EventModel {
 
     @SerializedName("summary")
-    public String description;
+    private String description;
 
-    @SerializedName("created")
-    public String time;
+    @SerializedName("startTime")
+    private String startTime;
 
-    @SerializedName("start")
-    public StartDate startDate;
+    @SerializedName("endTime")
+    private String endTime;
 
+    @SerializedName("location")
+    private String location;
 
-    public class StartDate {
-        @SerializedName("dateTime")
-        private String dateTime;
+    @SerializedName("caregiverDetails")
+    private String caregiverDetails;
 
-        public String getDateTime() {
-            return dateTime;
-        }
-    }
+    @SerializedName("hasReceipt")
+    private boolean hasReceipt;
+
+    @SerializedName("isTookPlace")
+    private boolean isTookPlace;
+
+    @SerializedName("isSubmitted")
+    private boolean isSubmitted;
+
+    @SerializedName("isMoneyRefund")
+    private boolean isMoneyRefund;
 
     public String getDescription() {
         return description;
     }
 
-
-    public String getTime() {
-        return time;
-    }
-
-    public StartDate getStartDate() {
-        return startDate;
-    }
-
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getCaregiverDetails() {
+        return caregiverDetails;
+    }
+
+    public void setCaregiverDetails(String caregiverDetails) {
+        this.caregiverDetails = caregiverDetails;
+    }
+
+    public boolean isHasReceipt() {
+        return hasReceipt;
+    }
+
+    public void setHasReceipt(boolean hasReceipt) {
+        this.hasReceipt = hasReceipt;
+    }
+
+    public boolean isTookPlace() {
+        return isTookPlace;
+    }
+
+    public void setTookPlace(boolean tookPlace) {
+        isTookPlace = tookPlace;
+    }
+
+    public boolean isSubmitted() {
+        return isSubmitted;
+    }
+
+    public void setSubmitted(boolean submitted) {
+        isSubmitted = submitted;
+    }
+
+    public boolean isMoneyRefund() {
+        return isMoneyRefund;
+    }
+
+    public void setMoneyRefund(boolean moneyRefund) {
+        isMoneyRefund = moneyRefund;
     }
 }
