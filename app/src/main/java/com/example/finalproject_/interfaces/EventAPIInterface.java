@@ -1,5 +1,6 @@
 package com.example.finalproject_.interfaces;
 
+import com.example.finalproject_.models.CreateEventRequestModel;
 import com.example.finalproject_.models.EventModel;
 import com.example.finalproject_.models.TokenRequestModel;
 import com.example.finalproject_.models.UpdateEventRequestModel;
@@ -18,5 +19,8 @@ public interface EventAPIInterface {
 
     @PUT("/calendar/updateevent")
     Call<EventModel> updateEvent(@Body UpdateEventRequestModel updateEvent);
+
+    @POST("/calendar/newevent")
+    Call<EventModel> createEvent(@Body CreateEventRequestModel createEvent);
 
 }

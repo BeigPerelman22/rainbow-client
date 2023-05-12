@@ -292,8 +292,7 @@ public class ChangeMeetingActivity extends AppCompatActivity {
             }
         };
 
-        imageView_delete_sub.setOnClickListener(new View.OnClickListener()//delete file sub
-        {
+        imageView_delete_sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 btn_Submitted_b = false;
@@ -305,8 +304,7 @@ public class ChangeMeetingActivity extends AppCompatActivity {
                 sub_v.setImageResource(R.drawable.baseline_check_24);
             }
         });
-        imageView_delete_refund.setOnClickListener(new View.OnClickListener()//delete file refund received
-        {
+        imageView_delete_refund.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 btn_Refund_received_b = false;
@@ -760,18 +758,11 @@ public class ChangeMeetingActivity extends AppCompatActivity {
         kabala = currentEvent.isHasReceipt();
         submitted = currentEvent.isSubmitted();
         refund_received = currentEvent.isMoneyRefund();
-        if (took_place) {
-            btn_tookplace.setBackgroundResource(R.drawable.round_button_green);
-        }
-        if (kabala) {
-            btn_receipt.setBackgroundResource(R.drawable.round_button_green);
-        }
-        if (submitted) {
-            btn_Submitted.setBackgroundResource(R.drawable.round_button_green);
-        }
-        if (refund_received) {
-            btn_Refund_received.setBackgroundResource(R.drawable.round_button_green);
-        }
+        setButtonBackground(btn_tookplace, took_place);
+        setButtonBackground(btn_tookplace, took_place);
+        setButtonBackground(btn_receipt, kabala);
+        setButtonBackground(btn_Submitted, submitted);
+        setButtonBackground(btn_Refund_received, refund_received);
 
         updateButton = findViewById(R.id.btn_update_meeting);
 
@@ -1146,5 +1137,11 @@ public class ChangeMeetingActivity extends AppCompatActivity {
                 Toast.makeText(MyApplication.getInstance(), "Update event failed", Toast.LENGTH_SHORT).show();
             }
         };
+    }
+
+    private void setButtonBackground(Button button, boolean condition) {
+        if (condition) {
+            button.setBackgroundResource(R.drawable.round_button_green);
+        }
     }
 }
