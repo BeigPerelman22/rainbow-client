@@ -30,9 +30,7 @@ public class CustomAdapter extends RecyclerView.Adapter<MeetingViewHolder> {
     @NonNull
     @Override
     public MeetingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View meetingView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view, parent, false);
-
         return new MeetingViewHolder(meetingView);
     }
 
@@ -51,7 +49,7 @@ public class CustomAdapter extends RecyclerView.Adapter<MeetingViewHolder> {
 //                intent.putExtra("time_str", currEvent.getTime());
 //                intent.putExtra("location_str", currEvent.getLocation());
 //                intent.putExtra("caregiver_details_str", currEvent.getCaregiver_details());
-
+                intent.putExtra("event", currEvent);
                 view.getContext().startActivity(intent);
             }
         });

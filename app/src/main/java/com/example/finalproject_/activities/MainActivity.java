@@ -60,29 +60,7 @@ public class MainActivity extends AppCompatActivity {
         tokenRequestModel.setCalendarId(calendarId);
 
         Call<List<EventModel>> call = eventAPIInterface.getEvents(tokenRequestModel);
-        call.enqueue(new Callback<List<EventModel>>() {
-            @Override
-            public void onResponse(Call<List<EventModel>> call, Response<List<EventModel>> response) {
-                if (!Objects.isNull(response.body())) {
-                    events = new ArrayList<>(response.body());
-                    recyclerView = findViewById(R.id.recyclerViewCon);
-                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-                    recyclerView.setLayoutManager(layoutManager);
-
-                    CustomAdapter customAdapter = new CustomAdapter(events);
-                    recyclerView.setAdapter(customAdapter);
-                    customAdapter.sortItemsByDate(false);
-                    LoaderUtils.hideLoader();
-                } else {
-                    Toast.makeText(MyApplication.getInstance(), "Fetch event failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<EventModel>> call, Throwable t) {
-                Toast.makeText(MyApplication.getInstance(), "Fetch event failed", Toast.LENGTH_SHORT).show();
-            }
-        });
+        call.enqueue(getEventsCallBack());
 
         going_add_meeting = findViewById(R.id.fab);
 
@@ -94,10 +72,10 @@ public class MainActivity extends AppCompatActivity {
             MyProperties.getInstance().firstTimeOpen = false;
             MyProperties.getInstance().arrayMeeting.CreateDataBase();
         }
-        if (MyProperties.getInstance().changeMeeting) {
-            MyProperties.getInstance().changeMeeting = false;
-            updateMeeting();
-        }
+//        if (MyProperties.getInstance().changeMeeting) {
+//            MyProperties.getInstance().changeMeeting = false;
+//            updateMeeting();
+//        }
 
         going_add_meeting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,5 +129,32 @@ public class MainActivity extends AppCompatActivity {
 
         MeetingModel new_meeting = new MeetingModel(0, meeting_name, date, time, location, caregiver_details, kabala, submitted, refund, took_place, kabala_bool, submitted_bool, refund_bool);
         MyProperties.getInstance().arrayMeeting.addMeeting(new_meeting);
+    }
+
+    private Callback<List<EventModel>> getEventsCallBack() {
+        return new Callback<List<EventModel>>() {
+            @Override
+            public void onResponse(Call<List<EventModel>> call, Response<List<EventModel>> response) {
+                if (!Objects.isNull(response.body())) {
+                    events = new ArrayList<>(response.body());
+                    MyProperties.getInstance().getEventList().setEvents(events);
+                    recyclerView = findViewById(R.id.recyclerViewCon);
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+                    recyclerView.setLayoutManager(layoutManager);
+
+                    CustomAdapter customAdapter = new CustomAdapter(MyProperties.getInstance().getEventList().getEventList());
+                    recyclerView.setAdapter(customAdapter);
+                    customAdapter.sortItemsByDate(false);
+                    LoaderUtils.hideLoader();
+                } else {
+                    Toast.makeText(MyApplication.getInstance(), "Fetch event failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<EventModel>> call, Throwable t) {
+                Toast.makeText(MyApplication.getInstance(), "Fetch event failed", Toast.LENGTH_SHORT).show();
+            }
+        };
     }
 }

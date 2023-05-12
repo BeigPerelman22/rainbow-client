@@ -2,7 +2,12 @@ package com.example.finalproject_.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class EventModel {
+import java.io.Serializable;
+
+public class EventModel implements Serializable {
+
+    @SerializedName("id")
+    private String id;
 
     @SerializedName("summary")
     private String description;
@@ -30,6 +35,14 @@ public class EventModel {
 
     @SerializedName("isMoneyRefund")
     private boolean isMoneyRefund;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getDescription() {
         return description;

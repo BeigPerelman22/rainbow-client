@@ -13,471 +13,463 @@
     tools:context=".activities.ChangeMeetingActivity">
 
 
-    <EditText
-        android:id="@+id/textDate_c"
-        android:layout_width="213dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:background="#FFFFFF"
-        android:text="תאריך "
-        android:textAlignment="center"
-        android:textColor="#090808"
-        android:textSize="25sp"
-        android:textStyle="bold"
+        <EditText
+            android:id="@+id/textDate_c"
+            android:layout_width="213dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="#FFFFFF"
+            android:text="תאריך "
+            android:textAlignment="center"
+            android:textColor="#090808"
+            android:textSize="25sp"
+            android:textStyle="bold"
 
-        app:layout_constraintEnd_toEndOf="@+id/textLoc_c"
-        app:layout_constraintTop_toBottomOf="@+id/text_MeetingName_c" />
+            app:layout_constraintEnd_toEndOf="@+id/textLoc_c"
+            app:layout_constraintTop_toBottomOf="@+id/text_MeetingName_c" />
 
-    <EditText
-        android:id="@+id/textCaregiverDetails_c"
-        android:layout_width="261dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="16dp"
-        android:background="#FFFFFF"
-        android:text="פרטי המטפל"
-        android:textAlignment="center"
-        android:textColor="#090808"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textLoc_c"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textLoc_c"
-        app:layout_constraintTop_toBottomOf="@+id/textLoc_c" />
+        <EditText
+            android:id="@+id/textCaregiverDetails_c"
+            android:layout_width="261dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="16dp"
+            android:background="#FFFFFF"
+            android:text="פרטי המטפל"
+            android:textAlignment="center"
+            android:textColor="#090808"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textLoc_c"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textLoc_c"
+            app:layout_constraintTop_toBottomOf="@+id/textLoc_c" />
 
+        <EditText
+            android:id="@+id/textLoc_c"
+            android:layout_width="261dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="#FFFFFF"
+            android:text="מיקום"
+            android:textAlignment="center"
+            android:textColor="#090808"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/text_MeetingName_c"
+            app:layout_constraintStart_toStartOf="@+id/text_MeetingName_c"
+            app:layout_constraintTop_toBottomOf="@+id/textTime_c" />
 
-    <EditText
-        android:id="@+id/textLoc_c"
-        android:layout_width="261dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:background="#FFFFFF"
-        android:text="מיקום"
-        android:textAlignment="center"
-        android:textColor="#090808"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/text_MeetingName_c"
-        app:layout_constraintStart_toStartOf="@+id/text_MeetingName_c"
-        app:layout_constraintTop_toBottomOf="@+id/textTime_c" />
+        <EditText
+            android:id="@+id/textTime_c"
+            android:layout_width="213dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="#FFFFFF"
+            android:text="שעה"
+            android:textAlignment="center"
+            android:textColor="#090808"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textDate_c"
+            app:layout_constraintStart_toStartOf="@+id/textDate_c"
+            app:layout_constraintTop_toBottomOf="@+id/textDate_c" />
 
+        <EditText
+            android:id="@+id/text_MeetingName_c"
+            android:layout_width="334dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="25dp"
+            android:background="#FFFFFF"
+            android:text="meeting_name_str"
+            android:textAlignment="center"
+            android:textColor="#090808"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/textTime_c"
-        android:layout_width="213dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:background="#FFFFFF"
-        android:text="שעה"
-        android:textAlignment="center"
-        android:textColor="#090808"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textDate_c"
-        app:layout_constraintStart_toStartOf="@+id/textDate_c"
-        app:layout_constraintTop_toBottomOf="@+id/textDate_c" />
+        <ImageView
+            android:id="@+id/imageView_X_4_c2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="2dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/textCaregiverDetails_c"
+            app:layout_constraintEnd_toEndOf="@+id/textCaregiverDetails_c"
+            app:layout_constraintTop_toTopOf="@+id/textCaregiverDetails_c"
+            app:srcCompat="@drawable/delete" />
 
+        <ImageView
+            android:id="@+id/imageView_X_name_c2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="2dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/text_MeetingName_c"
+            app:layout_constraintEnd_toEndOf="@+id/text_MeetingName_c"
+            app:layout_constraintTop_toTopOf="@+id/text_MeetingName_c"
+            app:srcCompat="@drawable/delete" />
 
-    <EditText
-        android:id="@+id/text_MeetingName_c"
-        android:layout_width="334dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="25dp"
-        android:background="#FFFFFF"
-        android:text="meeting_name_str"
-        android:textAlignment="center"
-        android:textColor="#090808"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/imageView_X_time_c2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="2dp"
+            android:visibility="invisible"
 
+            app:layout_constraintBottom_toBottomOf="@+id/textTime_c"
+            app:layout_constraintEnd_toEndOf="@+id/textTime_c"
+            app:layout_constraintTop_toTopOf="@+id/textTime_c"
+            app:srcCompat="@drawable/delete" />
 
-    <ImageView
-        android:id="@+id/imageView_X_4_c2"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="2dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/textCaregiverDetails_c"
-        app:layout_constraintEnd_toEndOf="@+id/textCaregiverDetails_c"
-        app:layout_constraintTop_toTopOf="@+id/textCaregiverDetails_c"
-        app:srcCompat="@drawable/delete" />
+        <ImageView
+            android:id="@+id/imageView_X_date_c3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="2dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/textDate_c"
+            app:layout_constraintEnd_toEndOf="@+id/textDate_c"
+            app:layout_constraintTop_toTopOf="@+id/textDate_c"
+            app:srcCompat="@drawable/delete" />
 
-    <ImageView
-        android:id="@+id/imageView_X_name_c2"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="2dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/text_MeetingName_c"
-        app:layout_constraintEnd_toEndOf="@+id/text_MeetingName_c"
-        app:layout_constraintTop_toTopOf="@+id/text_MeetingName_c"
-        app:srcCompat="@drawable/delete" />
+        <ImageView
+            android:id="@+id/imageView_X_loc_c2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="2dp"
+            android:visibility="invisible"
 
-    <ImageView
-        android:id="@+id/imageView_X_time_c2"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="2dp"
-        android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/textLoc_c"
+            app:layout_constraintEnd_toEndOf="@+id/textLoc_c"
+            app:layout_constraintTop_toTopOf="@+id/textLoc_c"
+            app:srcCompat="@drawable/delete" />
 
-        app:layout_constraintBottom_toBottomOf="@+id/textTime_c"
-        app:layout_constraintEnd_toEndOf="@+id/textTime_c"
-        app:layout_constraintTop_toTopOf="@+id/textTime_c"
-        app:srcCompat="@drawable/delete" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_Refund_received_camera_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-15dp"
+            android:layout_marginEnd="9dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@color/white"
+            app:backgroundTint="#3F51B5"
+            app:fabSize="mini"
+            app:layout_constraintEnd_toStartOf="@+id/btn_Refund_received"
+            app:layout_constraintTop_toTopOf="@+id/btn_Refund_received"
+            app:srcCompat="@drawable/camera" />
 
-    <ImageView
-        android:id="@+id/imageView_X_date_c3"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="2dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/textDate_c"
-        app:layout_constraintEnd_toEndOf="@+id/textDate_c"
-        app:layout_constraintTop_toTopOf="@+id/textDate_c"
-        app:srcCompat="@drawable/delete" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_Refund_received_img_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="-15dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@color/white"
+            app:backgroundTint="#3F51B5"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_Refund_received"
+            app:layout_constraintEnd_toStartOf="@+id/btn_Refund_received"
+            app:srcCompat="@drawable/image" />
 
-    <ImageView
-        android:id="@+id/imageView_X_loc_c2"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="2dp"
-        android:visibility="invisible"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_refund_received_V_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        app:layout_constraintBottom_toBottomOf="@+id/textLoc_c"
-        app:layout_constraintEnd_toEndOf="@+id/textLoc_c"
-        app:layout_constraintTop_toTopOf="@+id/textLoc_c"
-        app:srcCompat="@drawable/delete" />
+            android:layout_marginEnd="48dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@color/white"
+            app:backgroundTint="#3F51B5"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_Refund_received"
+            app:layout_constraintEnd_toStartOf="@+id/btn_Refund_received"
+            app:layout_constraintTop_toTopOf="@+id/btn_Refund_received"
+            app:srcCompat="@drawable/baseline_check_24" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_Refund_received_camera_c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-15dp"
-        android:layout_marginEnd="9dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:tint="@color/white"
-        app:backgroundTint="#3F51B5"
-        app:fabSize="mini"
-        app:layout_constraintEnd_toStartOf="@+id/btn_Refund_received"
-        app:layout_constraintTop_toTopOf="@+id/btn_Refund_received"
-        app:srcCompat="@drawable/camera" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_submitted_camera_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-15dp"
+            android:layout_marginEnd="9dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@color/white"
+            app:backgroundTint="#3F51B5"
+            app:fabSize="mini"
+            app:layout_constraintEnd_toStartOf="@+id/btn_Submitted_to_KOFH"
+            app:layout_constraintTop_toTopOf="@+id/btn_Submitted_to_KOFH"
+            app:srcCompat="@drawable/camera" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_Refund_received_img_c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="-15dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:tint="@color/white"
-        app:backgroundTint="#3F51B5"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_Refund_received"
-        app:layout_constraintEnd_toStartOf="@+id/btn_Refund_received"
-        app:srcCompat="@drawable/image" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_submitted_img_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="-15dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@color/white"
+            app:backgroundTint="#3F51B5"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_Submitted_to_KOFH"
+            app:layout_constraintEnd_toStartOf="@+id/btn_Submitted_to_KOFH"
+            app:srcCompat="@drawable/image" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_refund_received_V_c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_sub_V_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        android:layout_marginEnd="48dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:tint="@color/white"
-        app:backgroundTint="#3F51B5"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_Refund_received"
-        app:layout_constraintEnd_toStartOf="@+id/btn_Refund_received"
-        app:layout_constraintTop_toTopOf="@+id/btn_Refund_received"
-        app:srcCompat="@drawable/baseline_check_24" />
+            android:layout_marginEnd="48dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@color/white"
+            app:backgroundTint="#3F51B5"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_Submitted_to_KOFH"
+            app:layout_constraintEnd_toStartOf="@+id/btn_Submitted_to_KOFH"
+            app:layout_constraintTop_toTopOf="@+id/btn_Submitted_to_KOFH"
+            app:srcCompat="@drawable/baseline_check_24" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_submitted_camera_c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-15dp"
-        android:layout_marginEnd="9dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:tint="@color/white"
-        app:backgroundTint="#3F51B5"
-        app:fabSize="mini"
-        app:layout_constraintEnd_toStartOf="@+id/btn_Submitted_to_KOFH"
-        app:layout_constraintTop_toTopOf="@+id/btn_Submitted_to_KOFH"
-        app:srcCompat="@drawable/camera" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_kabala_img_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="-15dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@color/white"
+            app:backgroundTint="#3F51B5"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_add_files_kabala"
+            app:layout_constraintEnd_toStartOf="@+id/btn_add_files_kabala"
+            app:srcCompat="@drawable/image" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_submitted_img_c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="-15dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:tint="@color/white"
-        app:backgroundTint="#3F51B5"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_Submitted_to_KOFH"
-        app:layout_constraintEnd_toStartOf="@+id/btn_Submitted_to_KOFH"
-        app:srcCompat="@drawable/image" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_kabala_V_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_sub_V_c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@color/white"
+            app:backgroundTint="#3F51B5"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_add_files_kabala"
+            app:layout_constraintEnd_toStartOf="@+id/btn_add_files_kabala"
+            app:layout_constraintTop_toTopOf="@+id/btn_add_files_kabala"
+            app:layout_constraintVertical_bias="0.333"
+            app:srcCompat="@drawable/baseline_check_24" />
 
-        android:layout_marginEnd="48dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:tint="@color/white"
-        app:backgroundTint="#3F51B5"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_Submitted_to_KOFH"
-        app:layout_constraintEnd_toStartOf="@+id/btn_Submitted_to_KOFH"
-        app:layout_constraintTop_toTopOf="@+id/btn_Submitted_to_KOFH"
-        app:srcCompat="@drawable/baseline_check_24" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_kabala_camera_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-15dp"
+            android:layout_marginEnd="9dp"
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_kabala_img_c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="-15dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:tint="@color/white"
-        app:backgroundTint="#3F51B5"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_add_files_kabala"
-        app:layout_constraintEnd_toStartOf="@+id/btn_add_files_kabala"
-        app:srcCompat="@drawable/image" />
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@color/white"
+            app:backgroundTint="#3F51B5"
+            app:fabSize="mini"
+            app:layout_constraintEnd_toStartOf="@+id/btn_add_files_kabala"
+            app:layout_constraintTop_toTopOf="@+id/btn_add_files_kabala"
+            app:srcCompat="@drawable/camera" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_kabala_V_c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        <ImageView
+            android:id="@+id/imageView_delete_refund_c"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="14dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/imageFilterView_Refund_received_c"
+            app:layout_constraintStart_toEndOf="@+id/imageFilterView_Refund_received_c"
+            app:layout_constraintTop_toTopOf="@+id/imageFilterView_Refund_received_c"
+            app:srcCompat="@drawable/trash" />
 
-        android:layout_marginEnd="48dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:tint="@color/white"
-        app:backgroundTint="#3F51B5"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_add_files_kabala"
-        app:layout_constraintEnd_toStartOf="@+id/btn_add_files_kabala"
-        app:layout_constraintTop_toTopOf="@+id/btn_add_files_kabala"
-        app:layout_constraintVertical_bias="0.333"
-        app:srcCompat="@drawable/baseline_check_24" />
+        <ImageView
+            android:id="@+id/imageView_delete_submitted_c"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="14dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/imageFilterView_submitted_c"
+            app:layout_constraintStart_toEndOf="@+id/imageFilterView_submitted_c"
+            app:layout_constraintTop_toTopOf="@+id/imageFilterView_submitted_c"
+            app:srcCompat="@drawable/trash" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_kabala_camera_c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-15dp"
-        android:layout_marginEnd="9dp"
+        <ImageView
+            android:id="@+id/imageView_delete_kabala_c"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="14dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/imageFilterView_kabala_c"
+            app:layout_constraintStart_toEndOf="@+id/imageFilterView_kabala_c"
+            app:layout_constraintTop_toTopOf="@+id/imageFilterView_kabala_c"
+            app:srcCompat="@drawable/trash" />
 
-        android:clickable="true"
-        android:focusable="true"
-        android:tint="@color/white"
-        app:backgroundTint="#3F51B5"
-        app:fabSize="mini"
-        app:layout_constraintEnd_toStartOf="@+id/btn_add_files_kabala"
-        app:layout_constraintTop_toTopOf="@+id/btn_add_files_kabala"
-        app:srcCompat="@drawable/camera" />
+        <ImageView
+            android:id="@+id/imageFilterView_Refund_received_c"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="5dp"
+            android:src="#E0DAED"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_Refund_received"
+            app:layout_constraintStart_toEndOf="@+id/btn_Refund_received"
+            app:layout_constraintTop_toTopOf="@+id/btn_Refund_received"
+            app:layout_constraintVertical_bias="0.0"
+            tools:srcCompat="@color/purple_200" />
 
-    <ImageView
-        android:id="@+id/imageView_delete_refund_c"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="14dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageFilterView_Refund_received_c"
-        app:layout_constraintStart_toEndOf="@+id/imageFilterView_Refund_received_c"
-        app:layout_constraintTop_toTopOf="@+id/imageFilterView_Refund_received_c"
-        app:srcCompat="@drawable/trash" />
+        <ImageView
+            android:id="@+id/imageFilterView_submitted_c"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="5dp"
+            android:src="#E0DAED"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_Submitted_to_KOFH"
+            app:layout_constraintStart_toEndOf="@+id/btn_Submitted_to_KOFH"
+            app:layout_constraintTop_toTopOf="@+id/btn_Submitted_to_KOFH"
+            tools:srcCompat="@color/purple_200" />
 
-    <ImageView
-        android:id="@+id/imageView_delete_submitted_c"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="14dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageFilterView_submitted_c"
-        app:layout_constraintStart_toEndOf="@+id/imageFilterView_submitted_c"
-        app:layout_constraintTop_toTopOf="@+id/imageFilterView_submitted_c"
-        app:srcCompat="@drawable/trash" />
+        <ImageView
+            android:id="@+id/imageFilterView_kabala_c"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="5dp"
+            android:src="#E0DAED"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_add_files_kabala"
+            app:layout_constraintStart_toEndOf="@+id/btn_add_files_kabala"
+            app:layout_constraintTop_toTopOf="@+id/btn_add_files_kabala"
+            tools:srcCompat="@color/purple_200" />
 
-    <ImageView
-        android:id="@+id/imageView_delete_kabala_c"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="14dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageFilterView_kabala_c"
-        app:layout_constraintStart_toEndOf="@+id/imageFilterView_kabala_c"
-        app:layout_constraintTop_toTopOf="@+id/imageFilterView_kabala_c"
-        app:srcCompat="@drawable/trash" />
+        <Button
+            android:id="@+id/date_2"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/timetable"
+            android:contentDescription="@string/bottom_sheet_behavior"
+            app:layout_constraintBottom_toBottomOf="@+id/textDate_c"
+            app:layout_constraintEnd_toStartOf="@+id/textDate_c"
+            app:layout_constraintTop_toTopOf="@+id/textDate_c" />
 
-    <ImageView
-        android:id="@+id/imageFilterView_Refund_received_c"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="5dp"
-        android:src="#E0DAED"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_Refund_received"
-        app:layout_constraintStart_toEndOf="@+id/btn_Refund_received"
-        app:layout_constraintTop_toTopOf="@+id/btn_Refund_received"
-        app:layout_constraintVertical_bias="0.0"
-        tools:srcCompat="@color/purple_200" />
+        <Button
+            android:id="@+id/time_21"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/clock"
+            android:contentDescription="@string/bottom_sheet_behavior"
+            app:layout_constraintBottom_toBottomOf="@+id/textTime_c"
+            app:layout_constraintEnd_toStartOf="@+id/textTime_c"
+            app:layout_constraintTop_toTopOf="@+id/textTime_c"
+            tools:ignore="MissingConstraints" />
 
-    <ImageView
-        android:id="@+id/imageFilterView_submitted_c"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="5dp"
-        android:src="#E0DAED"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_Submitted_to_KOFH"
-        app:layout_constraintStart_toEndOf="@+id/btn_Submitted_to_KOFH"
-        app:layout_constraintTop_toTopOf="@+id/btn_Submitted_to_KOFH"
-        tools:srcCompat="@color/purple_200" />
+        <Button
+            android:id="@+id/btn_took_place"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_button"
+            android:text="התקיים&#x200F;"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textCaregiverDetails_c"
+            tools:ignore="MissingConstraints" />
 
-    <ImageView
-        android:id="@+id/imageFilterView_kabala_c"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="5dp"
-        android:src="#E0DAED"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_add_files_kabala"
-        app:layout_constraintStart_toEndOf="@+id/btn_add_files_kabala"
-        app:layout_constraintTop_toTopOf="@+id/btn_add_files_kabala"
-        tools:srcCompat="@color/purple_200" />
+        <Button
+            android:id="@+id/btn_add_files_kabala"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="14dp"
 
+            android:background="@drawable/round_button"
+            android:paddingHorizontal="10dp"
+            android:text="קבלה"
+            android:textIsSelectable="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:circularflow_defaultRadius="20dp"
+            app:circularflow_radiusInDP="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/textCaregiverDetails_c"
+            app:layout_constraintStart_toStartOf="@+id/textCaregiverDetails_c"
+            app:layout_constraintTop_toBottomOf="@+id/btn_took_place"
+            tools:ignore="ExtraText,MissingConstraints" />
 
-    <Button
-        android:id="@+id/date_2"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="2dp"
-        android:background="@drawable/timetable"
-        android:contentDescription="@string/bottom_sheet_behavior"
-        app:layout_constraintBottom_toBottomOf="@+id/textDate_c"
-        app:layout_constraintEnd_toStartOf="@+id/textDate_c"
-        app:layout_constraintTop_toTopOf="@+id/textDate_c" />
+        <Button
+            android:id="@+id/btn_Submitted_to_KOFH"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/round_button"
 
+            android:paddingHorizontal="10dp"
+            android:text="הוגש לקופ&quot;ח"
+            android:textIsSelectable="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:circularflow_defaultRadius="20dp"
+            app:circularflow_radiusInDP="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/btn_add_files_kabala"
+            app:layout_constraintStart_toStartOf="@+id/btn_add_files_kabala"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_files_kabala"
+            tools:ignore="ExtraText,MissingConstraints" />
 
-    <Button
-        android:id="@+id/time_21"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="2dp"
-        android:background="@drawable/clock"
-        android:contentDescription="@string/bottom_sheet_behavior"
-        app:layout_constraintBottom_toBottomOf="@+id/textTime_c"
-        app:layout_constraintEnd_toStartOf="@+id/textTime_c"
-        app:layout_constraintTop_toTopOf="@+id/textTime_c"
-        tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/btn_Refund_received"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/round_button"
 
+            android:paddingHorizontal="10dp"
+            android:text="התקבל החזר"
+            android:textIsSelectable="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:circularflow_defaultRadius="20dp"
+            app:circularflow_radiusInDP="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/btn_Submitted_to_KOFH"
+            app:layout_constraintStart_toStartOf="@+id/btn_Submitted_to_KOFH"
+            app:layout_constraintTop_toBottomOf="@+id/btn_Submitted_to_KOFH"
+            tools:ignore="ExtraText,MissingConstraints" />
 
-    <Button
-        android:id="@+id/btn_took_place"
-        android:layout_width="150dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/round_button"
-        android:text="התקיים&#x200F;"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textCaregiverDetails_c"
-        tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/btn_update_meeting"
+            android:layout_width="201dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="30dp"
 
-
-    <Button
-        android:id="@+id/btn_add_files_kabala"
-        android:layout_width="150dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="14dp"
-
-        android:background="@drawable/round_button"
-        android:paddingHorizontal="10dp"
-        android:text="קבלה"
-        android:textIsSelectable="false"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:circularflow_defaultRadius="20dp"
-        app:circularflow_radiusInDP="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/textCaregiverDetails_c"
-        app:layout_constraintStart_toStartOf="@+id/textCaregiverDetails_c"
-        app:layout_constraintTop_toBottomOf="@+id/btn_took_place"
-        tools:ignore="ExtraText,MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn_Submitted_to_KOFH"
-        android:layout_width="150dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/round_button"
-
-        android:paddingHorizontal="10dp"
-        android:text="הוגש לקופ&quot;ח"
-        android:textIsSelectable="false"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:circularflow_defaultRadius="20dp"
-        app:circularflow_radiusInDP="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_add_files_kabala"
-        app:layout_constraintStart_toStartOf="@+id/btn_add_files_kabala"
-        app:layout_constraintTop_toBottomOf="@+id/btn_add_files_kabala"
-        tools:ignore="ExtraText,MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn_Refund_received"
-        android:layout_width="150dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/round_button"
-
-        android:paddingHorizontal="10dp"
-        android:text="התקבל החזר"
-        android:textIsSelectable="false"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:circularflow_defaultRadius="20dp"
-        app:circularflow_radiusInDP="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_Submitted_to_KOFH"
-        app:layout_constraintStart_toStartOf="@+id/btn_Submitted_to_KOFH"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Submitted_to_KOFH"
-        tools:ignore="ExtraText,MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn_change_mee"
-        android:layout_width="201dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="30dp"
-
-        android:background="@drawable/round_button1"
-        android:paddingHorizontal="10dp"
-        android:text="שנה פגישה"
-        android:textColor="#FFFFFF"
-        android:textIsSelectable="false"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:circularflow_defaultRadius="20dp"
-        app:circularflow_radiusInDP="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Refund_received"
-        tools:ignore="ExtraText,MissingConstraints" />
-
+            android:background="@drawable/round_button1"
+            android:paddingHorizontal="10dp"
+            android:text="שנה פגישה"
+            android:textColor="#FFFFFF"
+            android:textIsSelectable="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:circularflow_defaultRadius="20dp"
+            app:circularflow_radiusInDP="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_Refund_received"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_Refund_received"
+            tools:ignore="ExtraText,MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
