@@ -44,11 +44,6 @@ public class CustomAdapter extends RecyclerView.Adapter<MeetingViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ChangeMeetingActivity.class);
-//                intent.putExtra("meeting_name_str", currEvent.getMeeting_name());
-//                intent.putExtra("date_str", currEvent.getDate());
-//                intent.putExtra("time_str", currEvent.getTime());
-//                intent.putExtra("location_str", currEvent.getLocation());
-//                intent.putExtra("caregiver_details_str", currEvent.getCaregiver_details());
                 intent.putExtra("event", currEvent);
                 view.getContext().startActivity(intent);
             }

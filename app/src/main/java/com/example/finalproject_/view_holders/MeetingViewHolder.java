@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.finalproject_.R;
 import com.example.finalproject_.models.EventModel;
 import com.example.finalproject_.models.MeetingModel;
+import com.example.finalproject_.utils.DateTimeUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -38,9 +39,10 @@ public class MeetingViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindData(EventModel meeting) {
+        String meetingDateTime = meeting.getStartTime();
         nameMeetingVH.setText(meeting.getDescription());
-        dateMeetingVH.setText(meeting.getStartTime());
-        timeMeetingVH.setText(meeting.getStartTime());
+        dateMeetingVH.setText(DateTimeUtils.dateTimeToDate(meetingDateTime));
+        timeMeetingVH.setText(DateTimeUtils.dateTimeToTime(meetingDateTime));
         setButtonBackground(btn_took_place, meeting.isTookPlace());
         setButtonBackground(btn_kabala, meeting.isHasReceipt());
         setButtonBackground(btn_sub, meeting.isSubmitted());

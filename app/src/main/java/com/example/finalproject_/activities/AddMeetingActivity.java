@@ -44,6 +44,7 @@ import com.example.finalproject_.models.CreateEventRequestModel;
 import com.example.finalproject_.models.EventModel;
 import com.example.finalproject_.models.UpdateEventRequestModel;
 import com.example.finalproject_.network.EventAPIClient;
+import com.example.finalproject_.utils.DateTimeUtils;
 import com.example.finalproject_.utils.MyApplication;
 import com.example.finalproject_.utils.RealPathUtil;
 import com.example.finalproject_.utils.SharedPreferencesUtils;
@@ -839,9 +840,11 @@ public class AddMeetingActivity extends AppCompatActivity {
                 createEventRequestModel.setToken(token);
                 createEventRequestModel.setCalendarId(calendarId);
 
+                String formattedDateTime = DateTimeUtils.dateAndTimeToDateTime(date_str, time_str);
+
                 createEventRequestModel.setDescription(meeting_name_str);
-                createEventRequestModel.setStartTime("2023-08-03T09:00:00+03:00");
-                createEventRequestModel.setEndTime("2023-08-03T09:00:30+03:00");
+                createEventRequestModel.setStartTime(formattedDateTime);
+                createEventRequestModel.setEndTime(formattedDateTime);
                 createEventRequestModel.setLocation(location_str);
                 createEventRequestModel.setCaregiverDetails(caregiver_details_str);
                 createEventRequestModel.setTookPlace(took_place);
@@ -851,30 +854,6 @@ public class AddMeetingActivity extends AppCompatActivity {
 
                 Call<EventModel> call = eventAPIInterface.createEvent(createEventRequestModel);
                 call.enqueue(createEventsCallBack());
-
-                //new Meeting
-
-                Intent intent = new Intent(AddMeetingActivity.this, MainActivity.class);
-
-                intent.putExtra("meeting_name_str", meeting_name_str);
-                intent.putExtra("date_str", date_str);
-                intent.putExtra("time_str", time_str);
-                intent.putExtra("location_str", location_str);
-                intent.putExtra("caregiver_details_str", caregiver_details_str);
-
-                intent.putExtra("kabala_f", kabala_f);
-                intent.putExtra("submitted_f", Submitted_f);
-                intent.putExtra("refund_f", Refund_received_f);
-
-                intent.putExtra("took_placeBOOL", took_place);
-                intent.putExtra("kabalaBOOL", kabala);
-                intent.putExtra("submittedBOOL", submitted);
-                intent.putExtra("refund_receivedBOOL", refund_received);
-
-                MyProperties.getInstance().addNewMeeting = true;
-
-                startActivity(intent);
-
             }
         });
 

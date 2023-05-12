@@ -46,6 +46,7 @@ import com.example.finalproject_.interfaces.EventAPIInterface;
 import com.example.finalproject_.models.EventModel;
 import com.example.finalproject_.models.UpdateEventRequestModel;
 import com.example.finalproject_.network.EventAPIClient;
+import com.example.finalproject_.utils.DateTimeUtils;
 import com.example.finalproject_.utils.LoaderUtils;
 import com.example.finalproject_.utils.MyApplication;
 import com.example.finalproject_.utils.RealPathUtil;
@@ -60,10 +61,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -196,29 +203,25 @@ public class ChangeMeetingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                TimePickerDialog timePickerDialog = new TimePickerDialog
-                        (
-                                ChangeMeetingActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-                                t_hour = hourOfDay;
-                                t_minute = minute;
-                                String time = t_hour + ":" + t_minute;
-                                SimpleDateFormat f24 = new SimpleDateFormat
-                                        (
-                                                "HH:mm"
-                                        );
-                                try {
-                                    Date date = f24.parse(time);
-                                    SimpleDateFormat f12 = new SimpleDateFormat("HH:mm");
-                                    time_text.setText(f12.format(date));
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        ChangeMeetingActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+                        t_hour = hourOfDay;
+                        t_minute = minute;
+                        String time = t_hour + ":" + t_minute;
+                        SimpleDateFormat f24 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSZ");
+                        try {
+                            Date date = f24.parse(time);
+                            SimpleDateFormat f12 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSZ");
+                            time_text.setText(f12.format(date));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
 
-                            }
-                        }, 24, 0, true
-                        );
+                    }
+                }, 24, 0, true
+                );
                 timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 timePickerDialog.updateTime(t_hour, t_minute);
                 timePickerDialog.show();
@@ -749,8 +752,8 @@ public class ChangeMeetingActivity extends AppCompatActivity {
         EventModel currentEvent = (EventModel) getIntent().getSerializableExtra("event");
 
         meeting_name_text.setText(currentEvent.getDescription());
-        date_text.setText(currentEvent.getStartTime());
-        time_text.setText(currentEvent.getStartTime());
+        date_text.setText(DateTimeUtils.dateTimeToDate(currentEvent.getStartTime()));
+        time_text.setText(DateTimeUtils.dateTimeToTime(currentEvent.getStartTime()));
         location_text.setText(currentEvent.getLocation());
         caregiver_details_text.setText(currentEvent.getCaregiverDetails());
 
@@ -776,6 +779,8 @@ public class ChangeMeetingActivity extends AppCompatActivity {
                 String caregiver_details_str = caregiver_details_text.getText().toString();
                 resetForm();
 
+                String formattedDateTime = DateTimeUtils.dateAndTimeToDateTime(date_str, time_str);
+
                 UpdateEventRequestModel updateEventRequestModel = new UpdateEventRequestModel();
                 String calendarId = SharedPreferencesUtils.getString(getApplicationContext(), "calendar_id", "");
                 String token = SharedPreferencesUtils.getString(getApplicationContext(), "token", "");
@@ -784,8 +789,8 @@ public class ChangeMeetingActivity extends AppCompatActivity {
                 updateEventRequestModel.setId(currentEvent.getId());
 
                 updateEventRequestModel.setDescription(meeting_name_str);
-                updateEventRequestModel.setStartTime("2023-08-03T09:00:00+03:00");
-                updateEventRequestModel.setEndTime("2023-08-03T09:00:30+03:00");
+                updateEventRequestModel.setStartTime(formattedDateTime);
+                updateEventRequestModel.setEndTime(formattedDateTime);
                 updateEventRequestModel.setLocation(location_str);
                 updateEventRequestModel.setCaregiverDetails(caregiver_details_str);
                 updateEventRequestModel.setTookPlace(took_place);
@@ -793,7 +798,6 @@ public class ChangeMeetingActivity extends AppCompatActivity {
                 updateEventRequestModel.setSubmitted(submitted);
                 updateEventRequestModel.setMoneyRefund(refund_received);
 
-//                MyProperties.getInstance().getEventList().updateEvent(currentEvent);
                 Call<EventModel> call = eventAPIInterface.updateEvent(updateEventRequestModel);
                 call.enqueue(updateEventsCallBack());
             }
