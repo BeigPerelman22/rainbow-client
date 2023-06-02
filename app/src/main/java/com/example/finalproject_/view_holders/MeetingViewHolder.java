@@ -9,14 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.finalproject_.R;
 import com.example.finalproject_.models.EventModel;
-import com.example.finalproject_.models.MeetingModel;
 import com.example.finalproject_.utils.DateTimeUtils;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-import java.util.concurrent.locks.Condition;
 
 public class MeetingViewHolder extends RecyclerView.ViewHolder {
     public TextView nameMeetingVH;

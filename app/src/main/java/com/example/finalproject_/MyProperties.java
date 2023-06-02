@@ -2,10 +2,6 @@ package com.example.finalproject_;
 
 //package com.ramps;
 
-import com.example.finalproject_.models.EventModel;
-
-import java.util.List;
-
 public class MyProperties {
     private static MyProperties mInstance = null;
     ///main of the app

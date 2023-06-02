@@ -3,8 +3,6 @@ package com.example.finalproject_;
 import com.example.finalproject_.models.EventModel;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 public class EventList {
 
@@ -19,6 +17,15 @@ public class EventList {
 
     public ArrayList<EventModel> getEventList() {
         return events;
+    }
+
+    public void deleteEvent(String id) {
+        for (EventModel event : events) {
+            if (id.equals(event.getId())) {
+                events.remove(event);
+                break;
+            }
+        }
     }
 
     public void updateEvent(EventModel updatedEvent) {

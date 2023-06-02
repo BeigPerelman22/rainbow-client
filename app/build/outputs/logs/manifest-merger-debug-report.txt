@@ -4,6 +4,7 @@ ADDED from C:\devl\projects\a-final-project\rainbow-client\app\src\main\AndroidM
 INJECTED from C:\devl\projects\a-final-project\rainbow-client\app\src\main\AndroidManifest.xml:2:1-62:12
 INJECTED from C:\devl\projects\a-final-project\rainbow-client\app\src\main\AndroidManifest.xml:2:1-62:12
 INJECTED from C:\devl\projects\a-final-project\rainbow-client\app\src\main\AndroidManifest.xml:2:1-62:12
+MERGED from [it.xabaras.android:recyclerview-swipedecorator:1.4] C:\Users\beral\.gradle\caches\transforms-3\925a518c1ce40799dc63b24ae5aef6d5\transformed\recyclerview-swipedecorator-1.4\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-auth:20.5.0] C:\Users\beral\.gradle\caches\transforms-3\6f543c3784149a659497ef5de5e53f9f\transformed\play-services-auth-20.5.0\AndroidManifest.xml:17:1-40:12
 MERGED from [androidx.navigation:navigation-ui:2.5.3] C:\Users\beral\.gradle\caches\transforms-3\b4c6c482186e61a7e0e4fea89cd55ddc\transformed\navigation-ui-2.5.3\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.7.0] C:\Users\beral\.gradle\caches\transforms-3\80093eae51b7d8c4949cd2e5844a07ff\transformed\material-1.7.0\AndroidManifest.xml:17:1-26:12
@@ -14,13 +15,14 @@ MERGED from [androidx.appcompat:appcompat:1.5.1] C:\Users\beral\.gradle\caches\t
 MERGED from [androidx.navigation:navigation-fragment:2.5.3] C:\Users\beral\.gradle\caches\transforms-3\3dd100bcf75c6b845f69722631ca1cf2\transformed\navigation-fragment-2.5.3\AndroidManifest.xml:17:1-24:12
 MERGED from [com.getbase:floatingactionbutton:1.10.1] C:\Users\beral\.gradle\caches\transforms-3\020032b4e412e4fc873d528c38ea832c\transformed\floatingactionbutton-1.10.1\AndroidManifest.xml:2:1-14:12
 MERGED from [com.android.volley:volley:1.2.1] C:\Users\beral\.gradle\caches\transforms-3\a9f8d7b115fbbdd0ae7ca40f9a6ba442\transformed\volley-1.2.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\beral\.gradle\caches\transforms-3\71a4b2e3b83f674b0802282a6bb1640f\transformed\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.2.1] C:\Users\beral\.gradle\caches\transforms-3\dcc70b04c620f46b201082617122ebe9\transformed\recyclerview-1.2.1\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] C:\Users\beral\.gradle\caches\transforms-3\7e6d74f5404efb39d9d965e4736f0a8f\transformed\play-services-auth-api-phone-18.0.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] C:\Users\beral\.gradle\caches\transforms-3\f5ae588dc89d33a25351d0d509034b38\transformed\play-services-auth-base-18.0.4\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-fido:20.0.1] C:\Users\beral\.gradle\caches\transforms-3\12883adc4972960a8fa3522fef7bd0d7\transformed\play-services-fido-20.0.1\AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\beral\.gradle\caches\transforms-3\5a2b94c746ce46871975eb82e8b12f66\transformed\play-services-base-18.0.1\AndroidManifest.xml:16:1-24:12
 MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\beral\.gradle\caches\transforms-3\5d766cee6f9a8f514b6034d49e2e2f03\transformed\play-services-tasks-18.0.1\AndroidManifest.xml:2:1-6:12
 MERGED from [com.google.android.gms:play-services-basement:18.2.0] C:\Users\beral\.gradle\caches\transforms-3\b3f64438faa6d95fc8e8f17ab12f6693\transformed\play-services-basement-18.2.0\AndroidManifest.xml:16:1-26:12
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\beral\.gradle\caches\transforms-3\71a4b2e3b83f674b0802282a6bb1640f\transformed\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment-ktx:1.5.4] C:\Users\beral\.gradle\caches\transforms-3\515f1515060194f45d14374d290a8a2a\transformed\fragment-ktx-1.5.4\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\beral\.gradle\caches\transforms-3\18dfa596b51ff068144645a9b360892c\transformed\fragment-1.5.4\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\beral\.gradle\caches\transforms-3\1e7ff98370262fd019b8413a0f6844b9\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -46,7 +48,6 @@ MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\beral\.gradle\ca
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\beral\.gradle\caches\transforms-3\602e0f40a2e4890a6c140b4e0e9297aa\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\beral\.gradle\caches\transforms-3\1104968edb0b42381aa947d109a888c3\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\beral\.gradle\caches\transforms-3\aa88bda1a69cb79a57f5c91edf6bd497\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\beral\.gradle\caches\transforms-3\9a156e10bc2cc6926719f38d9612f7be\transformed\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\beral\.gradle\caches\transforms-3\c2eb6369fb666d8c17cdcf42896777fe\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\beral\.gradle\caches\transforms-3\6c503aea2c1db1c79b614b9556ccbfa8\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.transition:transition:1.4.1] C:\Users\beral\.gradle\caches\transforms-3\a3636728de1d0aabd9b6e88a5e901592\transformed\transition-1.4.1\AndroidManifest.xml:17:1-24:12
@@ -218,6 +219,8 @@ uses-sdk
 INJECTED from C:\devl\projects\a-final-project\rainbow-client\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\devl\projects\a-final-project\rainbow-client\app\src\main\AndroidManifest.xml
 INJECTED from C:\devl\projects\a-final-project\rainbow-client\app\src\main\AndroidManifest.xml
+MERGED from [it.xabaras.android:recyclerview-swipedecorator:1.4] C:\Users\beral\.gradle\caches\transforms-3\925a518c1ce40799dc63b24ae5aef6d5\transformed\recyclerview-swipedecorator-1.4\AndroidManifest.xml:5:5-7:41
+MERGED from [it.xabaras.android:recyclerview-swipedecorator:1.4] C:\Users\beral\.gradle\caches\transforms-3\925a518c1ce40799dc63b24ae5aef6d5\transformed\recyclerview-swipedecorator-1.4\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.gms:play-services-auth:20.5.0] C:\Users\beral\.gradle\caches\transforms-3\6f543c3784149a659497ef5de5e53f9f\transformed\play-services-auth-20.5.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-auth:20.5.0] C:\Users\beral\.gradle\caches\transforms-3\6f543c3784149a659497ef5de5e53f9f\transformed\play-services-auth-20.5.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.navigation:navigation-ui:2.5.3] C:\Users\beral\.gradle\caches\transforms-3\b4c6c482186e61a7e0e4fea89cd55ddc\transformed\navigation-ui-2.5.3\AndroidManifest.xml:20:5-22:41
@@ -238,6 +241,10 @@ MERGED from [com.getbase:floatingactionbutton:1.10.1] C:\Users\beral\.gradle\cac
 MERGED from [com.getbase:floatingactionbutton:1.10.1] C:\Users\beral\.gradle\caches\transforms-3\020032b4e412e4fc873d528c38ea832c\transformed\floatingactionbutton-1.10.1\AndroidManifest.xml:8:5-10:41
 MERGED from [com.android.volley:volley:1.2.1] C:\Users\beral\.gradle\caches\transforms-3\a9f8d7b115fbbdd0ae7ca40f9a6ba442\transformed\volley-1.2.1\AndroidManifest.xml:5:5-43
 MERGED from [com.android.volley:volley:1.2.1] C:\Users\beral\.gradle\caches\transforms-3\a9f8d7b115fbbdd0ae7ca40f9a6ba442\transformed\volley-1.2.1\AndroidManifest.xml:5:5-43
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\beral\.gradle\caches\transforms-3\71a4b2e3b83f674b0802282a6bb1640f\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\beral\.gradle\caches\transforms-3\71a4b2e3b83f674b0802282a6bb1640f\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.2.1] C:\Users\beral\.gradle\caches\transforms-3\dcc70b04c620f46b201082617122ebe9\transformed\recyclerview-1.2.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.2.1] C:\Users\beral\.gradle\caches\transforms-3\dcc70b04c620f46b201082617122ebe9\transformed\recyclerview-1.2.1\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] C:\Users\beral\.gradle\caches\transforms-3\7e6d74f5404efb39d9d965e4736f0a8f\transformed\play-services-auth-api-phone-18.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] C:\Users\beral\.gradle\caches\transforms-3\7e6d74f5404efb39d9d965e4736f0a8f\transformed\play-services-auth-api-phone-18.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] C:\Users\beral\.gradle\caches\transforms-3\f5ae588dc89d33a25351d0d509034b38\transformed\play-services-auth-base-18.0.4\AndroidManifest.xml:5:5-44
@@ -250,8 +257,6 @@ MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\beral\.
 MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\beral\.gradle\caches\transforms-3\5d766cee6f9a8f514b6034d49e2e2f03\transformed\play-services-tasks-18.0.1\AndroidManifest.xml:4:5-43
 MERGED from [com.google.android.gms:play-services-basement:18.2.0] C:\Users\beral\.gradle\caches\transforms-3\b3f64438faa6d95fc8e8f17ab12f6693\transformed\play-services-basement-18.2.0\AndroidManifest.xml:18:5-43
 MERGED from [com.google.android.gms:play-services-basement:18.2.0] C:\Users\beral\.gradle\caches\transforms-3\b3f64438faa6d95fc8e8f17ab12f6693\transformed\play-services-basement-18.2.0\AndroidManifest.xml:18:5-43
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\beral\.gradle\caches\transforms-3\71a4b2e3b83f674b0802282a6bb1640f\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\beral\.gradle\caches\transforms-3\71a4b2e3b83f674b0802282a6bb1640f\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment-ktx:1.5.4] C:\Users\beral\.gradle\caches\transforms-3\515f1515060194f45d14374d290a8a2a\transformed\fragment-ktx-1.5.4\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment-ktx:1.5.4] C:\Users\beral\.gradle\caches\transforms-3\515f1515060194f45d14374d290a8a2a\transformed\fragment-ktx-1.5.4\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\beral\.gradle\caches\transforms-3\18dfa596b51ff068144645a9b360892c\transformed\fragment-1.5.4\AndroidManifest.xml:20:5-22:41
@@ -302,8 +307,6 @@ MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\ber
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\beral\.gradle\caches\transforms-3\1104968edb0b42381aa947d109a888c3\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\beral\.gradle\caches\transforms-3\aa88bda1a69cb79a57f5c91edf6bd497\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\beral\.gradle\caches\transforms-3\aa88bda1a69cb79a57f5c91edf6bd497\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\beral\.gradle\caches\transforms-3\9a156e10bc2cc6926719f38d9612f7be\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\beral\.gradle\caches\transforms-3\9a156e10bc2cc6926719f38d9612f7be\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\beral\.gradle\caches\transforms-3\c2eb6369fb666d8c17cdcf42896777fe\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\beral\.gradle\caches\transforms-3\c2eb6369fb666d8c17cdcf42896777fe\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\beral\.gradle\caches\transforms-3\6c503aea2c1db1c79b614b9556ccbfa8\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
