@@ -21,6 +21,7 @@ import com.example.finalproject_.MyProperties;
 import com.example.finalproject_.R;
 import com.example.finalproject_.adapters.CustomAdapter;
 import com.example.finalproject_.interfaces.EventAPIInterface;
+import com.example.finalproject_.models.DeleteEventRequestModel;
 import com.example.finalproject_.models.EventModel;
 import com.example.finalproject_.models.TokenRequestModel;
 import com.example.finalproject_.network.EventAPIClient;
@@ -34,6 +35,7 @@ import java.util.List;
 import java.util.Objects;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -157,6 +159,17 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("אישור", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         EventModel event = MyProperties.getInstance().getEventList().getEventList().get(position);
+                        String calendarId = SharedPreferencesUtils.getString(getApplicationContext(), "calendar_id", "");
+                        String token = SharedPreferencesUtils.getString(getApplicationContext(), "token", "");
+
+                        DeleteEventRequestModel deleteEventRequestModel = new DeleteEventRequestModel();
+
+                        deleteEventRequestModel.setId(event.getId());
+                        deleteEventRequestModel.setCalendarId(calendarId);
+                        deleteEventRequestModel.setToken(token);
+                        Call<ResponseBody> call = eventAPIInterface.deleteEvent(deleteEventRequestModel);
+                        call.enqueue(deleteEventCallBack());
+
                         MyProperties.getInstance().getEventList().deleteEvent(event.getId());
                         recyclerView.getAdapter().notifyItemRemoved(position);
                     }
@@ -166,11 +179,24 @@ public class MainActivity extends AppCompatActivity {
                         // כאן יש להוסיף קוד שיתבצע כאשר המשתמש לוחץ על כפתור הביטול
 
                         recyclerView.getAdapter().notifyItemChanged(position);
-
                         dialog.cancel();
                     }
                 });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    private Callback<ResponseBody> deleteEventCallBack() {
+        return new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(MyApplication.getInstance(), "Delete event failed", Toast.LENGTH_SHORT).show();
+            }
+        };
     }
 }
