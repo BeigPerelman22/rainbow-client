@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
         return new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
+                Toast.makeText(MyApplication.getInstance(), "Delete event successes", Toast.LENGTH_SHORT).show();
             }
 
             @Override
