@@ -1,10 +1,10 @@
 package com.example.finalproject_.interfaces;
 
-import com.example.finalproject_.models.CreateEventRequestModel;
-import com.example.finalproject_.models.DeleteEventRequestModel;
+import com.example.finalproject_.models.event_requests.CreateEventRequestModel;
+import com.example.finalproject_.models.event_requests.DeleteEventRequestModel;
 import com.example.finalproject_.models.EventModel;
-import com.example.finalproject_.models.TokenRequestModel;
-import com.example.finalproject_.models.UpdateEventRequestModel;
+import com.example.finalproject_.models.event_requests.TokenRequestModel;
+import com.example.finalproject_.models.event_requests.UpdateEventRequestModel;
 
 import java.util.List;
 

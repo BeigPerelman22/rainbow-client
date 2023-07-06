@@ -41,7 +41,7 @@ import com.example.finalproject_.MyProperties;
 import com.example.finalproject_.R;
 import com.example.finalproject_.interfaces.EventAPIInterface;
 import com.example.finalproject_.models.EventModel;
-import com.example.finalproject_.models.UpdateEventRequestModel;
+import com.example.finalproject_.models.event_requests.UpdateEventRequestModel;
 import com.example.finalproject_.network.EventAPIClient;
 import com.example.finalproject_.utils.DateTimeUtils;
 import com.example.finalproject_.utils.MyApplication;
