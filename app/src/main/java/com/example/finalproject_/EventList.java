@@ -15,7 +15,7 @@ public class EventList {
         this.events = events;
     }
 
-    public ArrayList<EventModel> getEventList() {
+    public ArrayList<EventModel> getEvents() {
         return events;
     }
 

@@ -2,9 +2,7 @@ package com.example.finalproject_.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +13,6 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.finalproject_.R;
-import com.example.finalproject_.interfaces.TokenAPIInterface;
 import com.example.finalproject_.models.AuthTokenModel;
 import com.example.finalproject_.utils.LoaderUtils;
 import com.example.finalproject_.utils.SharedPreferencesUtils;
@@ -32,13 +29,9 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Objects;
-
 public class LoginActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
-    private TokenAPIInterface tokenAPIInterface;
     private static final int RC_SIGN_IN = 1234;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +46,6 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-//        mGoogleSignInClient.revokeAccess();
-//        mGoogleSignInClient.signOut();
 
         SignInButton signInButton = findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(new View.OnClickListener() {

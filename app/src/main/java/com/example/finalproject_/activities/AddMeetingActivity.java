@@ -43,6 +43,7 @@ import com.example.finalproject_.interfaces.EventAPIInterface;
 import com.example.finalproject_.models.event_requests.CreateEventRequestModel;
 import com.example.finalproject_.models.EventModel;
 import com.example.finalproject_.network.EventAPIClient;
+import com.example.finalproject_.notifications.NotificationScheduler;
 import com.example.finalproject_.utils.DateTimeUtils;
 import com.example.finalproject_.utils.MyApplication;
 import com.example.finalproject_.utils.RealPathUtil;
@@ -68,6 +69,7 @@ import retrofit2.Response;
 public class AddMeetingActivity extends AppCompatActivity {
 
     private EventAPIInterface eventAPIInterface;
+    private NotificationScheduler notificationScheduler;
 
     private String mCurrentPhotoPath;//לפונקציה ששומרת Path
     Button addMeetting;//כפתור הוספת פגישה
@@ -128,6 +130,7 @@ public class AddMeetingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meeting);
         eventAPIInterface = EventAPIClient.getClient().create(EventAPIInterface.class);
+        notificationScheduler = new NotificationScheduler(MyApplication.getInstance());
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.parseColor("#E0DAED"));
@@ -859,7 +862,6 @@ public class AddMeetingActivity extends AppCompatActivity {
     }
 
     public void callChooseFileFromDevice() {
-
         if (ContextCompat.checkSelfPermission(AddMeetingActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(AddMeetingActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 123);
         } else {
@@ -892,8 +894,6 @@ public class AddMeetingActivity extends AppCompatActivity {
                 //the result data contains a URI for the document od directory that  the user selected.
                 if (data != null) {
                     Log.d("Main Activity", "on ActivityResult:" + data.getData());
-                    System.out.println(data);
-//            System.out.println(data.getData());
                     if (btn_kabala_b == true) {
                         btn_kabala_b = false;
                         String receipt = String.valueOf(data.getData());//קבלה
@@ -1178,6 +1178,7 @@ public class AddMeetingActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<EventModel> call, Response<EventModel> response) {
                 if (!Objects.isNull(response.body())) {
+//                    notificationScheduler.addNotification(response.body());
                     Intent intent = new Intent(AddMeetingActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {

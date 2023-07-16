@@ -58,6 +58,8 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <receiver android:name=".notifications.NotificationReceiver" android:enabled="true" android:exported="false">
+        </receiver>
     </application>
 
 </manifest>

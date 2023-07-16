@@ -1,9 +1,12 @@
 package com.example.finalproject_.activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -21,7 +24,9 @@ import com.example.finalproject_.R;
 import com.example.finalproject_.adapters.CustomAdapter;
 import com.example.finalproject_.models.EventModel;
 import com.example.finalproject_.network.EventRequestsExecutor;
+import com.example.finalproject_.notifications.NotificationScheduler;
 import com.example.finalproject_.utils.LoaderUtils;
+import com.example.finalproject_.utils.MyApplication;
 import com.example.finalproject_.utils.ToastUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -37,8 +42,8 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FloatingActionButton going_add_meeting;
-    private ArrayList<EventModel> events = new ArrayList<>();
-
+    private final ArrayList<EventModel> events = new ArrayList<>();
+    private NotificationScheduler notificationScheduler;
     private EventRequestsExecutor eventRequestsExecutor;
 
     @Override
@@ -46,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        createNotificationPermission();
         initializeViews();
         setStatusBarColor();
         setupEventExecutor();
@@ -82,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     if (eventList != null) {
                         events.addAll(eventList);
                         MyProperties.getInstance().getEventList().setEvents(events);
+                        setupEventNotification(events);
                         setupRecyclerView();
                         LoaderUtils.hideLoader();
                     }
@@ -97,11 +104,16 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
+    private void setupEventNotification(List<EventModel> events) {
+        notificationScheduler = new NotificationScheduler(MyApplication.getInstance());
+        notificationScheduler.scheduleEventNotifications(events);
+    }
+
     private void setupRecyclerView() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        CustomAdapter customAdapter = new CustomAdapter(MyProperties.getInstance().getEventList().getEventList());
+        CustomAdapter customAdapter = new CustomAdapter(MyProperties.getInstance().getEventList().getEvents());
         recyclerView.setAdapter(customAdapter);
 
         ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
@@ -117,12 +129,11 @@ public class MainActivity extends AppCompatActivity {
                 switch (direction) {
                     case ItemTouchHelper.LEFT:
                         // Set the item background color to red
-                        showMessage(position);
+                        openDeleteDialog(position);
                         break;
 
                     case ItemTouchHelper.RIGHT:
                         break;
-
                 }
             }
 
@@ -134,8 +145,6 @@ public class MainActivity extends AppCompatActivity {
                         .decorate();
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             }
-
-
         };
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
@@ -162,32 +171,25 @@ public class MainActivity extends AppCompatActivity {
         moveTaskToBack(true);
     }
 
-    private void showMessage(int position) {
+    private void openDeleteDialog(int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("אתה בטוח שאתה מעוניין למחוק את הפגישה")
                 .setCancelable(false)
-                .setPositiveButton("אישור", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        deleteEvent(position);
-                    }
-                })
-                .setNegativeButton("ביטול", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        cancelDelete(position);
-                    }
-                });
+                .setPositiveButton("אישור", (DialogInterface dialog, int id) -> deleteEvent(position))
+                .setNegativeButton("ביטול", (DialogInterface dialog, int id) -> cancelDelete(position));
         AlertDialog alert = builder.create();
         alert.show();
     }
 
     private void deleteEvent(int position) {
-        EventModel event = MyProperties.getInstance().getEventList().getEventList().get(position);
+        EventModel event = MyProperties.getInstance().getEventList().getEvents().get(position);
 
         Call<ResponseBody> call = eventRequestsExecutor.deleteEvent(event.getId());
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
+                    notificationScheduler.deleteNotification(event);
                     MyProperties.getInstance().getEventList().deleteEvent(event.getId());
                     recyclerView.getAdapter().notifyItemRemoved(position);
                     ToastUtils.showShortToast("Delete event successful");
@@ -206,4 +208,18 @@ public class MainActivity extends AppCompatActivity {
     private void cancelDelete(int position) {
         recyclerView.getAdapter().notifyItemChanged(position);
     }
+
+    private void createNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "LemubitReminderChannel";
+            String des = "Channel for Lemubit Reminder";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("event_channel", name, importance);
+            channel.setDescription(des);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
 }

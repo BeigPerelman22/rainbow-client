@@ -43,6 +43,7 @@ import com.example.finalproject_.interfaces.EventAPIInterface;
 import com.example.finalproject_.models.EventModel;
 import com.example.finalproject_.models.event_requests.UpdateEventRequestModel;
 import com.example.finalproject_.network.EventAPIClient;
+import com.example.finalproject_.notifications.NotificationScheduler;
 import com.example.finalproject_.utils.DateTimeUtils;
 import com.example.finalproject_.utils.MyApplication;
 import com.example.finalproject_.utils.RealPathUtil;
@@ -68,6 +69,7 @@ import retrofit2.Response;
 public class ChangeMeetingActivity extends AppCompatActivity {
 
     private EventAPIInterface eventAPIInterface;
+    private NotificationScheduler notificationScheduler;
     private String mCurrentPhotoPath;//לפונקציה ששומרת Path
     ImageView btn_x_name;//כפתור x
     ImageView btn_x_time;//כפתור x
@@ -128,6 +130,7 @@ public class ChangeMeetingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_meeting);
         eventAPIInterface = EventAPIClient.getClient().create(EventAPIInterface.class);
+        notificationScheduler = new NotificationScheduler(MyApplication.getInstance());
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.parseColor("#E0DAED"));
@@ -1117,6 +1120,7 @@ public class ChangeMeetingActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<EventModel> call, Response<EventModel> response) {
                 if (!Objects.isNull(response.body())) {
+//                    notificationScheduler.updateNotification(response.body());
                     Intent intent = new Intent(ChangeMeetingActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {
