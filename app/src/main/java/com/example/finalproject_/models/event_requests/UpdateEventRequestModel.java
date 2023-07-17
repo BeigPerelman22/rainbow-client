@@ -3,7 +3,7 @@ package com.example.finalproject_.models.event_requests;
 
 import com.google.gson.annotations.SerializedName;
 
-public class UpdateEventRequestModel extends TokenRequestModel {
+public class UpdateEventRequestModel  {
 
     @SerializedName("id")
     private String id;

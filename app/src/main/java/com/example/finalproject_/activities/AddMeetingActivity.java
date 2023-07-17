@@ -36,18 +36,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-
 import com.example.finalproject_.MyProperties;
 import com.example.finalproject_.R;
-import com.example.finalproject_.interfaces.EventAPIInterface;
-import com.example.finalproject_.models.event_requests.CreateEventRequestModel;
 import com.example.finalproject_.models.EventModel;
-import com.example.finalproject_.network.EventAPIClient;
-import com.example.finalproject_.notifications.NotificationScheduler;
+import com.example.finalproject_.models.event_requests.CreateEventRequestModel;
+import com.example.finalproject_.network.EventRequestsExecutor;
 import com.example.finalproject_.utils.DateTimeUtils;
 import com.example.finalproject_.utils.MyApplication;
 import com.example.finalproject_.utils.RealPathUtil;
-import com.example.finalproject_.utils.SharedPreferencesUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
@@ -68,8 +64,7 @@ import retrofit2.Response;
 
 public class AddMeetingActivity extends AppCompatActivity {
 
-    private EventAPIInterface eventAPIInterface;
-    private NotificationScheduler notificationScheduler;
+    private EventRequestsExecutor eventRequestsExecutor;
 
     private String mCurrentPhotoPath;//לפונקציה ששומרת Path
     Button addMeetting;//כפתור הוספת פגישה
@@ -129,8 +124,7 @@ public class AddMeetingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meeting);
-        eventAPIInterface = EventAPIClient.getClient().create(EventAPIInterface.class);
-        notificationScheduler = new NotificationScheduler(MyApplication.getInstance());
+        eventRequestsExecutor = new EventRequestsExecutor();
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.parseColor("#E0DAED"));
@@ -268,10 +262,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                                 t_hour = hourOfDay;
                                 t_minute = minute;
                                 String time = t_hour + ":" + t_minute;
-                                SimpleDateFormat f24 = new SimpleDateFormat
-                                        (
-                                                "HH:mm"
-                                        );
+                                SimpleDateFormat f24 = new SimpleDateFormat("HH:mm");
                                 try {
                                     Date date = f24.parse(time);
                                     SimpleDateFormat f12 = new SimpleDateFormat("HH:mm");
@@ -384,21 +375,17 @@ public class AddMeetingActivity extends AppCompatActivity {
                 if (kabala == false) {
                     kabala = true;
                     btn_receipt.setBackgroundResource(R.drawable.round_button_green);
-                    kabala_v.hide();
-                    img_kabala.hide();
-                    camera_kabala.hide();
-                    kabala_btn_open = true;
                 } else {
                     kabala = false;
                     btn_kabala_b = false;
                     imageFilterView_kabala.setImageBitmap(null);
                     imageView_delete_kabala.setVisibility(View.INVISIBLE);
                     btn_receipt.setBackgroundResource(R.drawable.round_button);
-                    kabala_v.hide();
-                    img_kabala.hide();
-                    camera_kabala.hide();
-                    kabala_btn_open = true;
                 }
+                kabala_v.hide();
+                img_kabala.hide();
+                camera_kabala.hide();
+                kabala_btn_open = true;
             }
         });
         sub_v.setOnClickListener(new View.OnClickListener() {
@@ -407,21 +394,17 @@ public class AddMeetingActivity extends AppCompatActivity {
                 if (submitted == false) {
                     submitted = true;
                     btn_Submitted.setBackgroundResource(R.drawable.round_button_green);
-                    sub_v.hide();
-                    img_submitted.hide();
-                    camera_submitted.hide();
-                    submitted_btn_open = true;
                 } else {
                     submitted = false;
                     btn_Submitted_b = false;
                     imageFilterView_submitted.setImageBitmap(null);
                     imageView_delete_sub.setVisibility(View.INVISIBLE);
                     btn_Submitted.setBackgroundResource(R.drawable.round_button);
-                    sub_v.hide();
-                    img_submitted.hide();
-                    camera_submitted.hide();
-                    submitted_btn_open = true;
                 }
+                sub_v.hide();
+                img_submitted.hide();
+                camera_submitted.hide();
+                submitted_btn_open = true;
             }
         });
         refund_received_v.setOnClickListener(new View.OnClickListener() {
@@ -433,7 +416,6 @@ public class AddMeetingActivity extends AppCompatActivity {
                     refund_received_v.hide();
                     img_refund_received.hide();
                     camera_Refund_received.hide();
-                    refund_received_btn_open = true;
                 } else {
                     refund_received = false;
                     btn_Refund_received.setBackgroundResource(R.drawable.round_button);
@@ -444,9 +426,9 @@ public class AddMeetingActivity extends AppCompatActivity {
 
                     imageFilterView_Refund_received.setImageBitmap(null);
                     imageView_delete_refund.setVisibility(View.INVISIBLE);
-                    refund_received_btn_open = true;
 
                 }
+                refund_received_btn_open = true;
             }
         });
         imageView_delete_kabala.setOnClickListener(new View.OnClickListener() {
@@ -837,10 +819,6 @@ public class AddMeetingActivity extends AppCompatActivity {
 
 
                 CreateEventRequestModel createEventRequestModel = new CreateEventRequestModel();
-                String calendarId = SharedPreferencesUtils.getString(getApplicationContext(), "calendar_id", "");
-                String token = SharedPreferencesUtils.getString(getApplicationContext(), "token", "");
-                createEventRequestModel.setToken(token);
-                createEventRequestModel.setCalendarId(calendarId);
 
                 String formattedDateTime = DateTimeUtils.dateAndTimeToDateTime(date_str, time_str);
 
@@ -854,7 +832,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                 createEventRequestModel.setSubmitted(submitted);
                 createEventRequestModel.setMoneyRefund(refund_received);
 
-                Call<EventModel> call = eventAPIInterface.createEvent(createEventRequestModel);
+                Call<EventModel> call = eventRequestsExecutor.createEvent(createEventRequestModel);
                 call.enqueue(createEventsCallBack());
             }
         });

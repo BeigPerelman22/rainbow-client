@@ -2,7 +2,7 @@ package com.example.finalproject_.models.event_requests;
 
 import com.google.gson.annotations.SerializedName;
 
-public class DeleteEventRequestModel extends TokenRequestModel {
+public class DeleteEventRequestModel  {
 
     @SerializedName("id")
     private String id;
