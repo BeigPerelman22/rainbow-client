@@ -17,16 +17,16 @@ import retrofit2.http.Query;
 
 public interface EventAPIInterface {
 
-    @GET("/calendar/events")
+    @GET("/app/calendar/events")
     Call<List<EventModel>> getEvents();
 
-    @POST("/calendar/newevent")
+    @POST("/app/calendar/newevent")
     Call<EventModel> createEvent(@Body CreateEventRequestModel createEvent);
 
-    @PUT("/calendar/updateevent")
+    @PUT("/app/calendar/updateevent")
     Call<EventModel> updateEvent(@Body UpdateEventRequestModel updateEvent);
 
-    @DELETE("/calendar/deleteevent")
+    @DELETE("/app/calendar/deleteevent")
     Call<ResponseBody> deleteEvent(@Query("id") String id);
 
 

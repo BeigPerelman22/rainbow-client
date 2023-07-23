@@ -16,7 +16,7 @@ public class EventAPIClient {
             OkHttpClient client = builder.build();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://192.168.33.24:3000/")
+                    .baseUrl("https://us-central1-rainbow-server-6a19e.cloudfunctions.net/app/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();
