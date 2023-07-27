@@ -126,6 +126,7 @@ public class ChangeMeetingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_meeting);
+        getSupportActionBar().hide();
         eventRequestsExecutor = new EventRequestsExecutor();
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);

@@ -2,6 +2,7 @@ package com.example.finalproject_.activities;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -9,9 +10,11 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +45,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FloatingActionButton going_add_meeting;
+    private ImageView about_btn;
     private final ArrayList<EventModel> events = new ArrayList<>();
     private NotificationScheduler notificationScheduler;
     private EventRequestsExecutor eventRequestsExecutor;
@@ -51,8 +55,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        createNotificationPermission();
+        androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar_bg));
+        actionBar.setDisplayShowTitleEnabled(false);
+
+        actionBar.setDisplayShowCustomEnabled(true);
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View customActionBarView = inflater.inflate(R.layout.custom_action_bar, null);
+        actionBar.setCustomView(customActionBarView);
+
+//        about_btn = findViewById(R.id.about_btn);
+
         initializeViews();
+//        setActionBar();
+        createNotificationPermission();
         setStatusBarColor();
         setupEventExecutor();
         fetchEvents();
@@ -160,6 +177,13 @@ public class MainActivity extends AppCompatActivity {
                 navigateToAddMeeting();
             }
         });
+//        about_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, Information.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     private void navigateToAddMeeting() {
@@ -220,5 +244,18 @@ public class MainActivity extends AppCompatActivity {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
+    }
+
+    private void setActionBar() {
+        androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar_bg));
+        actionBar.setDisplayShowTitleEnabled(false);
+
+        actionBar.setDisplayShowCustomEnabled(true);
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View customActionBarView = inflater.inflate(R.layout.custom_action_bar, null);
+        actionBar.setCustomView(customActionBarView);
+
     }
 }

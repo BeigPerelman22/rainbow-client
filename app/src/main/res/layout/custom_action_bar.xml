@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/rainbow" />
+
+    <ImageView
+        android:id="@+id/about_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="1240px"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/info" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:textColor="@android:color/white"
+        android:textSize="120px"
+        android:textStyle="bold"
+        android:text="ריינבואו" />
+
+
+
+</RelativeLayout>

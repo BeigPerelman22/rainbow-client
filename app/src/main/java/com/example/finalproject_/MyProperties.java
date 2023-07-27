@@ -13,10 +13,6 @@ public class MyProperties {
     public static boolean btn_Submitted_b = false;
     public static boolean btn_Refund_received_b = false;
 
-    public static int ID_NUM = 0;
-
-    public ArrayMeeting arrayMeeting = new ArrayMeeting();
-
     private EventList eventList;
 
 

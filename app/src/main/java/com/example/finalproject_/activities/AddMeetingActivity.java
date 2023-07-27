@@ -125,6 +125,7 @@ public class AddMeetingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meeting);
         eventRequestsExecutor = new EventRequestsExecutor();
+        getSupportActionBar().hide();
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.parseColor("#E0DAED"));
