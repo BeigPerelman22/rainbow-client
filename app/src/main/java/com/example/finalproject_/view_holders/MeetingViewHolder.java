@@ -46,6 +46,8 @@ public class MeetingViewHolder extends RecyclerView.ViewHolder {
     private void setButtonBackground(Button button, boolean condition) {
         if (condition) {
             button.setBackgroundResource(R.drawable.round_button_green);
+        } else {
+            button.setBackgroundResource(R.drawable.round_button_gray);
         }
     }
 }

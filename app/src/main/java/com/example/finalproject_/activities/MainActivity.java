@@ -1,5 +1,7 @@
 package com.example.finalproject_.activities;
 
+import static com.example.finalproject_.constants.RequestCode.NEW_EVENT_REQUEST_CODE;
+
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -10,6 +12,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -48,26 +51,15 @@ public class MainActivity extends AppCompatActivity {
     private final ArrayList<EventModel> events = new ArrayList<>();
     private NotificationScheduler notificationScheduler;
     private EventRequestsExecutor eventRequestsExecutor;
+    private CustomAdapter customAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar_bg));
-        actionBar.setDisplayShowTitleEnabled(false);
-
-        actionBar.setDisplayShowCustomEnabled(true);
-        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        View customActionBarView = inflater.inflate(R.layout.custom_action_bar, null);
-        actionBar.setCustomView(customActionBarView);
-
-        about_btn = findViewById(R.id.about_btn);
-
+        setActionBar();
         initializeViews();
-//        setActionBar();
         createNotificationPermission();
         setStatusBarColor();
         setupEventExecutor();
@@ -75,9 +67,19 @@ public class MainActivity extends AppCompatActivity {
         setClickListener();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && data != null) {
+            customAdapter.sortItemsByDate(false);
+        }
+    }
+
     private void initializeViews() {
         recyclerView = findViewById(R.id.recyclerViewCon);
         going_add_meeting = findViewById(R.id.fab);
+        about_btn = findViewById(R.id.about_btn);
     }
 
     private void setStatusBarColor() {
@@ -133,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        CustomAdapter customAdapter = new CustomAdapter(MyProperties.getInstance().getEventList().getEvents());
+        customAdapter = new CustomAdapter(this, MyProperties.getInstance().getEventList().getEvents());
         recyclerView.setAdapter(customAdapter);
 
         ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
@@ -191,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void navigateToAddMeeting() {
         Intent intent = new Intent(MainActivity.this, AddMeetingActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, NEW_EVENT_REQUEST_CODE);
     }
 
     public void onBackPressed() {

@@ -1,5 +1,9 @@
 package com.example.finalproject_.adapters;
 
+
+import static com.example.finalproject_.constants.RequestCode.EDIT_EVENT_REQUEST_CODE;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,11 +12,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.finalproject_.MyProperties;
 import com.example.finalproject_.R;
 import com.example.finalproject_.activities.ChangeMeetingActivity;
 import com.example.finalproject_.models.EventModel;
-import com.example.finalproject_.models.MeetingModel;
 import com.example.finalproject_.view_holders.MeetingViewHolder;
 
 import java.util.ArrayList;
@@ -20,32 +22,35 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class CustomAdapter extends RecyclerView.Adapter<MeetingViewHolder> {
-
     private ArrayList<EventModel> events;
+    private Activity parentActivity;
 
-    public CustomAdapter(ArrayList<EventModel> modelArrayList) {
+    public CustomAdapter(Activity activity, ArrayList<EventModel> modelArrayList) {
         events = modelArrayList;
+        parentActivity = activity;
     }
 
     @NonNull
     @Override
     public MeetingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View meetingView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view, parent, false);
+        View meetingView = LayoutInflater.from(parentActivity).inflate(R.layout.card_view, parent, false);
         return new MeetingViewHolder(meetingView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MeetingViewHolder holder, int position) {
         EventModel currEvent = events.get(position);
+        int itemPosition = position;
 
         holder.bindData(currEvent);
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ChangeMeetingActivity.class);
+                Intent intent = new Intent(parentActivity, ChangeMeetingActivity.class);
                 intent.putExtra("event", currEvent);
-                view.getContext().startActivity(intent);
+                intent.putExtra("itemPosition", itemPosition);
+                parentActivity.startActivityForResult(intent,  EDIT_EVENT_REQUEST_CODE);
             }
         });
     }

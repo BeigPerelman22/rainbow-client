@@ -1162,8 +1162,9 @@ public class AddMeetingActivity extends AppCompatActivity {
                 if (!Objects.isNull(response.body())) {
                     notificationScheduler.addNotification(response.body());
                     MyProperties.getInstance().getEventList().addEvent(response.body());
-                    Intent intent = new Intent(AddMeetingActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    Intent resultIntent = new Intent();
+                    setResult(RESULT_OK, resultIntent);
+                    finish();
                 } else {
                     Toast.makeText(MyApplication.getInstance(), "Create event failed", Toast.LENGTH_SHORT).show();
                 }

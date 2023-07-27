@@ -1118,8 +1118,9 @@ public class ChangeMeetingActivity extends AppCompatActivity {
                 if (!Objects.isNull(response.body())) {
                     notificationScheduler.updateNotification(response.body());
                     MyProperties.getInstance().getEventList().updateEvent(response.body());
-                    Intent intent = new Intent(ChangeMeetingActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    Intent resultIntent = new Intent();
+                    setResult(RESULT_OK, resultIntent);
+                    finish();
                 } else {
                     Toast.makeText(MyApplication.getInstance(), "Update event failed", Toast.LENGTH_SHORT).show();
                 }
