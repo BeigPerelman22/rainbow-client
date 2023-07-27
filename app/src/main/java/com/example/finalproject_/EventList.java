@@ -28,6 +28,11 @@ public class EventList {
         }
     }
 
+    public void addEvent(EventModel newEvent) {
+        events.add(newEvent);
+    }
+
+
     public void updateEvent(EventModel updatedEvent) {
         EventModel eventToUpdate = null;
 

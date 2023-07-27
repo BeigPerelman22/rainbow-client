@@ -28,7 +28,6 @@ import com.example.finalproject_.adapters.CustomAdapter;
 import com.example.finalproject_.models.EventModel;
 import com.example.finalproject_.network.EventRequestsExecutor;
 import com.example.finalproject_.notifications.NotificationScheduler;
-import com.example.finalproject_.utils.LoaderUtils;
 import com.example.finalproject_.utils.MyApplication;
 import com.example.finalproject_.utils.ToastUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         View customActionBarView = inflater.inflate(R.layout.custom_action_bar, null);
         actionBar.setCustomView(customActionBarView);
 
-//        about_btn = findViewById(R.id.about_btn);
+        about_btn = findViewById(R.id.about_btn);
 
         initializeViews();
 //        setActionBar();
@@ -84,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     private void setStatusBarColor() {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(Color.parseColor("#94C8F0"));
+        window.setStatusBarColor(Color.parseColor("#FF018786"));
     }
 
     private void setupEventExecutor() {
@@ -92,8 +91,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchEvents() {
-        Call<List<EventModel>> call = eventRequestsExecutor.fetchEvents();
-        call.enqueue(getEventsCallback());
+        if (!MyProperties.getInstance().getIsDataInit()) {
+            Call<List<EventModel>> call = eventRequestsExecutor.fetchEvents();
+            call.enqueue(getEventsCallback());
+        } else {
+            setupRecyclerView();
+        }
     }
 
     private Callback<List<EventModel>> getEventsCallback() {
@@ -105,9 +108,9 @@ public class MainActivity extends AppCompatActivity {
                     if (eventList != null) {
                         events.addAll(eventList);
                         MyProperties.getInstance().getEventList().setEvents(events);
+                        MyProperties.getInstance().setIsDataInit(true);
                         setupEventNotification(events);
                         setupRecyclerView();
-                        LoaderUtils.hideLoader();
                     }
                 } else {
                     ToastUtils.showShortToast("Fetch event failed");
@@ -177,13 +180,13 @@ public class MainActivity extends AppCompatActivity {
                 navigateToAddMeeting();
             }
         });
-//        about_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, Information.class);
-//                startActivity(intent);
-//            }
-//        });
+        about_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Information.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void navigateToAddMeeting() {

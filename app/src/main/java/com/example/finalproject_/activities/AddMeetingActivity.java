@@ -41,6 +41,7 @@ import com.example.finalproject_.R;
 import com.example.finalproject_.models.EventModel;
 import com.example.finalproject_.models.event_requests.CreateEventRequestModel;
 import com.example.finalproject_.network.EventRequestsExecutor;
+import com.example.finalproject_.notifications.NotificationScheduler;
 import com.example.finalproject_.utils.DateTimeUtils;
 import com.example.finalproject_.utils.MyApplication;
 import com.example.finalproject_.utils.RealPathUtil;
@@ -65,6 +66,7 @@ import retrofit2.Response;
 public class AddMeetingActivity extends AppCompatActivity {
 
     private EventRequestsExecutor eventRequestsExecutor;
+    private NotificationScheduler notificationScheduler;
 
     private String mCurrentPhotoPath;//לפונקציה ששומרת Path
     Button addMeetting;//כפתור הוספת פגישה
@@ -125,6 +127,7 @@ public class AddMeetingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meeting);
         eventRequestsExecutor = new EventRequestsExecutor();
+        notificationScheduler = new NotificationScheduler(MyApplication.getInstance());
         getSupportActionBar().hide();
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -1157,7 +1160,8 @@ public class AddMeetingActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<EventModel> call, Response<EventModel> response) {
                 if (!Objects.isNull(response.body())) {
-//                    notificationScheduler.addNotification(response.body());
+                    notificationScheduler.addNotification(response.body());
+                    MyProperties.getInstance().getEventList().addEvent(response.body());
                     Intent intent = new Intent(AddMeetingActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {
