@@ -9,6 +9,11 @@ public class EventList {
     private ArrayList<EventModel> events;
 
     public EventList() {
+        events = new ArrayList<>();
+    }
+
+    public boolean isEmpty() {
+        return events.isEmpty();
     }
 
     public void setEvents(ArrayList<EventModel> events) {

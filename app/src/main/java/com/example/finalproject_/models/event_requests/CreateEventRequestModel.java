@@ -2,7 +2,7 @@ package com.example.finalproject_.models.event_requests;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CreateEventRequestModel extends TokenRequestModel {
+public class CreateEventRequestModel {
     @SerializedName("summary")
     private String description;
 
@@ -29,6 +29,9 @@ public class CreateEventRequestModel extends TokenRequestModel {
 
     @SerializedName("isMoneyRefund")
     private boolean isMoneyRefund;
+
+    @SerializedName("colorId")
+    private int colorId;
 
     public String getDescription() {
         return description;
@@ -100,5 +103,13 @@ public class CreateEventRequestModel extends TokenRequestModel {
 
     public void setMoneyRefund(boolean moneyRefund) {
         isMoneyRefund = moneyRefund;
+    }
+
+    public void setColorId(int colorId) {
+        this.colorId = colorId;
+    }
+
+    public int getColorId() {
+        return colorId;
     }
 }

@@ -9,6 +9,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -26,6 +27,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -39,27 +41,31 @@ import androidx.core.content.ContextCompat;
 
 import com.example.finalproject_.MyProperties;
 import com.example.finalproject_.R;
+import com.example.finalproject_.interfaces.NetworkResponseCallback;
+import com.example.finalproject_.mappers.EventTypeMapper;
+import com.example.finalproject_.models.DriveFile;
 import com.example.finalproject_.models.EventModel;
-import com.example.finalproject_.models.event_requests.UpdateEventRequestModel;
 import com.example.finalproject_.network.EventRequestsExecutor;
 import com.example.finalproject_.notifications.NotificationScheduler;
 import com.example.finalproject_.utils.DateTimeUtils;
+import com.example.finalproject_.utils.DriveRequestUtils;
+import com.example.finalproject_.utils.LoaderUtils;
 import com.example.finalproject_.utils.MyApplication;
 import com.example.finalproject_.utils.RealPathUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -67,6 +73,9 @@ import retrofit2.Response;
 public class ChangeMeetingActivity extends AppCompatActivity {
 
     private EventRequestsExecutor eventRequestsExecutor;
+    private EventTypeMapper eventTypeMapper;
+    private DriveRequestUtils driveRequestUtils;
+
     private NotificationScheduler notificationScheduler;
 
     private String mCurrentPhotoPath;//לפונקציה ששומרת Path
@@ -88,18 +97,13 @@ public class ChangeMeetingActivity extends AppCompatActivity {
     FloatingActionButton kabala_v, sub_v, refund_received_v;//הכפתורים של כל סוגי בקשת קבצים
 
 
-    Button btn_receipt;//כפתור קבלה
-    Button btn_Submitted;//כפתור הוגש לקופ"ח
-    Button btn_Refund_received;//כפתור התקבל החזר
-
-
     Button updateButton;
     Button btn_date;//כפתור לוח שנה
     Button btn_time;//כפתור שעה
     DatePickerDialog.OnDateSetListener setListener;
     int t_hour, t_minute;//משתנים שקשורים לשעה
 
-
+    //    Spinner spinner;
     TextView meeting_name_text;
     TextView date_text;//תאריך ושעה
     TextView time_text;//שעה
@@ -122,6 +126,18 @@ public class ChangeMeetingActivity extends AppCompatActivity {
     boolean submitted_btn_open = true;//אם הכפתור דלוק
     boolean refund_received_btn_open = true;//אם הכפתור דלוק
 
+    Button btn_receipt;//כפתור קבלה
+    Button btn_Submitted;//כפתור הוגש לקופ"ח
+    Button btn_Refund_received;//כפתור התקבל החזר
+
+    Uri uri_kabala;
+    Uri uri_Submitted;
+    Uri uri_received;
+
+    String receiptWebLink;
+    String submittedWebLink;
+    String refundWebLink;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -131,9 +147,12 @@ public class ChangeMeetingActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         eventRequestsExecutor = new EventRequestsExecutor();
         notificationScheduler = new NotificationScheduler(MyApplication.getInstance());
+        eventTypeMapper = new EventTypeMapper();
+        driveRequestUtils = new DriveRequestUtils();
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//        window.setStatusBarColor(Color.parseColor("#E0DAED"));
+        window.setStatusBarColor(Color.parseColor("#E0DAED"));
+//        initEventTypeSpinner();
 //////////////////////////////////////////////////////////////TIME
 
         time_text = (TextView) findViewById(R.id.textTime_c);
@@ -171,7 +190,7 @@ public class ChangeMeetingActivity extends AppCompatActivity {
         btn_x_4 = (ImageView) findViewById(R.id.imageView_X_4_c2);
         btn_x_name = (ImageView) findViewById(R.id.imageView_X_name_c2);
 
-
+//        spinner = findViewById(R.id.spinner_event_type);
         meeting_name_text = findViewById(R.id.text_MeetingName_c);
         date_text = findViewById(R.id.textDate_c);
         time_text = findViewById(R.id.textTime_c);
@@ -252,6 +271,28 @@ public class ChangeMeetingActivity extends AppCompatActivity {
         });
 /////////////////////////////////////////////////////////////////////////////
 
+        imageFilterView_kabala.setOnClickListener(new View.OnClickListener() {//OPEN FILE KABALA
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(receiptWebLink));
+                startActivity(intent);
+            }
+        });
+        imageFilterView_submitted.setOnClickListener(new View.OnClickListener() {//OPEN FILE SUB
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(submittedWebLink));
+                startActivity(intent);
+            }
+        });
+        imageFilterView_Refund_received.setOnClickListener(new View.OnClickListener() {//OPEN FILE Refund received
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(refundWebLink));
+                startActivity(intent);
+            }
+        });
+
         btn_date = (Button) findViewById(R.id.date_2);
         date_text = (TextView) findViewById(R.id.textDate_c);
         Calendar calendar = Calendar.getInstance();
@@ -286,6 +327,20 @@ public class ChangeMeetingActivity extends AppCompatActivity {
             }
         };
 
+        imageView_delete_kabala.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_Submitted_b = false;
+                kabala = false;
+                kabala_f = null;
+                imageFilterView_kabala.setImageBitmap(null);
+                btn_receipt.setBackgroundResource(R.drawable.round_button);
+                imageView_delete_kabala.setVisibility(View.INVISIBLE);
+                kabala_v.setImageResource(R.drawable.baseline_check_24);
+                receiptWebLink = "";
+            }
+        });
+
         imageView_delete_sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -296,6 +351,7 @@ public class ChangeMeetingActivity extends AppCompatActivity {
                 btn_Submitted.setBackgroundResource(R.drawable.round_button);
                 imageView_delete_sub.setVisibility(View.INVISIBLE);
                 sub_v.setImageResource(R.drawable.baseline_check_24);
+                submittedWebLink = "";
             }
         });
         imageView_delete_refund.setOnClickListener(new View.OnClickListener() {
@@ -308,6 +364,7 @@ public class ChangeMeetingActivity extends AppCompatActivity {
                 btn_Refund_received.setBackgroundResource(R.drawable.round_button);
                 imageView_delete_refund.setVisibility(View.INVISIBLE);
                 refund_received_v.setImageResource(R.drawable.baseline_check_24);
+                refundWebLink = "";
             }
         });
 
@@ -512,17 +569,10 @@ public class ChangeMeetingActivity extends AppCompatActivity {
 
                     if (submitted == true) {
                         sub_v.setImageResource(R.drawable.cancel);
-
-
                     } else {
                         sub_v.setImageResource(R.drawable.baseline_check_24);
-
                     }
-
-
                 }
-
-
             }
         });
         btn_Refund_received.setOnClickListener(new View.OnClickListener() {
@@ -595,6 +645,7 @@ public class ChangeMeetingActivity extends AppCompatActivity {
                 callChooseFileFromDevice();
             }
         });
+
 
 ///camera
 
@@ -685,54 +736,6 @@ public class ChangeMeetingActivity extends AppCompatActivity {
                 }
             }
         });
-        sub_v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (submitted == false) {
-                    submitted = true;
-                    btn_Submitted.setBackgroundResource(R.drawable.round_button_green);
-                    sub_v.hide();
-                    img_submitted.hide();
-                    camera_submitted.hide();
-                    submitted_btn_open = true;
-                } else {
-                    submitted = false;
-                    btn_Submitted_b = false;
-                    imageFilterView_submitted.setImageBitmap(null);
-                    imageView_delete_sub.setVisibility(View.INVISIBLE);
-                    btn_Submitted.setBackgroundResource(R.drawable.round_button);
-                    sub_v.hide();
-                    img_submitted.hide();
-                    camera_submitted.hide();
-                    submitted_btn_open = true;
-                }
-            }
-        });
-        refund_received_v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (refund_received == false) {
-                    refund_received = true;
-                    btn_Refund_received.setBackgroundResource(R.drawable.round_button_green);
-                    refund_received_v.hide();
-                    img_refund_received.hide();
-                    camera_Refund_received.hide();
-                    refund_received_btn_open = true;
-                } else {
-                    refund_received = false;
-                    btn_Refund_received.setBackgroundResource(R.drawable.round_button);
-                    refund_received_v.hide();
-                    img_refund_received.hide();
-                    camera_Refund_received.hide();
-                    btn_Refund_received_b = false;
-
-                    imageFilterView_Refund_received.setImageBitmap(null);
-                    imageView_delete_refund.setVisibility(View.INVISIBLE);
-                    refund_received_btn_open = true;
-
-                }
-            }
-        });
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -747,11 +750,19 @@ public class ChangeMeetingActivity extends AppCompatActivity {
         time_text.setText(DateTimeUtils.dateTimeToTime(currentEvent.getStartTime()));
         location_text.setText(currentEvent.getLocation());
         caregiver_details_text.setText(currentEvent.getCaregiverDetails());
+//        spinner.setSelection(currentEvent.getColorId());
+
 
         took_place = currentEvent.isTookPlace();
         kabala = currentEvent.isHasReceipt();
         submitted = currentEvent.isSubmitted();
         refund_received = currentEvent.isMoneyRefund();
+        receiptWebLink = currentEvent.getReceiptFile();
+        refundWebLink = currentEvent.getMoneyRefundFile();
+        submittedWebLink = currentEvent.getSubmittedFile();
+        setReceiptFileIcon(receiptWebLink);
+        setRefundFileIcon(refundWebLink);
+        setSubmittedFileIcon(submittedWebLink);
         setButtonBackground(btn_tookplace, took_place);
         setButtonBackground(btn_tookplace, took_place);
         setButtonBackground(btn_receipt, kabala);
@@ -768,11 +779,12 @@ public class ChangeMeetingActivity extends AppCompatActivity {
                 String time_str = time_text.getText().toString();
                 String location_str = location_text.getText().toString();
                 String caregiver_details_str = caregiver_details_text.getText().toString();
+//                String eventType = spinner.getSelectedItem().toString();
                 resetForm();
 
                 String formattedDateTime = DateTimeUtils.dateAndTimeToDateTime(date_str, time_str);
 
-                UpdateEventRequestModel updateEventRequestModel = new UpdateEventRequestModel();
+                EventModel updateEventRequestModel = new EventModel();
                 updateEventRequestModel.setId(currentEvent.getId());
 
                 updateEventRequestModel.setDescription(meeting_name_str);
@@ -784,6 +796,10 @@ public class ChangeMeetingActivity extends AppCompatActivity {
                 updateEventRequestModel.setHasReceipt(kabala);
                 updateEventRequestModel.setSubmitted(submitted);
                 updateEventRequestModel.setMoneyRefund(refund_received);
+                updateEventRequestModel.setColorId(currentEvent.getColorId());
+                updateEventRequestModel.setReceiptFile(receiptWebLink);
+                updateEventRequestModel.setSubmittedFile(submittedWebLink);
+                updateEventRequestModel.setMoneyRefundFile(refundWebLink);
 
                 Call<EventModel> call = eventRequestsExecutor.updateEvent(updateEventRequestModel);
                 call.enqueue(updateEventsCallBack());
@@ -827,21 +843,30 @@ public class ChangeMeetingActivity extends AppCompatActivity {
                 if (data != null) {
                     Log.d("Main Activity", "on ActivityResult:" + data.getData());
                     System.out.println(data);
-//            System.out.println(data.getData());
+
                     if (btn_kabala_b == true) {
                         btn_kabala_b = false;
-                        String receipt = String.valueOf(data.getData());//קבלה
-                        String type_of_file = getFileType(receipt);
+                        uri_kabala = data.getData();
+                        String type_of_file = getFileType(uri_kabala);
+                        uploadFileToDrive(uri_kabala, new NetworkResponseCallback() {
+                            @Override
+                            public void onSuccess(okhttp3.Response response) throws IOException {
+                                String res = response.body().string();
+                                Gson gson = new Gson();
+                                DriveFile file = gson.fromJson(res, DriveFile.class);
+                                receiptWebLink = file.getWebViewLink();
+                                LoaderUtils.hideLoader();
+                            }
 
-
-                        Uri uri = data.getData();
-                        Context context = ChangeMeetingActivity.this;
-                        receipt = RealPathUtil.getRealPath(context, uri);
-                        System.out.println(receipt);
+                            @Override
+                            public void onError(Throwable throwable) {
+                                // Handle the error here
+                                // 'throwable' contains the exception or error that occurred during the request
+                            }
+                        });
 
 
                         if (type_of_file.equals("pdf")) {
-
                             int imageInt = R.drawable.pdf;
                             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageInt);
                             imageFilterView_kabala.setImageBitmap(bitmap);
@@ -870,16 +895,25 @@ public class ChangeMeetingActivity extends AppCompatActivity {
 
                     } else if (btn_Submitted_b == true) {
                         btn_Submitted_b = false;
-                        String sub = String.valueOf(data.getData());//// הוגש לקופת חולים
-                        String type_of_file = getFileType(sub);
 
+                        uri_Submitted = data.getData();
+                        String type_of_file = getFileType(uri_Submitted);
+                        uploadFileToDrive(uri_Submitted, new NetworkResponseCallback() {
+                            @Override
+                            public void onSuccess(okhttp3.Response response) throws IOException {
+                                String res = response.body().string();
+                                Gson gson = new Gson();
+                                DriveFile file = gson.fromJson(res, DriveFile.class);
+                                submittedWebLink = file.getWebViewLink();
+                                LoaderUtils.hideLoader();
+                            }
 
-                        Uri uri = data.getData();
-                        Context context = ChangeMeetingActivity.this;
-                        sub = RealPathUtil.getRealPath(context, uri);
-                        System.out.println(sub);
-
-                        System.out.println(sub);
+                            @Override
+                            public void onError(Throwable throwable) {
+                                // Handle the error here
+                                // 'throwable' contains the exception or error that occurred during the request
+                            }
+                        });
                         if (type_of_file.equals("pdf")) {
 
                             int imageInt = R.drawable.pdf;
@@ -910,15 +944,24 @@ public class ChangeMeetingActivity extends AppCompatActivity {
                         submitted = true;
 
                     } else if (btn_Refund_received_b == true) {
-                        btn_Refund_received_b = false;
-                        String returned = String.valueOf(data.getData());//הוחזר הכסף
-                        String type_of_file = getFileType(returned);
+                        uri_received = data.getData();
+                        String type_of_file = getFileType(uri_received);
+                        uploadFileToDrive(uri_received, new NetworkResponseCallback() {
+                            @Override
+                            public void onSuccess(okhttp3.Response response) throws IOException {
+                                String res = response.body().string();
+                                Gson gson = new Gson();
+                                DriveFile file = gson.fromJson(res, DriveFile.class);
+                                refundWebLink = file.getWebViewLink();
+                                LoaderUtils.hideLoader();
+                            }
 
-                        Uri uri = data.getData();
-                        Context context = ChangeMeetingActivity.this;
-                        returned = RealPathUtil.getRealPath(context, uri);
-                        System.out.println(returned);
-
+                            @Override
+                            public void onError(Throwable throwable) {
+                                // Handle the error here
+                                // 'throwable' contains the exception or error that occurred during the request
+                            }
+                        });
                         if (type_of_file.equals("pdf")) {
 
                             int imageInt = R.drawable.pdf;
@@ -1056,24 +1099,14 @@ public class ChangeMeetingActivity extends AppCompatActivity {
                     refund_received_v.setImageResource(R.drawable.cancel);
                     refund_received = true;
                 }
-
-
             }
 
         } catch (Exception not_pdf_or_img) {
-            //Toast.makeText(AddMeetingActivity.this, "יש שגיאה", Toast.LENGTH_SHORT).show();
+            LoaderUtils.hideLoader();
+            Toast.makeText(ChangeMeetingActivity.this, "יש שגיאה", Toast.LENGTH_SHORT).show();
         }
 
 
-    }
-
-    public static String getFileExtension(String fileName) {
-        String extension = "";
-        int i = fileName.lastIndexOf('.');
-        if (i > 0 && i < fileName.length() - 1) {
-            extension = fileName.substring(i + 1).toLowerCase();
-        }
-        return extension;
     }
 
     private File createImageFile() throws IOException {
@@ -1091,16 +1124,10 @@ public class ChangeMeetingActivity extends AppCompatActivity {
         return image;
     }
 
-    public static String getFileType(String filePath) throws IOException {
-        Path path = Paths.get(filePath);
-        String fileType = Files.probeContentType(path);
-
-        if (fileType == null) {
-            return "unknown file type";
-        }
-        String extension = fileType.substring(fileType.lastIndexOf('/') + 1);
-
-        return extension;
+    public String getFileType(Uri uri) {
+        ContentResolver contentResolver = getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
     private void resetForm() {
@@ -1136,6 +1163,50 @@ public class ChangeMeetingActivity extends AppCompatActivity {
     private void setButtonBackground(Button button, boolean condition) {
         if (condition) {
             button.setBackgroundResource(R.drawable.round_button_green);
+        }
+    }
+
+    private void uploadFileToDrive(Uri uri, NetworkResponseCallback callback) {
+        LoaderUtils.showLoader(this);
+        OkHttpClient client = driveRequestUtils.createClient();
+        Request request = driveRequestUtils.createRequest(uri);
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(@androidx.annotation.NonNull okhttp3.Call call, @androidx.annotation.NonNull IOException e) {
+                callback.onError(e);
+            }
+
+            @Override
+            public void onResponse(@androidx.annotation.NonNull okhttp3.Call call, @androidx.annotation.NonNull okhttp3.Response response) throws IOException {
+                callback.onSuccess(response);
+            }
+        });
+    }
+
+    private void setReceiptFileIcon(String file) {
+        if (Objects.nonNull(file) && !file.equals("")) {
+            int imageInt = R.drawable.pdf;
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageInt);
+            imageFilterView_kabala.setImageBitmap(bitmap);
+            imageView_delete_kabala.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void setRefundFileIcon(String file) {
+        if (Objects.nonNull(file) && !file.equals("")) {
+            int imageInt = R.drawable.pdf;
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageInt);
+            imageFilterView_Refund_received.setImageBitmap(bitmap);
+            imageView_delete_refund.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void setSubmittedFileIcon(String file) {
+        if (Objects.nonNull(file) && !file.equals("")) {
+            int imageInt = R.drawable.pdf;
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageInt);
+            imageFilterView_submitted.setImageBitmap(bitmap);
+            imageView_delete_sub.setVisibility(View.VISIBLE);
         }
     }
 }

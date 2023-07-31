@@ -7,7 +7,7 @@ import retrofit2.Call;
 
 public class UpdateEventRequest extends BasicEventRequest{
 
-    public Call<EventModel> update(UpdateEventRequestModel eventRequestModel) {
+    public Call<EventModel> update(EventModel eventRequestModel) {
         return eventAPIInterface.updateEvent(eventRequestModel);
     }
 

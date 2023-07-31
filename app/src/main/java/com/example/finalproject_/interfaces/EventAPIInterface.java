@@ -1,8 +1,6 @@
 package com.example.finalproject_.interfaces;
 
 import com.example.finalproject_.models.EventModel;
-import com.example.finalproject_.models.event_requests.CreateEventRequestModel;
-import com.example.finalproject_.models.event_requests.UpdateEventRequestModel;
 
 import java.util.List;
 
@@ -21,10 +19,10 @@ public interface EventAPIInterface {
     Call<List<EventModel>> getEvents();
 
     @POST("/app/calendar/newevent")
-    Call<EventModel> createEvent(@Body CreateEventRequestModel createEvent);
+    Call<EventModel> createEvent(@Body EventModel createEvent);
 
     @PUT("/app/calendar/updateevent")
-    Call<EventModel> updateEvent(@Body UpdateEventRequestModel updateEvent);
+    Call<EventModel> updateEvent(@Body EventModel updateEvent);
 
     @DELETE("/app/calendar/deleteevent")
     Call<ResponseBody> deleteEvent(@Query("id") String id);

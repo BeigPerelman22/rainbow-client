@@ -12,6 +12,8 @@
     android:textDirection="firstStrongRtl"
     tools:context=".activities.AddMeetingActivity">
 
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/float_sub_V"
         android:layout_width="wrap_content"
@@ -87,7 +89,7 @@
         android:id="@+id/textDate_c"
         android:layout_width="213dp"
         android:layout_height="50dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:background="#FFFFFF"
         android:hint="תאריך "
         android:textAlignment="center"
@@ -111,8 +113,8 @@
     <EditText
         android:id="@+id/textCaregiverDetails_c"
         android:layout_width="261dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
         android:background="#FFFFFF"
         android:hint="פרטי המטפל"
         android:textAlignment="center"
@@ -123,6 +125,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textLoc_c"
         app:layout_constraintTop_toBottomOf="@+id/textLoc_c" />
+
+    <Spinner
+        android:id="@+id/spinner_event_type"
+        style="@style/SpinnerStyle"
+        android:layout_width="334dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toTopOf="@+id/text_MeetingName_c"
+        app:layout_constraintEnd_toEndOf="@+id/text_MeetingName_c"
+        app:layout_constraintHorizontal_bias="0.465" />
 
     <ImageView
         android:id="@+id/imageView_X_4"
@@ -139,7 +152,7 @@
         android:id="@+id/textLoc_c"
         android:layout_width="261dp"
         android:layout_height="50dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:background="#FFFFFF"
         android:hint="מיקום"
         android:textAlignment="center"
@@ -165,7 +178,7 @@
         android:id="@+id/textTime_c"
         android:layout_width="213dp"
         android:layout_height="50dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:background="#FFFFFF"
         android:hint="שעה"
         android:textAlignment="center"
@@ -179,8 +192,8 @@
     <EditText
         android:id="@+id/text_MeetingName_c"
         android:layout_width="334dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="25dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="75dp"
         android:background="#FFFFFF"
         android:hint="שם הפגישה"
 
@@ -207,7 +220,7 @@
     <Button
         android:id="@+id/btn_add_files_kabala"
         android:layout_width="150dp"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:layout_marginTop="14dp"
         android:background="@drawable/round_button"
         android:paddingHorizontal="10dp"
@@ -225,7 +238,7 @@
     <Button
         android:id="@+id/btn_Submitted_to_KOFH"
         android:layout_width="150dp"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/round_button"
         android:paddingHorizontal="10dp"
@@ -273,7 +286,7 @@
     <Button
         android:id="@+id/btn_Refund_received"
         android:layout_width="150dp"
-        android:layout_height="54dp"
+        android:layout_height="50dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/round_button"
         android:paddingHorizontal="10dp"
@@ -321,7 +334,7 @@
     <Button
         android:id="@+id/btn_change_mee"
         android:layout_width="201dp"
-        android:layout_height="65dp"
+        android:layout_height="50dp"
         android:layout_marginTop="30dp"
 
         android:background="@drawable/round_button1"
@@ -452,8 +465,8 @@
     <Button
         android:id="@+id/btn_took_place"
         android:layout_width="150dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/round_button"
         android:text="התקיים&#x200F;"
         android:textSize="21sp"

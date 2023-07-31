@@ -15,12 +15,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,18 +48,21 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
+    private View emptyStateLayout;
     private FloatingActionButton going_add_meeting;
     private ImageView about_btn;
     private final ArrayList<EventModel> events = new ArrayList<>();
     private NotificationScheduler notificationScheduler;
     private EventRequestsExecutor eventRequestsExecutor;
     private CustomAdapter customAdapter;
+    private ConstraintLayout loaderLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setLoader();
         setActionBar();
         initializeViews();
         createNotificationPermission();
@@ -73,11 +78,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (resultCode == RESULT_OK && data != null) {
             customAdapter.sortItemsByDate(false);
+            updateVisibility();
         }
     }
 
     private void initializeViews() {
         recyclerView = findViewById(R.id.recyclerViewCon);
+        emptyStateLayout = findViewById(R.id.emptyStateLayout);
         going_add_meeting = findViewById(R.id.fab);
         about_btn = findViewById(R.id.about_btn);
     }
@@ -114,9 +121,11 @@ public class MainActivity extends AppCompatActivity {
                         setupEventNotification(events);
                         setupRecyclerView();
                     }
+                    updateVisibility();
                 } else {
                     ToastUtils.showShortToast("Fetch event failed");
                 }
+                removeLoader();
             }
 
             @Override
@@ -221,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
                     notificationScheduler.deleteNotification(event);
                     MyProperties.getInstance().getEventList().deleteEvent(event.getId());
                     recyclerView.getAdapter().notifyItemRemoved(position);
+                    updateVisibility();
                     ToastUtils.showShortToast("Delete event successful");
                 } else {
                     ToastUtils.showShortToast("Delete event failed");
@@ -261,6 +271,34 @@ public class MainActivity extends AppCompatActivity {
 
         View customActionBarView = inflater.inflate(R.layout.custom_action_bar, null);
         actionBar.setCustomView(customActionBarView);
+    }
 
+    private void updateVisibility() {
+        if (MyProperties.getInstance().getEventList().isEmpty()) {
+            recyclerView.setVisibility(View.GONE);
+            emptyStateLayout.setVisibility(View.VISIBLE);
+        } else {
+            recyclerView.setVisibility(View.VISIBLE);
+            emptyStateLayout.setVisibility(View.GONE);
+        }
+    }
+
+    private void setLoader() {
+        LayoutInflater inflater = getLayoutInflater();
+        loaderLayout = (ConstraintLayout) inflater.inflate(R.layout.icon_loader, null);
+        addContentView(loaderLayout, new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        ));
+    }
+
+    private void removeLoader() {
+        if (loaderLayout != null) {
+
+            ViewGroup parent = (ViewGroup) loaderLayout.getParent();
+            if (parent != null) {
+                parent.removeView(loaderLayout);
+            }
+        }
     }
 }

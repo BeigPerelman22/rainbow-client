@@ -10,4 +10,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gradient_start_color">#94C8F0</color>
     <color name="gradient_end_color">#FFFFFF</color>
+    <color name="spinner_text_color">#000000</color>
+    <color name="spinner_dropdown_background_color">#FFFFFF</color>
 </resources>

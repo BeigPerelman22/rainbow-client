@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="event_type">
+        <item>בחר סוג פגישה</item>
+        <item>רופא</item>
+        <item>קלינאית תקשורת</item>
+        <item>טיפול רגשי</item>
+        <item>ריפוי בעיסוק</item>
+    </string-array>
+</resources>

@@ -19,7 +19,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
             android:background="#FFFFFF"
-            android:hint="תאריך"
+            android:hint="תאריך "
             android:textAlignment="center"
             android:textColor="#090808"
             android:textSize="25sp"
@@ -455,7 +455,6 @@
             android:layout_width="201dp"
             android:layout_height="65dp"
             android:layout_marginTop="30dp"
-
             android:background="@drawable/round_button1"
             android:paddingHorizontal="10dp"
             android:text="שנה פגישה"

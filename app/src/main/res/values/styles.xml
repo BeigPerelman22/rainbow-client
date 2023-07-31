@@ -16,5 +16,17 @@
 <!--    <style name="AppShapeAppearance.SmallComponet" parent="ShapeAppearance.MaterialComponents.SmallComponent"/>-->
 <!--    <item name="cornerFamily" type="drawable">cut</item>-->
 <!--    <item name="cornerSize" type="drawable">14dp</item>-->
+    <style name="AppShapeAppearance.SmallComponet" parent="ShapeAppearance.MaterialComponents.SmallComponent"/>
+    <style name="SpinnerStyle" parent="Widget.AppCompat.Spinner">
+        <!-- Customize the text appearance -->
+        <item name="android:textColor">#090808</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:padding">8dp</item>
+<!--        <item name="height">20sp</item>-->
 
+        <!-- Customize the dropdown background color -->
+        <item name="android:popupBackground">#f1f1f1</item>
+        <item name="android:textAppearanceLargePopupMenu">@drawable/rainbow_background</item>
+    </style>
 </resources>

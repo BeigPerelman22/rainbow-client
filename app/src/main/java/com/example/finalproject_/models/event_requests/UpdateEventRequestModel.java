@@ -35,6 +35,9 @@ public class UpdateEventRequestModel  {
     @SerializedName("isMoneyRefund")
     private boolean isMoneyRefund;
 
+    @SerializedName("colorId")
+    private int colorId;
+
     public String getId() {
         return id;
     }
@@ -113,5 +116,13 @@ public class UpdateEventRequestModel  {
 
     public void setMoneyRefund(boolean moneyRefund) {
         isMoneyRefund = moneyRefund;
+    }
+
+    public void setColorId(int colorId) {
+        this.colorId = colorId;
+    }
+
+    public int getColorId() {
+        return colorId;
     }
 }

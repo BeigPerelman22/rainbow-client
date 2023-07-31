@@ -36,6 +36,42 @@ public class EventModel implements Serializable {
     @SerializedName("isMoneyRefund")
     private boolean isMoneyRefund;
 
+    @SerializedName("colorId")
+    private int colorId;
+
+    public String getReceiptFile() {
+        return receiptFile;
+    }
+
+    public void setReceiptFile(String receiptFile) {
+        this.receiptFile = receiptFile;
+    }
+
+    public String getSubmittedFile() {
+        return submittedFile;
+    }
+
+    public void setSubmittedFile(String submittedFile) {
+        this.submittedFile = submittedFile;
+    }
+
+    public String getMoneyRefundFile() {
+        return moneyRefundFile;
+    }
+
+    public void setMoneyRefundFile(String moneyRefundFile) {
+        this.moneyRefundFile = moneyRefundFile;
+    }
+
+    @SerializedName("receiptFile")
+    private String receiptFile;
+
+    @SerializedName("submittedFile")
+    private String submittedFile;
+
+    @SerializedName("moneyRefundFile")
+    private String moneyRefundFile;
+
     public String getId() {
         return id;
     }
@@ -114,5 +150,13 @@ public class EventModel implements Serializable {
 
     public void setMoneyRefund(boolean moneyRefund) {
         isMoneyRefund = moneyRefund;
+    }
+
+    public void setColorId(int colorId) {
+        this.colorId = colorId;
+    }
+
+    public int getColorId() {
+        return colorId;
     }
 }

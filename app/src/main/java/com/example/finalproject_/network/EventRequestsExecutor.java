@@ -1,7 +1,6 @@
 package com.example.finalproject_.network;
 
 import com.example.finalproject_.models.EventModel;
-import com.example.finalproject_.models.event_requests.CreateEventRequestModel;
 import com.example.finalproject_.models.event_requests.UpdateEventRequestModel;
 import com.example.finalproject_.network.Requests.AddEventRequest;
 import com.example.finalproject_.network.Requests.DeleteEventRequest;
@@ -36,11 +35,11 @@ public class EventRequestsExecutor {
         return deleteEventRequest.delete(eventId);
     }
 
-    public Call<EventModel> createEvent(CreateEventRequestModel createEventRequest) {
+    public Call<EventModel> createEvent(EventModel createEventRequest) {
         return addEventRequest.create(createEventRequest);
     }
 
-    public Call<EventModel> updateEvent(UpdateEventRequestModel eventRequestModel) {
+    public Call<EventModel> updateEvent(EventModel eventRequestModel) {
         return updateEventRequest.update(eventRequestModel);
     }
 

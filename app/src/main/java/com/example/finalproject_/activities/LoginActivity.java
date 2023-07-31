@@ -16,7 +16,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.finalproject_.R;
 import com.example.finalproject_.models.AuthTokenModel;
-import com.example.finalproject_.utils.LoaderUtils;
 import com.example.finalproject_.utils.SharedPreferencesUtils;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -26,6 +25,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.tasks.Task;
 import com.google.api.services.calendar.CalendarScopes;
+import com.google.api.services.drive.DriveScopes;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                 .requestServerAuthCode(getString(R.string.client_id))
                 .requestIdToken(getString(R.string.client_id))
                 .requestScopes(new Scope(CalendarScopes.CALENDAR))
+                .requestScopes(new Scope(DriveScopes.DRIVE))
                 .requestEmail()
                 .build();
 
@@ -65,6 +66,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+//        if (Objects.nonNull(account)) {
+//            launchMainActivity();
+//        }
     }
 
     private void signIn() {
@@ -92,7 +96,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void handelAccountResponse(GoogleSignInAccount account) throws JSONException {
-        LoaderUtils.showLoader(this);
         RequestQueue volleyQueue = Volley.newRequestQueue(LoginActivity.this);
         String url = getString(R.string.token_api_url);
         AuthTokenModel authTokenModel = createAuthTokenModel(account.getServerAuthCode());
@@ -135,4 +138,5 @@ public class LoginActivity extends AppCompatActivity {
 
         return authTokenModel;
     }
+
 }
