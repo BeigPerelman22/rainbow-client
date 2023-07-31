@@ -25,7 +25,6 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.tasks.Task;
 import com.google.api.services.calendar.CalendarScopes;
-import com.google.api.services.drive.DriveScopes;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -46,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
                 .requestServerAuthCode(getString(R.string.client_id))
                 .requestIdToken(getString(R.string.client_id))
                 .requestScopes(new Scope(CalendarScopes.CALENDAR))
-                .requestScopes(new Scope(DriveScopes.DRIVE))
+                .requestScopes(new Scope("https://www.googleapis.com/auth/drive"))
                 .requestEmail()
                 .build();
 

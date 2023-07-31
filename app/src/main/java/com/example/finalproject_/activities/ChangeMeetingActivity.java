@@ -737,6 +737,65 @@ public class ChangeMeetingActivity extends AppCompatActivity {
             }
         });
 
+        sub_v.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(submitted==false)
+                {
+                    submitted=true;
+                    btn_Submitted.setBackgroundResource(R.drawable.round_button_green);
+                    sub_v.hide();
+                    img_submitted.hide();
+                    camera_submitted.hide();
+                    submitted_btn_open=true;
+                }
+                else
+                {
+                    submitted=false;
+                    btn_Submitted_b = false;
+                    imageFilterView_submitted.setImageBitmap(null);
+                    imageView_delete_sub.setVisibility(View.INVISIBLE);
+                    btn_Submitted.setBackgroundResource(R.drawable.round_button);
+                    sub_v.hide();
+                    img_submitted.hide();
+                    camera_submitted.hide();
+                    submitted_btn_open=true;
+                }
+            }
+        });
+        refund_received_v.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(refund_received==false)
+                {
+                    refund_received=true;
+                    btn_Refund_received.setBackgroundResource(R.drawable.round_button_green);
+                    refund_received_v.hide();
+                    img_refund_received.hide();
+                    camera_Refund_received.hide();
+                    refund_received_btn_open=true;
+                }
+                else
+                {
+                    refund_received=false;
+                    btn_Refund_received.setBackgroundResource(R.drawable.round_button);
+                    refund_received_v.hide();
+                    img_refund_received.hide();
+                    camera_Refund_received.hide();
+                    btn_Refund_received_b = false;
+
+                    imageFilterView_Refund_received.setImageBitmap(null);
+                    imageView_delete_refund.setVisibility(View.INVISIBLE);
+                    refund_received_btn_open=true;
+
+                }
+            }
+        });
+
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
