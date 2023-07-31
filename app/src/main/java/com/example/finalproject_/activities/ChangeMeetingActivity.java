@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -154,6 +155,9 @@ public class ChangeMeetingActivity extends AppCompatActivity {
         window.setStatusBarColor(Color.parseColor("#E0DAED"));
 //        initEventTypeSpinner();
 //////////////////////////////////////////////////////////////TIME
+        setCharacterLimit(meeting_name_text,22);
+        setCharacterLimit(location_text,22);
+        setCharacterLimit(caregiver_details_text,25);
 
         time_text = (TextView) findViewById(R.id.textTime_c);
         btn_time = (Button) findViewById(R.id.time_21);
@@ -737,23 +741,18 @@ public class ChangeMeetingActivity extends AppCompatActivity {
             }
         });
 
-        sub_v.setOnClickListener(new View.OnClickListener()
-        {
+        sub_v.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
-                if(submitted==false)
-                {
-                    submitted=true;
+            public void onClick(View view) {
+                if (submitted == false) {
+                    submitted = true;
                     btn_Submitted.setBackgroundResource(R.drawable.round_button_green);
                     sub_v.hide();
                     img_submitted.hide();
                     camera_submitted.hide();
-                    submitted_btn_open=true;
-                }
-                else
-                {
-                    submitted=false;
+                    submitted_btn_open = true;
+                } else {
+                    submitted = false;
                     btn_Submitted_b = false;
                     imageFilterView_submitted.setImageBitmap(null);
                     imageView_delete_sub.setVisibility(View.INVISIBLE);
@@ -761,27 +760,22 @@ public class ChangeMeetingActivity extends AppCompatActivity {
                     sub_v.hide();
                     img_submitted.hide();
                     camera_submitted.hide();
-                    submitted_btn_open=true;
+                    submitted_btn_open = true;
                 }
             }
         });
-        refund_received_v.setOnClickListener(new View.OnClickListener()
-        {
+        refund_received_v.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
-                if(refund_received==false)
-                {
-                    refund_received=true;
+            public void onClick(View view) {
+                if (refund_received == false) {
+                    refund_received = true;
                     btn_Refund_received.setBackgroundResource(R.drawable.round_button_green);
                     refund_received_v.hide();
                     img_refund_received.hide();
                     camera_Refund_received.hide();
-                    refund_received_btn_open=true;
-                }
-                else
-                {
-                    refund_received=false;
+                    refund_received_btn_open = true;
+                } else {
+                    refund_received = false;
                     btn_Refund_received.setBackgroundResource(R.drawable.round_button);
                     refund_received_v.hide();
                     img_refund_received.hide();
@@ -790,7 +784,7 @@ public class ChangeMeetingActivity extends AppCompatActivity {
 
                     imageFilterView_Refund_received.setImageBitmap(null);
                     imageView_delete_refund.setVisibility(View.INVISIBLE);
-                    refund_received_btn_open=true;
+                    refund_received_btn_open = true;
 
                 }
             }
@@ -833,35 +827,40 @@ public class ChangeMeetingActivity extends AppCompatActivity {
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String meeting_name_str = meeting_name_text.getText().toString();
-                String date_str = date_text.getText().toString();
-                String time_str = time_text.getText().toString();
-                String location_str = location_text.getText().toString();
-                String caregiver_details_str = caregiver_details_text.getText().toString();
-//                String eventType = spinner.getSelectedItem().toString();
-                resetForm();
+                if (meeting_name_text.getText().toString().isEmpty()) {
+                    Toast.makeText(ChangeMeetingActivity.this, "שם הפגישה לא מוגדר", Toast.LENGTH_SHORT).show();
+                } else if (date_text.getText().toString().isEmpty() || time_text.getText().toString().isEmpty() || isTimeValid(time_text.getText().toString()) == false || isDateValid(date_text.getText().toString())) {
+                    Toast.makeText(ChangeMeetingActivity.this, "התאריך או השעה לא מוגדרים", Toast.LENGTH_SHORT).show();
+                } else {
+                    String meeting_name_str = meeting_name_text.getText().toString();
+                    String date_str = date_text.getText().toString();
+                    String time_str = time_text.getText().toString();
+                    String location_str = location_text.getText().toString();
+                    String caregiver_details_str = caregiver_details_text.getText().toString();
+                    resetForm();
 
-                String formattedDateTime = DateTimeUtils.dateAndTimeToDateTime(date_str, time_str);
+                    String formattedDateTime = DateTimeUtils.dateAndTimeToDateTime(date_str, time_str);
 
-                EventModel updateEventRequestModel = new EventModel();
-                updateEventRequestModel.setId(currentEvent.getId());
+                    EventModel updateEventRequestModel = new EventModel();
+                    updateEventRequestModel.setId(currentEvent.getId());
 
-                updateEventRequestModel.setDescription(meeting_name_str);
-                updateEventRequestModel.setStartTime(formattedDateTime);
-                updateEventRequestModel.setEndTime(formattedDateTime);
-                updateEventRequestModel.setLocation(location_str);
-                updateEventRequestModel.setCaregiverDetails(caregiver_details_str);
-                updateEventRequestModel.setTookPlace(took_place);
-                updateEventRequestModel.setHasReceipt(kabala);
-                updateEventRequestModel.setSubmitted(submitted);
-                updateEventRequestModel.setMoneyRefund(refund_received);
-                updateEventRequestModel.setColorId(currentEvent.getColorId());
-                updateEventRequestModel.setReceiptFile(receiptWebLink);
-                updateEventRequestModel.setSubmittedFile(submittedWebLink);
-                updateEventRequestModel.setMoneyRefundFile(refundWebLink);
+                    updateEventRequestModel.setDescription(meeting_name_str);
+                    updateEventRequestModel.setStartTime(formattedDateTime);
+                    updateEventRequestModel.setEndTime(formattedDateTime);
+                    updateEventRequestModel.setLocation(location_str);
+                    updateEventRequestModel.setCaregiverDetails(caregiver_details_str);
+                    updateEventRequestModel.setTookPlace(took_place);
+                    updateEventRequestModel.setHasReceipt(kabala);
+                    updateEventRequestModel.setSubmitted(submitted);
+                    updateEventRequestModel.setMoneyRefund(refund_received);
+                    updateEventRequestModel.setColorId(currentEvent.getColorId());
+                    updateEventRequestModel.setReceiptFile(receiptWebLink);
+                    updateEventRequestModel.setSubmittedFile(submittedWebLink);
+                    updateEventRequestModel.setMoneyRefundFile(refundWebLink);
 
-                Call<EventModel> call = eventRequestsExecutor.updateEvent(updateEventRequestModel);
-                call.enqueue(updateEventsCallBack());
+                    Call<EventModel> call = eventRequestsExecutor.updateEvent(updateEventRequestModel);
+                    call.enqueue(updateEventsCallBack());
+                }
             }
         });
 
@@ -1267,5 +1266,82 @@ public class ChangeMeetingActivity extends AppCompatActivity {
             imageFilterView_submitted.setImageBitmap(bitmap);
             imageView_delete_sub.setVisibility(View.VISIBLE);
         }
+    }
+
+    public boolean isTimeValid(String time) {
+        // בדיקה שאורך השעה והדקות תקין
+        if (time.length() != 5) {
+            return false;
+        }
+
+        // בדיקה שהתווים בתוך השעה והדקות הם תווים מספריים
+        for (int i = 0; i < 5; i++) {
+            char c = time.charAt(i);
+            if (i == 2) {
+                // בדיקה שהתו במקום ה-2 הוא נקודה פסיק
+                if (c != ':') {
+                    return false;
+                }
+            } else if (!Character.isDigit(c)) {
+                // בדיקה שכל התווים בשאר המחרוזת הם מספרים
+                return false;
+            }
+        }
+
+        // כאשר אנחנו מגיעים לכאן, המחרוזת היא בפורמט "HH:mm" והתווים הם מספריים תקינים
+        // עכשיו נבדוק את הערכים של השעה והדקות בנפרד כדי לוודא שהם בטווח התקין
+        String[] parts = time.split(":");
+        int hours = Integer.parseInt(parts[0]);
+        int minutes = Integer.parseInt(parts[1]);
+
+        if (hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59) {
+            // השעה והדקות נמצאים בטווח התקין
+            return true;
+        } else {
+            // השעה או הדקות מחוץ לטווח התקין
+            return false;
+        }
+    }
+
+    public boolean isDateValid(String date) {
+        // בדיקה שאורך התאריך תקין
+        if (date.length() != 10) {
+            return false;
+        }
+
+        // בדיקה שהתווים בתוך התאריך הם תווים מספריים ונקודות פסיק
+        for (int i = 0; i < 10; i++) {
+            char c = date.charAt(i);
+            if (i == 2 || i == 5) {
+                // בדיקה שהתווים במקום ה-2 וה-5 הם נקודות פסיק
+                if (c != '/') {
+                    return false;
+                }
+            } else if (!Character.isDigit(c)) {
+                // בדיקה שכל התווים בשאר המחרוזת הם מספרים
+                return false;
+            }
+        }
+
+        // כאשר אנחנו מגיעים לכאן, המחרוזת היא בפורמט "dd/MM/yyyy" והתווים הם מספריים תקינים
+        // עכשיו נבדוק את הערכים של היום, החודש והשנה כדי לוודא שהם בטווח התקין
+        String[] parts = date.split("/");
+        int day = Integer.parseInt(parts[0]);
+        int month = Integer.parseInt(parts[1]);
+        int year = Integer.parseInt(parts[2]);
+
+        if (day >= 1 && day <= 31 && month >= 1 && month <= 12 && year >= 1900 && year <= 9999) {
+            // התאריך נמצא בטווח התקין
+            return true;
+        } else {
+            // התאריך מחוץ לטווח התקין
+            return false;
+        }
+    }
+
+    public void setCharacterLimit(TextView editText, int maxCharacters) {
+        InputFilter[] filters = new InputFilter[1];
+        filters[0] = new InputFilter.LengthFilter(maxCharacters);
+        editText.setFilters(filters);
     }
 }

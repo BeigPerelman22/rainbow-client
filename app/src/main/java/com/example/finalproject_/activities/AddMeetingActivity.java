@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
@@ -146,7 +147,9 @@ public class AddMeetingActivity extends AppCompatActivity {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.parseColor("#E0DAED"));
-
+        setCharacterLimit(meeting_name_text,22);
+        setCharacterLimit(location_text,22);
+        setCharacterLimit(caregiver_details_text,25);
         initEventTypeSpinner();
 
         addMeetting = findViewById(R.id.btn_change_mee);
@@ -163,13 +166,13 @@ public class AddMeetingActivity extends AppCompatActivity {
 
         kabala_v = (FloatingActionButton) findViewById(R.id.float_kabala_V);
         img_kabala = (FloatingActionButton) findViewById(R.id.float_kabala_img);
-        camera_kabala = (FloatingActionButton) findViewById(R.id.float_kabala_camera);
+//        camera_kabala = (FloatingActionButton) findViewById(R.id.float_kabala_camera);
         img_submitted = (FloatingActionButton) findViewById(R.id.float_submitted_img);
         sub_v = (FloatingActionButton) findViewById(R.id.float_sub_V);
-        camera_submitted = (FloatingActionButton) findViewById(R.id.float_submitted_camera);
+//        camera_submitted = (FloatingActionButton) findViewById(R.id.float_submitted_camera);
         refund_received_v = (FloatingActionButton) findViewById(R.id.float_refund_received_V);
         img_refund_received = (FloatingActionButton) findViewById(R.id.float_Refund_received_img);
-        camera_Refund_received = (FloatingActionButton) findViewById(R.id.float_Refund_received_camera);
+//        camera_Refund_received = (FloatingActionButton) findViewById(R.id.float_Refund_received_camera);
 
         kabala_v.hide();
         img_kabala.hide();
@@ -863,36 +866,43 @@ public class AddMeetingActivity extends AppCompatActivity {
         addMeetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String meeting_name_str = meeting_name_text.getText().toString();
-                String date_str = date_text.getText().toString();
-                String time_str = time_text.getText().toString();
-                String location_str = location_text.getText().toString();
-                String caregiver_details_str = caregiver_details_text.getText().toString();
-                Spinner spinner = findViewById(R.id.spinner_event_type);
-                String eventType = spinner.getSelectedItem().toString();
-                resetForm();
 
-                EventModel createEventRequestModel = new EventModel();
+                if (meeting_name_text.getText().toString().isEmpty()) {
+                    Toast.makeText(AddMeetingActivity.this, "שם הפגישה לא מוגדר", Toast.LENGTH_SHORT).show();
+                } else if (date_text.getText().toString().isEmpty() || time_text.getText().toString().isEmpty() || isTimeValid(time_text.getText().toString()) == false || isDateValid(date_text.getText().toString())) {
+                    Toast.makeText(AddMeetingActivity.this, "התאריך או השעה לא מוגדרים", Toast.LENGTH_SHORT).show();
+                } else {
+                    String meeting_name_str = meeting_name_text.getText().toString();
+                    String date_str = date_text.getText().toString();
+                    String time_str = time_text.getText().toString();
+                    String location_str = location_text.getText().toString();
+                    String caregiver_details_str = caregiver_details_text.getText().toString();
+                    Spinner spinner = findViewById(R.id.spinner_event_type);
+                    String eventType = spinner.getSelectedItem().toString();
+                    resetForm();
 
-                String formattedDateTime = DateTimeUtils.dateAndTimeToDateTime(date_str, time_str);
+                    EventModel createEventRequestModel = new EventModel();
 
-                createEventRequestModel.setDescription(meeting_name_str);
-                createEventRequestModel.setStartTime(formattedDateTime);
-                createEventRequestModel.setEndTime(formattedDateTime);
-                createEventRequestModel.setLocation(location_str);
-                createEventRequestModel.setCaregiverDetails(caregiver_details_str);
-                createEventRequestModel.setTookPlace(took_place);
-                createEventRequestModel.setHasReceipt(kabala);
-                createEventRequestModel.setSubmitted(submitted);
-                createEventRequestModel.setMoneyRefund(refund_received);
-                createEventRequestModel.setReceiptFile(receiptWebLink);
-                createEventRequestModel.setMoneyRefundFile(refundWebLink);
-                createEventRequestModel.setSubmittedFile(submittedWebLink);
-                if (Objects.nonNull(eventType))
-                    createEventRequestModel.setColorId(eventTypeMapper.getValueForEventType(eventType));
+                    String formattedDateTime = DateTimeUtils.dateAndTimeToDateTime(date_str, time_str);
 
-                Call<EventModel> call = eventRequestsExecutor.createEvent(createEventRequestModel);
-                call.enqueue(createEventsCallBack());
+                    createEventRequestModel.setDescription(meeting_name_str);
+                    createEventRequestModel.setStartTime(formattedDateTime);
+                    createEventRequestModel.setEndTime(formattedDateTime);
+                    createEventRequestModel.setLocation(location_str);
+                    createEventRequestModel.setCaregiverDetails(caregiver_details_str);
+                    createEventRequestModel.setTookPlace(took_place);
+                    createEventRequestModel.setHasReceipt(kabala);
+                    createEventRequestModel.setSubmitted(submitted);
+                    createEventRequestModel.setMoneyRefund(refund_received);
+                    createEventRequestModel.setReceiptFile(receiptWebLink);
+                    createEventRequestModel.setMoneyRefundFile(refundWebLink);
+                    createEventRequestModel.setSubmittedFile(submittedWebLink);
+                    if (Objects.nonNull(eventType))
+                        createEventRequestModel.setColorId(eventTypeMapper.getValueForEventType(eventType));
+
+                    Call<EventModel> call = eventRequestsExecutor.createEvent(createEventRequestModel);
+                    call.enqueue(createEventsCallBack());
+                }
             }
         });
 
@@ -1312,5 +1322,82 @@ public class AddMeetingActivity extends AppCompatActivity {
                 callback.onSuccess(response);
             }
         });
+    }
+
+    public boolean isTimeValid(String time) {
+        // בדיקה שאורך השעה והדקות תקין
+        if (time.length() != 5) {
+            return false;
+        }
+
+        // בדיקה שהתווים בתוך השעה והדקות הם תווים מספריים
+        for (int i = 0; i < 5; i++) {
+            char c = time.charAt(i);
+            if (i == 2) {
+                // בדיקה שהתו במקום ה-2 הוא נקודה פסיק
+                if (c != ':') {
+                    return false;
+                }
+            } else if (!Character.isDigit(c)) {
+                // בדיקה שכל התווים בשאר המחרוזת הם מספרים
+                return false;
+            }
+        }
+
+        // כאשר אנחנו מגיעים לכאן, המחרוזת היא בפורמט "HH:mm" והתווים הם מספריים תקינים
+        // עכשיו נבדוק את הערכים של השעה והדקות בנפרד כדי לוודא שהם בטווח התקין
+        String[] parts = time.split(":");
+        int hours = Integer.parseInt(parts[0]);
+        int minutes = Integer.parseInt(parts[1]);
+
+        if (hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59) {
+            // השעה והדקות נמצאים בטווח התקין
+            return true;
+        } else {
+            // השעה או הדקות מחוץ לטווח התקין
+            return false;
+        }
+    }
+
+    public boolean isDateValid(String date) {
+        // בדיקה שאורך התאריך תקין
+        if (date.length() != 10) {
+            return false;
+        }
+
+        // בדיקה שהתווים בתוך התאריך הם תווים מספריים ונקודות פסיק
+        for (int i = 0; i < 10; i++) {
+            char c = date.charAt(i);
+            if (i == 2 || i == 5) {
+                // בדיקה שהתווים במקום ה-2 וה-5 הם נקודות פסיק
+                if (c != '/') {
+                    return false;
+                }
+            } else if (!Character.isDigit(c)) {
+                // בדיקה שכל התווים בשאר המחרוזת הם מספרים
+                return false;
+            }
+        }
+
+        // כאשר אנחנו מגיעים לכאן, המחרוזת היא בפורמט "dd/MM/yyyy" והתווים הם מספריים תקינים
+        // עכשיו נבדוק את הערכים של היום, החודש והשנה כדי לוודא שהם בטווח התקין
+        String[] parts = date.split("/");
+        int day = Integer.parseInt(parts[0]);
+        int month = Integer.parseInt(parts[1]);
+        int year = Integer.parseInt(parts[2]);
+
+        if (day >= 1 && day <= 31 && month >= 1 && month <= 12 && year >= 1900 && year <= 9999) {
+            // התאריך נמצא בטווח התקין
+            return true;
+        } else {
+            // התאריך מחוץ לטווח התקין
+            return false;
+        }
+    }
+
+    public void setCharacterLimit(TextView editText, int maxCharacters) {
+        InputFilter[] filters = new InputFilter[1];
+        filters[0] = new InputFilter.LengthFilter(maxCharacters);
+        editText.setFilters(filters);
     }
 }
