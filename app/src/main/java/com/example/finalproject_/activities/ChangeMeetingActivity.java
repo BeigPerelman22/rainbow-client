@@ -64,7 +64,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ChangeMeetingActivity extends AppCompatActivity {
+public class ChangeMeetingActivity extends AppCompatActivity implements CustomSpinner.OnSpinnerEventsListener {
+
+    public CustomSpinner spinner_t_m;
+
+    private TypeMeetingAdapter adapter;
 
     private EventRequestsExecutor eventRequestsExecutor;
     private NotificationScheduler notificationScheduler;
@@ -135,7 +139,14 @@ public class ChangeMeetingActivity extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 //        window.setStatusBarColor(Color.parseColor("#E0DAED"));
 //////////////////////////////////////////////////////////////TIME
+        spinner_t_m = findViewById(R.id.spinner_fruits);
 
+        spinner_t_m.setSpinnerEventsListener(this);
+
+        adapter = new TypeMeetingAdapter(ChangeMeetingActivity.this, DataSpiner.getTypeMeetingList());
+        spinner_t_m.setAdapter((SpinnerAdapter) adapter);
+
+//////////////////////////
         time_text = (TextView) findViewById(R.id.textTime_c);
         btn_time = (Button) findViewById(R.id.time_21);
 
@@ -1137,5 +1148,14 @@ public class ChangeMeetingActivity extends AppCompatActivity {
         if (condition) {
             button.setBackgroundResource(R.drawable.round_button_green);
         }
+    }
+     @Override
+    public void onPopupWindowOpened(Spinner spinner) {
+
+    }
+
+    @Override
+    public void onPopupWindowClosed(Spinner spinner) {
+
     }
 }
