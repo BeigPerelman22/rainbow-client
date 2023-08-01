@@ -5,20 +5,20 @@
     android:id="@+id/activity_add"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E0DAED"
+    android:background="#EBF3FA"
     android:scrollbarDefaultDelayBeforeFade="0"
     android:scrollbarFadeDuration="0"
     android:textAlignment="textEnd"
     android:textDirection="firstStrongRtl"
-    tools:context=".activities.AddMeetingActivity">
-
-
+    tools:context=".activities.AddMeetingActivity"
+    tools:ignore="MissingClass">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/float_sub_V"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="48dp"
+
+        android:layout_marginEnd="58dp"
         android:clickable="true"
         android:focusable="true"
         android:tint="@color/white"
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginEnd="48dp"
+        android:layout_marginEnd="58dp"
         android:clickable="true"
         android:focusable="true"
         android:tint="@color/white"
@@ -50,8 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginEnd="58dp"
         android:clickable="true"
         android:focusable="true"
         android:tint="@color/white"
@@ -87,9 +86,10 @@
 
     <EditText
         android:id="@+id/textDate_c"
-        android:layout_width="213dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="166dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="13dp"
         android:background="#FFFFFF"
         android:hint="תאריך "
         android:textAlignment="center"
@@ -97,6 +97,7 @@
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/textLoc_c"
+        app:layout_constraintStart_toStartOf="@+id/textLoc_c"
         app:layout_constraintTop_toBottomOf="@+id/text_MeetingName_c" />
 
     <ImageView
@@ -112,30 +113,18 @@
 
     <EditText
         android:id="@+id/textCaregiverDetails_c"
-        android:layout_width="261dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="13dp"
         android:background="#FFFFFF"
         android:hint="פרטי המטפל"
         android:textAlignment="center"
         android:textColor="#090808"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textLoc_c"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textLoc_c"
-        app:layout_constraintTop_toBottomOf="@+id/textLoc_c" />
-
-    <Spinner
-        android:id="@+id/spinner_event_type"
-        style="@style/SpinnerStyle"
-        android:layout_width="334dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="10dp"
-        android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toTopOf="@+id/text_MeetingName_c"
         app:layout_constraintEnd_toEndOf="@+id/text_MeetingName_c"
-        app:layout_constraintHorizontal_bias="0.465" />
+        app:layout_constraintStart_toStartOf="@+id/text_MeetingName_c"
+        app:layout_constraintTop_toBottomOf="@+id/textLoc_c" />
 
     <ImageView
         android:id="@+id/imageView_X_4"
@@ -150,9 +139,9 @@
 
     <EditText
         android:id="@+id/textLoc_c"
-        android:layout_width="261dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="217dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="13dp"
         android:background="#FFFFFF"
         android:hint="מיקום"
         android:textAlignment="center"
@@ -176,9 +165,9 @@
 
     <EditText
         android:id="@+id/textTime_c"
-        android:layout_width="213dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="166dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="13dp"
         android:background="#FFFFFF"
         android:hint="שעה"
         android:textAlignment="center"
@@ -191,12 +180,12 @@
 
     <EditText
         android:id="@+id/text_MeetingName_c"
-        android:layout_width="334dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="75dp"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="70dp"
         android:background="#FFFFFF"
-        android:hint="שם הפגישה"
 
+        android:hint="שם הפגישה"
         android:textAlignment="center"
         android:textColor="#090808"
         android:textSize="25sp"
@@ -220,13 +209,13 @@
     <Button
         android:id="@+id/btn_add_files_kabala"
         android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="14dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/round_button"
         android:paddingHorizontal="10dp"
         android:text="קבלה"
         android:textIsSelectable="false"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:circularflow_defaultRadius="50dp"
         app:circularflow_radiusInDP="50dp"
@@ -238,13 +227,13 @@
     <Button
         android:id="@+id/btn_Submitted_to_KOFH"
         android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="15dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="18dp"
         android:background="@drawable/round_button"
         android:paddingHorizontal="10dp"
         android:text="הוגש לקופ&quot;ח"
         android:textIsSelectable="false"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:circularflow_defaultRadius="20dp"
         app:circularflow_radiusInDP="20dp"
@@ -269,17 +258,16 @@
         app:srcCompat="@drawable/image" />
 
 
-
     <Button
         android:id="@+id/btn_Refund_received"
         android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="15dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="18dp"
         android:background="@drawable/round_button"
         android:paddingHorizontal="10dp"
         android:text="התקבל החזר"
         android:textIsSelectable="false"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:circularflow_defaultRadius="20dp"
         app:circularflow_radiusInDP="20dp"
@@ -303,13 +291,13 @@
         app:layout_constraintTop_toTopOf="@+id/btn_Refund_received"
         app:srcCompat="@drawable/image" />
 
-
     <Button
         android:id="@+id/btn_change_mee"
         android:layout_width="201dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/round_button1"
+        android:layout_height="65dp"
+
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/custom_shapes_blue"
         android:paddingHorizontal="10dp"
         android:text="הוסף פגישה"
         android:textColor="#FFFFFF"
@@ -318,9 +306,9 @@
         android:textStyle="bold"
         app:circularflow_defaultRadius="20dp"
         app:circularflow_radiusInDP="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Refund_received"
         tools:ignore="ExtraText,MissingConstraints" />
 
 
@@ -339,12 +327,14 @@
         app:layout_constraintTop_toTopOf="@+id/btn_add_files_kabala"
         app:srcCompat="@drawable/image" />
 
+
+
     <ImageView
         android:id="@+id/imageFilterView_kabala"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginStart="5dp"
-        android:src="#E0DAED"
+        android:src="#EBF3FA"
         app:layout_constraintBottom_toBottomOf="@+id/btn_add_files_kabala"
         app:layout_constraintStart_toEndOf="@+id/btn_add_files_kabala"
         app:layout_constraintTop_toTopOf="@+id/btn_add_files_kabala"
@@ -355,7 +345,7 @@
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginStart="5dp"
-        android:src="#E0DAED"
+        android:src="#EBF3FA"
         app:layout_constraintBottom_toBottomOf="@+id/btn_Submitted_to_KOFH"
         app:layout_constraintStart_toEndOf="@+id/btn_Submitted_to_KOFH"
         app:layout_constraintTop_toTopOf="@+id/btn_Submitted_to_KOFH"
@@ -366,7 +356,7 @@
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginStart="5dp"
-        android:src="#E0DAED"
+        android:src="#EBF3FA"
         app:layout_constraintBottom_toBottomOf="@+id/btn_Refund_received"
         app:layout_constraintStart_toEndOf="@+id/btn_Refund_received"
         app:layout_constraintTop_toTopOf="@+id/btn_Refund_received"
@@ -375,10 +365,9 @@
 
     <ImageView
         android:id="@+id/time_21_c"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
         android:layout_marginEnd="2dp"
-        android:layout_marginBottom="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/textTime_c"
         app:layout_constraintEnd_toStartOf="@+id/textTime_c"
         app:layout_constraintTop_toTopOf="@+id/textTime_c"
@@ -386,10 +375,9 @@
 
     <ImageView
         android:id="@+id/date_2_c"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
         android:layout_marginEnd="2dp"
-        android:layout_marginBottom="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/textDate_c"
         app:layout_constraintEnd_toStartOf="@+id/textDate_c"
         app:layout_constraintTop_toTopOf="@+id/textDate_c"
@@ -421,16 +409,29 @@
     <Button
         android:id="@+id/btn_took_place"
         android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/round_button"
         android:text="התקיים&#x200F;"
-        android:textSize="21sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/textCaregiverDetails_c"
         app:layout_constraintStart_toStartOf="@+id/textCaregiverDetails_c"
         app:layout_constraintTop_toBottomOf="@+id/textCaregiverDetails_c"
         tools:ignore="MissingConstraints" />
+
+    <com.example.finalproject_.CustomSpinner
+        android:id="@+id/spinner_fruits"
+        android:layout_width="250dp"
+        android:layout_height="36dp"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="16dp"
+
+        android:dropDownVerticalOffset="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_MeetingName_c"
+        app:layout_constraintEnd_toEndOf="@+id/text_MeetingName_c"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="@+id/text_MeetingName_c" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -119,7 +119,7 @@
                 android:gravity="center"
                 android:text="הורה לילד שאובחן על הרצף האוטיסטי (להלן \nהורטיסט) פוגש בתחילת הדרך \n את התחושה של חוסר אונים - מה עושים עכשיו?\n\n אחרי שמוצאים איזשהי דרך, מסלול וכיוון ישנם\n הרבה דברים שצריך לרכז למקום אחד,\n אבחונים, טיפולים, פגישות, מידע , מסמכים, אנשי \nקשר, קבלות, הוצאות, סיכומים ועוד ועוד ועוד...\n\n כדי לעזור בתוך אוקיינוס המידע הזה אנחנו\n מציעים את רינבואו.\n  ריינבואו יעזור לרכז ולמיין ולתייק בצורה מסודרת \nאת הנושאים השונים ואת כל המידע והפרטים\n הדרושים."
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="12sp"
 
 
                 android:textStyle="normal|bold"
@@ -204,8 +204,8 @@
 
             <TextView
                 android:id="@+id/textView6"
-                android:layout_width="126dp"
-                android:layout_height="37dp"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/custom_shapes"
@@ -218,8 +218,8 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:layout_width="126dp"
-                android:layout_height="37dp"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="300dp"
                 android:background="@drawable/custom_shapes_green"
@@ -233,8 +233,8 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:layout_width="126dp"
-                android:layout_height="37dp"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="570dp"
                 android:background="@drawable/custom_shapes_p"
                 android:gravity="center"

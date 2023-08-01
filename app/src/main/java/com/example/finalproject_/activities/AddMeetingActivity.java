@@ -18,19 +18,17 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -39,8 +37,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.finalproject_.CustomSpinner;
+import com.example.finalproject_.DataSpiner;
 import com.example.finalproject_.MyProperties;
 import com.example.finalproject_.R;
+import com.example.finalproject_.TypeMeetingAdapter;
 import com.example.finalproject_.interfaces.NetworkResponseCallback;
 import com.example.finalproject_.mappers.EventTypeMapper;
 import com.example.finalproject_.models.DriveFile;
@@ -69,13 +70,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddMeetingActivity extends AppCompatActivity {
+public class AddMeetingActivity extends AppCompatActivity implements CustomSpinner.OnSpinnerEventsListener {
 
     private EventRequestsExecutor eventRequestsExecutor;
     private EventTypeMapper eventTypeMapper;
     private NotificationScheduler notificationScheduler;
     private DriveRequestUtils driveRequestUtils;
+    public CustomSpinner spinner_t_m;
 
+    private TypeMeetingAdapter adapter;
     private String mCurrentPhotoPath;//לפונקציה ששומרת Path
 
     Button addMeetting;//כפתור הוספת פגישה
@@ -108,7 +111,7 @@ public class AddMeetingActivity extends AppCompatActivity {
     boolean refund_received_btn_open = true;//אם הכפתור דלוק
 
 
-    FloatingActionButton img_kabala, img_submitted, img_refund_received, camera_kabala, camera_submitted, camera_Refund_received;//הכפתורים של כל סוגי בקשת קבצים
+    FloatingActionButton img_kabala, img_submitted, img_refund_received;//הכפתורים של כל סוגי בקשת קבצים
     FloatingActionButton kabala_v, sub_v, refund_received_v;//הכפתורים של כל סוגי בקשת קבצים
 
 
@@ -147,11 +150,16 @@ public class AddMeetingActivity extends AppCompatActivity {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.parseColor("#E0DAED"));
-        setCharacterLimit(meeting_name_text,22);
-        setCharacterLimit(location_text,22);
-        setCharacterLimit(caregiver_details_text,25);
-        initEventTypeSpinner();
+        setCharacterLimit(meeting_name_text, 22);
+        setCharacterLimit(location_text, 22);
+        setCharacterLimit(caregiver_details_text, 25);
+//        initEventTypeSpinner();
+        spinner_t_m = findViewById(R.id.spinner_fruits);
 
+        spinner_t_m.setSpinnerEventsListener(this);
+
+        adapter = new TypeMeetingAdapter(AddMeetingActivity.this, DataSpiner.getTypeMeetingList());
+        spinner_t_m.setAdapter((SpinnerAdapter) adapter);
         addMeetting = findViewById(R.id.btn_change_mee);
 
 
@@ -166,23 +174,20 @@ public class AddMeetingActivity extends AppCompatActivity {
 
         kabala_v = (FloatingActionButton) findViewById(R.id.float_kabala_V);
         img_kabala = (FloatingActionButton) findViewById(R.id.float_kabala_img);
-//        camera_kabala = (FloatingActionButton) findViewById(R.id.float_kabala_camera);
         img_submitted = (FloatingActionButton) findViewById(R.id.float_submitted_img);
         sub_v = (FloatingActionButton) findViewById(R.id.float_sub_V);
-//        camera_submitted = (FloatingActionButton) findViewById(R.id.float_submitted_camera);
         refund_received_v = (FloatingActionButton) findViewById(R.id.float_refund_received_V);
         img_refund_received = (FloatingActionButton) findViewById(R.id.float_Refund_received_img);
-//        camera_Refund_received = (FloatingActionButton) findViewById(R.id.float_Refund_received_camera);
 
         kabala_v.hide();
         img_kabala.hide();
-        camera_kabala.hide();
+
         sub_v.hide();
         img_submitted.hide();
-        camera_submitted.hide();
+
         refund_received_v.hide();
         img_refund_received.hide();
-        camera_Refund_received.hide();
+
 
         btn_tookplace = findViewById(R.id.btn_took_place);
         btn_receipt = findViewById(R.id.btn_add_files_kabala);
@@ -213,19 +218,19 @@ public class AddMeetingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!submitted_btn_open) {
                     img_submitted.hide();
-                    camera_submitted.hide();
+
                     sub_v.hide();
                     submitted_btn_open = true;
                 }
                 if (!kabala_btn_open) {
                     img_kabala.hide();
-                    camera_kabala.hide();
+
                     kabala_v.hide();
                     kabala_btn_open = true;
                 }
                 if (!refund_received_btn_open) {
                     img_refund_received.hide();
-                    camera_Refund_received.hide();
+
                     refund_received_v.hide();
                     refund_received_btn_open = true;
                 }
@@ -262,19 +267,19 @@ public class AddMeetingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!submitted_btn_open) {
                     img_submitted.hide();
-                    camera_submitted.hide();
+
                     sub_v.hide();
                     submitted_btn_open = true;
                 }
                 if (!kabala_btn_open) {
                     img_kabala.hide();
-                    camera_kabala.hide();
+
                     kabala_v.hide();
                     kabala_btn_open = true;
                 }
                 if (!refund_received_btn_open) {
                     img_refund_received.hide();
-                    camera_Refund_received.hide();
+
                     refund_received_v.hide();
                     refund_received_btn_open = true;
                 }
@@ -317,19 +322,19 @@ public class AddMeetingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!submitted_btn_open) {
                     img_submitted.hide();
-                    camera_submitted.hide();
+
                     sub_v.hide();
                     submitted_btn_open = true;
                 }
                 if (!kabala_btn_open) {
                     img_kabala.hide();
-                    camera_kabala.hide();
+
                     kabala_v.hide();
                     kabala_btn_open = true;
                 }
                 if (!refund_received_btn_open) {
                     img_refund_received.hide();
-                    camera_Refund_received.hide();
+
                     refund_received_v.hide();
                     refund_received_btn_open = true;
                 }
@@ -345,19 +350,19 @@ public class AddMeetingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!submitted_btn_open) {
                     img_submitted.hide();
-                    camera_submitted.hide();
+
                     sub_v.hide();
                     submitted_btn_open = true;
                 }
                 if (!kabala_btn_open) {
                     img_kabala.hide();
-                    camera_kabala.hide();
+
                     kabala_v.hide();
                     kabala_btn_open = true;
                 }
                 if (!refund_received_btn_open) {
                     img_refund_received.hide();
-                    camera_Refund_received.hide();
+
                     refund_received_v.hide();
                     refund_received_btn_open = true;
                 }
@@ -383,22 +388,28 @@ public class AddMeetingActivity extends AppCompatActivity {
         imageFilterView_kabala.setOnClickListener(new View.OnClickListener() {//OPEN FILE KABALA
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(receiptWebLink));
-                startActivity(intent);
+                if (Objects.nonNull(receiptWebLink)) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(receiptWebLink));
+                    startActivity(intent);
+                }
             }
         });
         imageFilterView_submitted.setOnClickListener(new View.OnClickListener() {//OPEN FILE SUB
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(submittedWebLink));
-                startActivity(intent);
+                if (Objects.nonNull(submittedWebLink)) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(submittedWebLink));
+                    startActivity(intent);
+                }
             }
         });
         imageFilterView_Refund_received.setOnClickListener(new View.OnClickListener() {//OPEN FILE Refund received
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(refundWebLink));
-                startActivity(intent);
+                if (Objects.nonNull(refundWebLink)) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(refundWebLink));
+                    startActivity(intent);
+                }
             }
         });
 
@@ -422,7 +433,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                     btn_receipt.setBackgroundResource(R.drawable.round_button_green);
                     kabala_v.hide();
                     img_kabala.hide();
-                    camera_kabala.hide();
+
                     kabala_btn_open = true;
                 } else {
                     kabala = false;
@@ -432,7 +443,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                     btn_receipt.setBackgroundResource(R.drawable.round_button);
                     kabala_v.hide();
                     img_kabala.hide();
-                    camera_kabala.hide();
+
                     kabala_btn_open = true;
                 }
             }
@@ -445,7 +456,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                     btn_Submitted.setBackgroundResource(R.drawable.round_button_green);
                     sub_v.hide();
                     img_submitted.hide();
-                    camera_submitted.hide();
+
                     submitted_btn_open = true;
                 } else {
                     submitted = false;
@@ -455,7 +466,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                     btn_Submitted.setBackgroundResource(R.drawable.round_button);
                     sub_v.hide();
                     img_submitted.hide();
-                    camera_submitted.hide();
+
                     submitted_btn_open = true;
                 }
             }
@@ -468,14 +479,14 @@ public class AddMeetingActivity extends AppCompatActivity {
                     btn_Refund_received.setBackgroundResource(R.drawable.round_button_green);
                     refund_received_v.hide();
                     img_refund_received.hide();
-                    camera_Refund_received.hide();
+
                     refund_received_btn_open = true;
                 } else {
                     refund_received = false;
                     btn_Refund_received.setBackgroundResource(R.drawable.round_button);
                     refund_received_v.hide();
                     img_refund_received.hide();
-                    camera_Refund_received.hide();
+
                     btn_Refund_received_b = false;
 
                     imageFilterView_Refund_received.setImageBitmap(null);
@@ -651,18 +662,18 @@ public class AddMeetingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 img_submitted.hide();
-                camera_submitted.hide();
+
                 sub_v.hide();
                 submitted_btn_open = true;
                 img_refund_received.hide();
-                camera_Refund_received.hide();
+
                 refund_received_v.hide();
                 refund_received_btn_open = true;
 
                 if (kabala_btn_open == false) {
                     kabala_btn_open = true;
                     img_kabala.hide();
-                    camera_kabala.hide();
+
                     kabala_v.hide();
                     if (kabala == true) {
                         kabala_v.setImageResource(R.drawable.cancel);
@@ -674,7 +685,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                 } else {
                     kabala_btn_open = false;
                     img_kabala.show();
-                    camera_kabala.show();
+
                     kabala_v.show();
 
                     if (kabala == true) {
@@ -690,19 +701,19 @@ public class AddMeetingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 img_kabala.hide();
-                camera_kabala.hide();
+
                 kabala_v.hide();
                 kabala_btn_open = true;
                 img_refund_received.hide();
                 refund_received_v.hide();
-                camera_Refund_received.hide();
+
                 refund_received_v.hide();
                 refund_received_btn_open = true;
 
                 if (submitted_btn_open == false) {
                     submitted_btn_open = true;
                     img_submitted.hide();
-                    camera_submitted.hide();
+
                     sub_v.hide();
 
                     if (submitted == true) {
@@ -719,7 +730,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                     submitted_btn_open = false;
 
                     img_submitted.show();
-                    camera_submitted.show();
+
                     sub_v.show();
 
 
@@ -743,11 +754,11 @@ public class AddMeetingActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 img_submitted.hide();
-                camera_submitted.hide();
+
                 sub_v.hide();
                 submitted_btn_open = true;
                 img_kabala.hide();
-                camera_kabala.hide();
+
                 kabala_v.hide();
                 kabala_btn_open = true;
 
@@ -755,7 +766,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                     refund_received_btn_open = true;
 
                     img_refund_received.hide();
-                    camera_Refund_received.hide();
+
                     refund_received_v.hide();
 
                     if (refund_received == true) {
@@ -770,7 +781,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                     refund_received_btn_open = false;
 
                     img_refund_received.show();
-                    camera_Refund_received.show();
+
                     refund_received_v.show();
 
                     if (refund_received == true) {
@@ -811,56 +822,6 @@ public class AddMeetingActivity extends AppCompatActivity {
 
 ///camera
 
-        try {
-            camera_kabala.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE_SECURE);
-
-                    if (ContextCompat.checkSelfPermission(AddMeetingActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                        MyProperties.getInstance().btn_kabala_b = true;
-                        startActivityForResult(open_camera, 1);
-                    } else {
-
-                        ActivityCompat.requestPermissions(AddMeetingActivity.this, new String[]{Manifest.permission.CAMERA}, 101);
-                    }
-                }
-            });
-
-            camera_submitted.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (ContextCompat.checkSelfPermission(AddMeetingActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                        // אם יש גישה למצלמה, נפעיל את המצלמה
-                        Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        MyProperties.getInstance().btn_Submitted_b = true;
-                        startActivityForResult(open_camera, 1);
-                    } else {
-                        // אם אין גישה למצלמה, נבקש גישה מהמשתמש
-                        ActivityCompat.requestPermissions(AddMeetingActivity.this, new String[]{Manifest.permission.CAMERA}, 101);
-                    }
-                }
-            });
-            camera_Refund_received.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (ContextCompat.checkSelfPermission(AddMeetingActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                        // אם יש גישה למצלמה, נפעיל את המצלמה
-                        Intent open_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        MyProperties.getInstance().btn_Refund_received_b = true;
-                        startActivityForResult(open_camera, 1);
-                    } else {
-                        // אם אין גישה למצלמה, נבקש גישה מהמשתמש
-                        ActivityCompat.requestPermissions(AddMeetingActivity.this, new String[]{Manifest.permission.CAMERA}, 101);
-                    }
-                }
-            });
-
-        } catch (Exception exception_camera) {
-            Toast.makeText(AddMeetingActivity.this, "המצלמה לא תקינה", Toast.LENGTH_SHORT).show();
-
-        }
-
 
 ///////////////////////////////////////////////////
         addMeetting.setOnClickListener(new View.OnClickListener() {
@@ -877,8 +838,8 @@ public class AddMeetingActivity extends AppCompatActivity {
                     String time_str = time_text.getText().toString();
                     String location_str = location_text.getText().toString();
                     String caregiver_details_str = caregiver_details_text.getText().toString();
-                    Spinner spinner = findViewById(R.id.spinner_event_type);
-                    String eventType = spinner.getSelectedItem().toString();
+                    Spinner spinner = findViewById(R.id.spinner_fruits);
+                    int eventType = (int) spinner.getSelectedItem();
                     resetForm();
 
                     EventModel createEventRequestModel = new EventModel();
@@ -898,7 +859,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                     createEventRequestModel.setMoneyRefundFile(refundWebLink);
                     createEventRequestModel.setSubmittedFile(submittedWebLink);
                     if (Objects.nonNull(eventType))
-                        createEventRequestModel.setColorId(eventTypeMapper.getValueForEventType(eventType));
+                        createEventRequestModel.setColorId(eventType);
 
                     Call<EventModel> call = eventRequestsExecutor.createEvent(createEventRequestModel);
                     call.enqueue(createEventsCallBack());
@@ -913,13 +874,13 @@ public class AddMeetingActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(AddMeetingActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 123);
         } else {
             img_kabala.hide();
-            camera_kabala.hide();
+
             kabala_v.hide();
             img_submitted.hide();
-            camera_submitted.hide();
+
             sub_v.hide();
             img_refund_received.hide();
-            camera_Refund_received.hide();
+
             refund_received_v.hide();
 
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
@@ -1133,7 +1094,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                     imageView_delete_kabala.setVisibility(View.VISIBLE);
                     kabala_v.hide();
                     img_kabala.hide();
-                    camera_kabala.hide();
+
                     kabala = true;
                     kabala_v.setImageResource(R.drawable.cancel);
 
@@ -1183,7 +1144,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                     imageView_delete_sub.setVisibility(View.VISIBLE);
                     sub_v.hide();
                     img_submitted.hide();
-                    camera_submitted.hide();
+
                     sub_v.setImageResource(R.drawable.cancel);
                     submitted = true;
                 } else if (btn_Refund_received_b) {
@@ -1231,7 +1192,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                     imageView_delete_refund.setVisibility(View.VISIBLE);
                     refund_received_v.hide();
                     img_refund_received.hide();
-                    camera_Refund_received.hide();
+
                     refund_received_v.setImageResource(R.drawable.cancel);
                     refund_received = true;
                 }
@@ -1295,16 +1256,6 @@ public class AddMeetingActivity extends AppCompatActivity {
         time_text = null;
         location_text = null;
         caregiver_details_text = null;
-    }
-
-    private void initEventTypeSpinner() {
-        Spinner spinner = findViewById(R.id.spinner_event_type);
-
-        ArrayAdapter<CharSequence> adapter =
-                ArrayAdapter.createFromResource(this, R.array.event_type, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-
-        spinner.setAdapter(adapter);
     }
 
     private void uploadFileToDrive(Uri uri, NetworkResponseCallback callback) {
@@ -1396,8 +1347,17 @@ public class AddMeetingActivity extends AppCompatActivity {
     }
 
     public void setCharacterLimit(TextView editText, int maxCharacters) {
-        InputFilter[] filters = new InputFilter[1];
-        filters[0] = new InputFilter.LengthFilter(maxCharacters);
-        editText.setFilters(filters);
+//        InputFilter[] filters = new InputFilter[1];
+//        filters[0] = new InputFilter.LengthFilter(maxCharacters);
+//        editText.setFilters(filters);
+    }
+
+    public void onPopupWindowOpened(Spinner spinner) {
+        //spinner_t_m.setBackground(getResources().getDrawable(R.drawable.custom_shapes_green));
+    }
+
+
+    public void onPopupWindowClosed(Spinner spinner) {
+        // spinner_t_m.setBackground(getResources().getDrawable(R.drawable.custom_shapes_green));
     }
 }

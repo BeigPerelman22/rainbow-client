@@ -146,27 +146,12 @@
             app:layout_constraintTop_toTopOf="@+id/textLoc_c"
             app:srcCompat="@drawable/delete" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/float_Refund_received_camera_c"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-15dp"
-            android:layout_marginEnd="9dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:tint="@color/white"
-            app:backgroundTint="#3F51B5"
-            app:fabSize="mini"
-            app:layout_constraintEnd_toStartOf="@+id/btn_Refund_received"
-            app:layout_constraintTop_toTopOf="@+id/btn_Refund_received"
-            app:srcCompat="@drawable/camera" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/float_Refund_received_img_c"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="9dp"
-            android:layout_marginBottom="-15dp"
             android:clickable="true"
             android:focusable="true"
             android:tint="@color/white"
@@ -174,6 +159,7 @@
             app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="@+id/btn_Refund_received"
             app:layout_constraintEnd_toStartOf="@+id/btn_Refund_received"
+            app:layout_constraintTop_toTopOf="@+id/btn_Refund_received"
             app:srcCompat="@drawable/image" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -181,7 +167,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginEnd="48dp"
+            android:layout_marginEnd="58dp"
             android:clickable="true"
             android:focusable="true"
             android:tint="@color/white"
@@ -192,27 +178,12 @@
             app:layout_constraintTop_toTopOf="@+id/btn_Refund_received"
             app:srcCompat="@drawable/baseline_check_24" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/float_submitted_camera_c"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-15dp"
-            android:layout_marginEnd="9dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:tint="@color/white"
-            app:backgroundTint="#3F51B5"
-            app:fabSize="mini"
-            app:layout_constraintEnd_toStartOf="@+id/btn_Submitted_to_KOFH"
-            app:layout_constraintTop_toTopOf="@+id/btn_Submitted_to_KOFH"
-            app:srcCompat="@drawable/camera" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/float_submitted_img_c"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="9dp"
-            android:layout_marginBottom="-15dp"
             android:clickable="true"
             android:focusable="true"
             android:tint="@color/white"
@@ -220,6 +191,7 @@
             app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="@+id/btn_Submitted_to_KOFH"
             app:layout_constraintEnd_toStartOf="@+id/btn_Submitted_to_KOFH"
+            app:layout_constraintTop_toTopOf="@+id/btn_Submitted_to_KOFH"
             app:srcCompat="@drawable/image" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -227,7 +199,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginEnd="48dp"
+            android:layout_marginEnd="58dp"
             android:clickable="true"
             android:focusable="true"
             android:tint="@color/white"
@@ -243,7 +215,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="9dp"
-            android:layout_marginBottom="-15dp"
             android:clickable="true"
             android:focusable="true"
             android:tint="@color/white"
@@ -251,6 +222,7 @@
             app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="@+id/btn_add_files_kabala"
             app:layout_constraintEnd_toStartOf="@+id/btn_add_files_kabala"
+            app:layout_constraintTop_toTopOf="@+id/btn_add_files_kabala"
             app:srcCompat="@drawable/image" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -259,7 +231,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
 
-            android:layout_marginEnd="48dp"
+            android:layout_marginEnd="58dp"
             android:clickable="true"
             android:focusable="true"
             android:tint="@color/white"
@@ -271,21 +243,7 @@
             app:layout_constraintVertical_bias="0.333"
             app:srcCompat="@drawable/baseline_check_24" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/float_kabala_camera_c"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-15dp"
-            android:layout_marginEnd="9dp"
 
-            android:clickable="true"
-            android:focusable="true"
-            android:tint="@color/white"
-            app:backgroundTint="#3F51B5"
-            app:fabSize="mini"
-            app:layout_constraintEnd_toStartOf="@+id/btn_add_files_kabala"
-            app:layout_constraintTop_toTopOf="@+id/btn_add_files_kabala"
-            app:srcCompat="@drawable/camera" />
 
         <ImageView
             android:id="@+id/imageView_delete_refund_c"

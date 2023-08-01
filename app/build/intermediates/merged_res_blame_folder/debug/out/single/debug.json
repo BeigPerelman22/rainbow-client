@@ -8,6 +8,10 @@
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\layout\\activity_add_meeting.xml"
     },
     {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_nothing.png.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\nothing.png"
+    },
+    {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
@@ -20,24 +24,40 @@
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\clock.png"
     },
     {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_google_icon.png.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\google_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_icons8linkedin100.png.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\icons8linkedin100.png"
+    },
+    {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_ic_launcher_background.xml.flat",
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable-v24\\ic_launcher_foreground.xml"
-    },
-    {
-        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_ic_delete.xml.flat",
-        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\ic_delete.xml"
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\layout_icon_loader.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\layout\\icon_loader.xml"
     },
     {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_ic_delete2.xml.flat",
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\ic_delete2.xml"
     },
     {
-        "merged": "com.example.finalproject_.app-merged_res-44:/layout_activity_change_meeting.xml.flat",
-        "source": "com.example.finalproject_.app-main-46:/layout/activity_change_meeting.xml"
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_ic_delete.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\ic_delete.xml"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_emo.png.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\emo.png"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_wave__1_.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\wave__1_.xml"
     },
     {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_rainbow_background.xml.flat",
@@ -52,6 +72,10 @@
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\delete.png"
     },
     {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_action_bar_bg_add.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\action_bar_bg_add.xml"
+    },
+    {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\layout_activity_change_meeting.xml.flat",
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\layout\\activity_change_meeting.xml"
     },
@@ -60,8 +84,16 @@
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\xml\\backup_rules.xml"
     },
     {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_custom_shapes_green.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\custom_shapes_green.xml"
+    },
+    {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\xml_network_security_config.xml.flat",
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\xml\\network_security_config.xml"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_action_bar_bg.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\action_bar_bg.xml"
     },
     {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_ic_baseline_calendar_month_24.xml.flat",
@@ -72,28 +104,64 @@
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_spinner_dropdown_background.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\spinner_dropdown_background.xml"
+    },
+    {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_jpg.png.flat",
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\jpg.png"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_activity_i.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\activity_i.xml"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_custom_shapes_blue.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\custom_shapes_blue.xml"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_google_icon_from_google.png.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\google_icon_from_google.png"
     },
     {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
+        "merged": "com.example.finalproject_.app-merged_res-44:/layout_activity_i.xml.flat",
+        "source": "com.example.finalproject_.app-main-46:/layout/activity_i.xml"
+    },
+    {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\layout_loader.xml.flat",
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\layout\\loader.xml"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_speech_therapist.png.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\speech_therapist.png"
     },
     {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\mipmap-mdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_cancel.png.flat",
-        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\cancel.png"
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_green_bg.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\green_bg.xml"
     },
     {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_rainbow.png.flat",
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\rainbow.png"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_cancel.png.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\cancel.png"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_bg_spinner_fruit_up.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\bg_spinner_fruit_up.xml"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_info.png.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\info.png"
     },
     {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_ic_baseline_attach_file_24.xml.flat",
@@ -112,8 +180,20 @@
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\layout\\activity_main.xml"
     },
     {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_iconsmail.png.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\iconsmail.png"
+    },
+    {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable-v24_timetable.png.flat",
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable-v24\\timetable.png"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_physiotherapist.png.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\physiotherapist.png"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\layout_activity_i.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\layout\\activity_i.xml"
     },
     {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_round_button_green.xml.flat",
@@ -140,6 +220,10 @@
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_doctor.png.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\doctor.png"
+    },
+    {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
@@ -164,6 +248,10 @@
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\layout_item_fruit.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\layout\\item_fruit.xml"
+    },
+    {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_round_button_gray.xml.flat",
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\round_button_gray.xml"
     },
@@ -172,8 +260,28 @@
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\layout\\activity_login.xml"
     },
     {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_green_background.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\green_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_wave_background.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\wave_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_custom_shapes_p.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\custom_shapes_p.xml"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_custom_shapes.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\custom_shapes.xml"
+    },
+    {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable__123025_logo_google_g_icon.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\_123025_logo_google_g_icon.xml"
     },
     {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_pdf.png.flat",
@@ -184,6 +292,10 @@
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\xml\\data_extraction_rules.xml"
     },
     {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\layout_custom_action_bar.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\layout\\custom_action_bar.xml"
+    },
+    {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_ic_file.xml.flat",
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\ic_file.xml"
     },
@@ -192,8 +304,24 @@
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\plus3.png"
     },
     {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_button_wave_background.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\button_wave_background.xml"
+    },
+    {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_minus1.png.flat",
         "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\minus1.png"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_bg_spinner_fruit.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\bg_spinner_fruit.xml"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\layout_empty_state_layout.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\layout\\empty_state_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_wave__4_.xml.flat",
+        "source": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-main-46:\\drawable\\wave__4_.xml"
     },
     {
         "merged": "C:\\Users\\beral\\.gradle\\daemon\\8.0\\com.example.finalproject_.app-merged_res-44:\\drawable_baseline_check_24.xml.flat",
