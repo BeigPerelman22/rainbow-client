@@ -5,18 +5,17 @@ package com.example.finalproject_;
 public class MyProperties {
     private static MyProperties mInstance = null;
     ///main of the app
-    public boolean firstTimeOpen = true;
-    public boolean addNewMeeting = false;
-    public boolean changeMeeting = false;
+    private boolean isDataInit = false;
     //to know which button  open to pdf
     public static boolean btn_kabala_b = false;
     public static boolean btn_Submitted_b = false;
     public static boolean btn_Refund_received_b = false;
 
-    public ArrayMeeting arrayMeeting = new ArrayMeeting();
+    private EventList eventList;
 
 
     protected MyProperties() {
+        eventList = new EventList();
     }
 
     public static synchronized MyProperties getInstance() {
@@ -24,5 +23,17 @@ public class MyProperties {
             mInstance = new MyProperties();
         }
         return mInstance;
+    }
+
+    public EventList getEventList() {
+        return eventList;
+    }
+
+    public boolean getIsDataInit() {
+        return isDataInit;
+    }
+
+    public void setIsDataInit(boolean isDataInit) {
+        this.isDataInit = isDataInit;
     }
 }

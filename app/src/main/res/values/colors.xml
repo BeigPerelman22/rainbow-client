@@ -4,7 +4,12 @@
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#5E35B1</color>
     <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="teal_700">#E2F4F4</color>
     <color name="black">#FF000000</color>
+    <color name="gray">#454040</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gradient_start_color">#94C8F0</color>
+    <color name="gradient_end_color">#FFFFFF</color>
+    <color name="spinner_text_color">#000000</color>
+    <color name="spinner_dropdown_background_color">#FFFFFF</color>
 </resources>

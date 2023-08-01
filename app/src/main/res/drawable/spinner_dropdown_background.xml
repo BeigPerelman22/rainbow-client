@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Customize the dropdown background color -->
+    <solid android:color="@color/spinner_dropdown_background_color" />
+    <!-- Add any additional shape attributes like corners or padding as needed -->
+</shape>
